@@ -32,70 +32,68 @@
                                     <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                     <br>
                                     <br>
+                                    <br>
+                                    <br>
                                     <div class="col-sm-12 col-md-12">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">About</span>
                                                 <h2>{{$data->about}}</h2>
                                             </div>
-                                        </div> <div class="col-md-6">
+                                        </div>
+
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Address</span>
                                                 <h2>{{$data->address}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                             <div class="form-group">
-                                                 <span  id="basic-addon1">Services</span>
-                                                 <h2>{{$data->services}}</h2>
-                                             </div>
-                                         </div>
-                                         <div class="col-md-6">
-                                             <div class="form-group">
-                                                 <span  id="basic-addon1">Specialization</span>
-                                                 <h2>{{$data->specialization}}</h2>
+                                            <div class="form-group">
+                                                <span  id="basic-addon1">Services</span>
+                                                <h2>{{$data->services}}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span  id="basic-addon1">Specialization</span>
+                                                <h2>{{$data->specialization}}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span  id="basic-addon1">Education</span>
+                                                <h2>{{$data->education}}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span  id="basic-addon1">Experiences</span>
+                                                <h2>{{$data->experience}}</h2>
+                                            </div>
+                                        </div>
+                                        <br>
 
-                                             </div>
-                                         </div>
-                                         <div class="col-md-6">
-                                             <div class="form-group">
-                                                 <span  id="basic-addon1">Education</span>
-                                                 <h2>{{$data->education}}</h2>
-                                             </div>
-                                         </div>
-                                         <div class="col-md-6">
-                                             <div class="form-group">
-                                                 <span  id="basic-addon1">Experiences</span>
-                                                 <h2>{{$data->experience}}</h2>
-                                             </div>
-                                         </div>
-                                    <br>
-
-
-                                    {{--{!! Form::open(['action' => ['DoctorProfileController@profile'], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-
-                                    <div class ="form-group">
-                                        {{Form::label('about', 'About')}}
-                                        {{Form::text('about', $data->about, ['class' => 'form-control', 'placeholder' => 'about'])}}
-                                    </div>
-
-                                    {!! Form::close() !!}--}}
+                                        </form>
 
                                     </div>
+                                </div>
+                                {{--END--}}
+
                             </div>
-                            {{--END--}}
-
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- SVG separator -->
-            <div class="separator separator-bottom separator-skew">
-                <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                    <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-                </svg>
+                <!-- SVG separator -->
+                <div class="separator separator-bottom separator-skew">
+                    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+                    </svg>
+                </div>
             </div>
         </section>
+    </div>
+
         <!-- 1st Hero Variation -->
     </div>
 

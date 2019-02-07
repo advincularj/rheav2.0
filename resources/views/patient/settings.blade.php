@@ -33,6 +33,9 @@
                                             <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                             <div class="caption">
                                                 <br>
+                                                <br>
+                                                <br>
+                                                <br>
                                                 <p align="right">  <a href="/changePhoto"  class=" btn btn-sm btn-primary" role="button">Change Image</a></p>
                                             </div>
                                         </div>
@@ -41,10 +44,13 @@
                                     <div class="col-sm-12 col-md-12">
                                         <form action="/settings" method="post">
                                             @csrf
+                                            <br>
+                                            <br>
+                                            <br>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <span  id="basic-addon1">First Name</span>
-                                                    <input type="text" class="form-control" placeholder="First Name" name="user[first_name]" value="{{ old('first_name')}}{{$user->first_name}}}">
+                                                    <input type="text" class="form-control" placeholder="First Name" name="user[first_name]" value="{{ old('first_name')}}{{$user->first_name}}">
                                                 </div>
                                             </div>
                                     </div>
@@ -52,7 +58,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Last Name</span>
-                                                <input type="text" class="form-control" placeholder="Last Name" name="user[last_name]" value="{{ old('last_name')}}{{$user->last_name}}}">
+                                                <input type="text" class="form-control" placeholder="Last Name" name="user[last_name]" value="{{ old('last_name')}}{{$user->last_name}}">
                                             </div>
                                         </div>
                                     </div>
@@ -60,17 +66,46 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Address</span>
-                                                <textarea type="text" class="form-control" name="address">{{ old('address') }}</textarea>
+                                                <textarea type="text" class="form-control" name="address">{{ old('address') }}{{$data->address}}</textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <span  id="basic-addon1">Number</span>
-                                                <input type="text" class="form-control" placeholder="Number" name="Number" value="{{ old('number')}}">
+                                                <span  id="basic-addon1">Contact Number</span>
+                                                <input type="text" class="form-control" placeholder="Contact Number" name="number" value="{{ old('number')}}{{$data->number}}">
                                             </div>
                                         </div>
-
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span  id="basic-addon1">Expected Date of Delivery</span>
+                                                <input type="text" class="form-control" placeholder="Expected Date of Delivery" name="edod" value="{{ old('edod')}}{{$data->edod}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span  id="basic-addon1">Allergies</span>
+                                                <input type="text" class="form-control" placeholder="Allergies" name="allergies" value="{{ old('allergies')}}{{$data->allergies}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span  id="basic-addon1">Blood Type</span>
+                                                <input type="text" class="form-control" placeholder="Blood Type" name="bloodtype" value="{{ old('bloodtype')}}{{$data->bloodtype}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span  id="basic-addon1">Hospital/Clinic</span>
+                                                <input type="text" class="form-control" placeholder="Hospital/Clinic" name="clinic" value="{{ old('clinic')}}{{$data->clinic}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span  id="basic-addon1">Attending Physician</span>
+                                                <input type="text" class="form-control" placeholder="Doctor" name="doctor" value="{{ old('doctor')}}{{$data->doctor}}">
+                                            </div>
+                                        </div>
                                         <br>
 
                                         <div class="form-group">
@@ -90,7 +125,10 @@
                             <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
                         </svg>
                     </div>
+                </div>
+            </div>
         </section>
-        <!-- 1st Hero Variation -->
+    </div>
+    <!-- 1st Hero Variation -->
     </div>
 @endsection

@@ -32,6 +32,8 @@
                                     <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                     <br>
                                     <br>
+                                    <br>
+                                    <br>
                                     <div class="col-sm-12 col-md-12">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -66,7 +68,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <span  id="basic-addon1">Clinic</span>
+                                                <span  id="basic-addon1">Hospital/Clinic</span>
                                                 <h2>{{$data->clinic}}</h2>
                                             </div>
                                         </div>
@@ -94,9 +96,11 @@
                         <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
                     </svg>
                 </div>
+            </div>
         </section>
     </div>
-        <!-- 1st Hero Variation -->
+
+    <!-- 1st Hero Variation -->
     </div>
 
 @endsection

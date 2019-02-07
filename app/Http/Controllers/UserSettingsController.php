@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use App\UserProfile;
+use App\userprofile;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Image;
@@ -19,8 +19,9 @@ class UserSettingsController extends Controller
     public function settings(){
 
 
+        $data = userprofile::Where('user_id', '=', Auth::id())->first();
         $user  = User::find(Auth::id());
-        return view('patient.settings', compact(['user']));
+        return view('patient.settings', compact(['user', 'data']));
     }
 
     public function uploadPhoto(Request $request){
@@ -37,7 +38,13 @@ class UserSettingsController extends Controller
             $user = Auth::user()->id;
             DB::table('users')->where('id', $user)->update(['avatar' => $filename]);
 
+
+
+
         }
+
+
+
 
         return redirect('settings');
 
@@ -60,6 +67,7 @@ class UserSettingsController extends Controller
 
         User::where('id', Auth::id())->update($request['user']);
         $user_id = Auth::user()->id;
+
 
         DB::table('userprofiles')->where('user_id', $user_id)->update($request->except('_token', 'user'));
         return back();

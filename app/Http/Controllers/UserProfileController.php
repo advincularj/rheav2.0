@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\UserProfile;
+use App\userprofile;
 use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
@@ -13,12 +13,8 @@ class UserProfileController extends Controller
     }
     public function userprofile(){
 
-        $data = userprofile::find(Auth::user()->id);
-        if($data == null)
-        {
-            return redirect()->to('settings');
-        }
-        dd($data);
+        $data = userprofile::Where('user_id', '=', Auth::id())->first();
+
         return view('patient.userprofile', compact('data'));
     }
 

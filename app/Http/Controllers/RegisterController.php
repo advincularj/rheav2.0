@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\userprofile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +54,8 @@ class RegisterController extends Controller
                 User::create($data);
 
 
+
+
                 return redirect('/login');
             } else {
                 return redirect('/register')->withInput();
@@ -60,6 +63,8 @@ class RegisterController extends Controller
         } else {
             return redirect('/register')->withErrors($valid)->withInput();
         }
+        userprofile::create(['user_id' => $user->id]);
+        return $user;
 
 
     }

@@ -54,7 +54,7 @@ class User extends Authenticatable
     }
 
     public function profile() {
-        return $this->hasOne('App\doctor_info');
+        return $this->hasOne('App\User');
     }
 
     public function userprofile() {

@@ -35,9 +35,9 @@
                                     <th scope="col">Phone Number</th>
                                     <th scope="col">Birth Date</th>
                                     <th scope="col">Created At</th>
-                                    <th>
+                                    {{--<th>
                                         <input type="checkbox" class="checkuser" id="checkall"/>
-                                    </th>
+                                    </th>--}}
                                     <th scope="col"></th>
                                 </tr>
                                 </thead>

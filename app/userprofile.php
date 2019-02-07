@@ -17,7 +17,7 @@ class userprofile extends Model
 
 
     public function user() {
-        return $this->belongsTo('App\userprofile');
+        return $this->belongsTo('App\User');
     }
 
 }

@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('patients', 'DoctorPatientController@index');
         Route::post('patient', 'DoctorPatientController@patient');
         Route::get('doctorprofile', 'DoctorProfileController@profile');
-        Route::get('doctorsettings', 'DoctorSettingsController@settings');
+        Route::get('/doctorsettings', 'DoctorSettingsController@settings');
         Route::post('/uploadPhoto', 'DoctorSettingsController@uploadPhoto');
 
     //Route::get('doctorsettings', 'DoctorSettingsController@editProfileForm');
