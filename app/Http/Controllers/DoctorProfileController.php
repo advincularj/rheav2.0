@@ -20,6 +20,8 @@ class DoctorProfileController extends Controller
 
         return view('doctor.doctorprofile', compact('data'));
 
+        //POGI GER
+
 
     }
 
