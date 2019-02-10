@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCoverImageToPosts extends Migration
+class AddCoverImageToMaternalGuideCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddCoverImageToPosts extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function ($table){
+        Schema::table('maternal_guide_categories', function (Blueprint $table) {
             $table->string('cover_image');
-
         });
     }
 
@@ -26,9 +25,8 @@ class AddCoverImageToPosts extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function ($table){
+        Schema::table('maternal_guide_categories', function (Blueprint $table) {
             $table->dropColumn('cover_image');
-
         });
     }
 }

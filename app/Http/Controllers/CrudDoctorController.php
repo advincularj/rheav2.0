@@ -16,7 +16,7 @@ class CrudDoctorController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
 
     public function index()
@@ -70,10 +70,13 @@ class CrudDoctorController extends Controller
         $user->phone = $request->input('phone');
         $user->email = $request->input('email');
         $user->password = $pw;
+        $user['role_id'] = 2;
 //        $user->password= $request->input('password');
 //        $user->user_id = auth()->user()->id;
         $user->save();
         doctor_info::create(['user_id' => $user->id]);
+
+
 
 
 

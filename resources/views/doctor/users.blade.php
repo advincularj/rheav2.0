@@ -36,9 +36,6 @@
                                     <th scope="col">Phone Number</th>
                                     <th scope="col">Birth Date</th>
                                     <th scope="col">Created At</th>
-                                    <th>
-                                        <input type="checkbox" class="checkuser" />
-                                    </th>
                                     <th scope="col"></th>
                                 </tr>
                                 </thead>

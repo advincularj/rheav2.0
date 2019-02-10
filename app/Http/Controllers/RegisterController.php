@@ -51,7 +51,9 @@ class RegisterController extends Controller
                 $data = $request->all();
                 $data['password'] = bcrypt($data['password']);
                 $data['role_id'] = 3;
-                User::create($data);
+                $id = User::create($data)->id;
+                userprofile::create(['user_id' => $id]);
+
 
 
 
@@ -63,8 +65,7 @@ class RegisterController extends Controller
         } else {
             return redirect('/register')->withErrors($valid)->withInput();
         }
-        userprofile::create(['user_id' => $user->id]);
-        return $user;
+
 
 
     }

@@ -16,7 +16,7 @@ class Doctor
 {
     public function handle($request, Closure $next)
     {
-        if (!Auth::user() || !session()->exists('user')) {
+        if (Auth::guest()) {
             return redirect('/login');
         } else {
             if (Auth::user()->role_id != 2) {

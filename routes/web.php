@@ -44,6 +44,15 @@ Route::group(['middleware' => ['web']], function () {
 
     //Admin-CRUD DOCTORS
         Route::resource('users', 'CrudDoctorController');
+
+
+        //Admin - CRUD Maternal Guide
+        Route::resource('guides', 'MaternalGuideController');
+
+        // Admin - Maternal Guide Categories
+        Route::resource('categories', 'MaternalGuideCategoryController', ['except' => ['create']]);
+    //Route::get('/categories/{id?}/edit', 'MaternalGuideCategoryController@store', ['except' => ['create']]);
+
     });
 
 
@@ -57,6 +66,14 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('doctorprofile', 'DoctorProfileController@profile');
         Route::get('/doctorsettings', 'DoctorSettingsController@settings');
         Route::post('/uploadPhoto', 'DoctorSettingsController@uploadPhoto');
+        Route::get('indexrecord', function () {
+            return view('doctor.indexcheckup');
+        });
+        Route::resource('indexrecord', 'CheckupRecordsController');
+        Route::get('checkup', function () {
+            return view('doctor.createcheckup');
+        });
+        Route::resource('checkuprecords', 'CheckupRecordsController');
 
     //Route::get('doctorsettings', 'DoctorSettingsController@editProfileForm');
         Route::post('/doctorsettings', 'DoctorSettingsController@updateProfile');
@@ -74,9 +91,20 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/uploadPhoto', 'UserSettingsController@uploadPhoto');
         Route::post('/settings', 'UserSettingsController@updateProfile');
         Route::get('/changePhoto', function() {
-        return view('patient.pic');
+            return view('patient.pic');
         });
-});
+        //Patient - Maternal Guide Dashboard
+        Route::get('/maternalguide', 'MaternalGuideDashboardController@index');
+        Route::resource('guides', 'MaternalGuideController')->only(['show']);
+        });
+        Route::get('indexnote', function () {
+            return view('patient.viewpregnancydiary');
+        });
+        Route::resource('indexnote', 'PregnancyDiariesController');
+        Route::get('diary', function () {
+            return view('patient.createpregnancydiary');
+         });
+    route::resource('pregnancydiaries', 'PregnancyDiariesController');
     });
 
         //register

@@ -48,6 +48,12 @@
 <!-- Argon JS -->
 <script src="{{ asset('aaa/admin/js/argon.js?v=1.0.0') }}"></script>
 
+<!-- Ckeditor -->
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
+
 
 </body>
 </html>

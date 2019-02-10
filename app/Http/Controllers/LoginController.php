@@ -14,7 +14,8 @@ class LoginController extends Controller
     public function index()
     {
 
-        if (Auth::user() && session('user')) {
+        if (Auth::user()) {
+
             if (Auth::user()->role_id == 3) {
                 return redirect('/settings');
             } elseif (Auth::user()->role_id == 1) {

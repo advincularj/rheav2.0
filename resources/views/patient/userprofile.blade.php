@@ -38,44 +38,44 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Address</span>
-                                                <h2>{{$data->address}}</h2>
+                                                <h2>{{ old('address') }}{{($data == null) ? '' : $data->address}}</h2>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Contact Number</span>
-                                                <h2>{{$data->number}}</h2>
+                                                <h2>{{ old('number') }}{{($data == null) ? '' : $data->number}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Expected Date of Delivery</span>
-                                                <h2>{{$data->edod}}</h2>
+                                                <h2>{{ old('edod') }}{{($data == null) ? '' : $data->edod}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Allergies</span>
-                                                <h2>{{$data->allergies}}</h2>
+                                                <h2>{{ old('allergies') }}{{($data == null) ? '' : $data->allergies}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Blood Type</span>
-                                                <h2>{{$data->bloodtype}}</h2>
+                                                <h2>{{ old('bloodtype') }}{{($data == null) ? '' : $data->bloodtype}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Hospital/Clinic</span>
-                                                <h2>{{$data->clinic}}</h2>
+                                                <h2>{{ old('clinic') }}{{($data == null) ? '' : $data->clinic}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Attending Physician</span>
-                                                <h2>{{$data->doctor}}</h2>
+                                                <h2>{{ old('doctor') }}{{($data == null) ? '' : $data->doctor}}</h2>
                                             </div>
                                         </div>
                                         <br>

@@ -17,9 +17,8 @@ class Patient
     public function handle($request, Closure $next)
     {
 
-        if (!Auth::user() || !session()->exists('user')) {
+        if (!Auth::user()) {
             // user value cannot be found in session
-            alert()->warning('Oops!', 'You are not allowed to access this page.');
             return redirect('/index');
 
         }elseif((session('role')) && session('role') != 3){

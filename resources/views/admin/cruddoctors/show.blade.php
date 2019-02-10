@@ -1,24 +1,24 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <a href="/posts" class="btn btn-default">Go Back</a>
-    <h1>{{$post->title}}</h1>
-    <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">
+    <a href="/guides" class="btn btn-default">Go Back</a>
+    <h1>{{$guide->title}}</h1>
+    <img style="width:100%" src="/storage/cover_images/{{$guide->cover_image}}">
     <br>
     <br>
     <div>
-        {!!$post->body!!}
+        {!!$guide->body!!}
     </div>
     <hr>
-    <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
+    <small>Written on {{$guide->created_at}} by {{$guide->user->first_name}} {{$guide->user->last_name}}</small>
     <hr>
     @if(!Auth::guest())
-        @if(Auth::user()-> id == $post->user_id)
+        @if(Auth::user()-> id == $guide->user_id)
             {{--Edit Button--}}
-            <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
+            <a href="/posts/{{$guide->id}}/edit" class="btn btn-default">Edit</a>
 
             {{--Delete Button - ARCHIVE dapat sa thesis--}}
-            {!!Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+            {!!Form::open(['action' => ['MaternalGuideController@destroy', $guide->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
             {{Form::hidden('_method', 'DELETE')}}
             {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
             {!! Form::close() !!}
