@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('patient.layouts.app')
 
 @section('content')
 
@@ -16,6 +16,8 @@
                 <span></span>
                 <span></span>
             </div>
+
+            @include('patient.inc.messages')
             <div class="container py-lg-md d-flex">
                 <div class="col px-0">
                     <div class="row justify-content-center">
@@ -39,10 +41,9 @@
                                                     <div>
                                                         <small>Written on {{$guide->created_at}} </small>
                                                     </div>
-                                                    <div>
-                                                        <small>
-                                                            by {{$guide->user->first_name }} {{$guide->user->last_name }}</small>
-                                                    </div>
+                                                    {{--<div>--}}
+                                                        {{--<small>by {{$guide->user->first_name }} {{$guide->user->last_name }}</small>--}}
+                                                    {{--</div>--}}
                                                     <a href="/guides/{{$guide->id}}" class="btn btn-primary mt-4">Learn
                                                         more</a>
                                                 </div>

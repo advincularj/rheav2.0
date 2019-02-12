@@ -29,9 +29,11 @@
                             {!!$guide->body!!}
                         </div>
                         <hr>
-                        <small>Written on {{$guide->created_at}} by {{$guide->user->first_name }} {{$guide->user->last_name }}</small>
+                        <small>Written on {{$guide->created_at}}</small>
+                        {{--<small>Written on {{$guide->created_at}} by {{$guide->user->first_name }} {{$guide->user->last_name }}</small>--}}
+
                         <hr>
-                        <p>Posted In: {{ $guide->category->name}}</p>
+                        <p>Category: {{ $guide->category->name}}</p>
                         @if(!Auth::guest())
                             @if(Auth::user()-> id == $guide->user_id)
                                 {{--Edit Button--}}

@@ -148,9 +148,10 @@
                 {{--</svg>--}}
                 {{--</div>--}}
             </div>
+        </section>
     </div>
-    </section>
-    </div>
+    {{--</section>--}}
+    {{--</div>--}}
     <!-- 1st Hero Variation -->
     </div>
 @endsection

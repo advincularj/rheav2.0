@@ -57,20 +57,26 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/users">
+                    {{--<a class="nav-link active" href="/users">--}}
+                    <a class="nav-link" href="/users">
                         <i class="ni ni-bullet-list-67 text-red"></i> Users
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('login') }}">
-                        <i class="ni ni-key-25 text-info"></i> {{ __('Login') }}
+                    <a class="nav-link" href="/guides">
+                        <i class="ni ni-bullet-list-67 text-red"></i> Maternal Guide
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('register') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
-                    </a>
-                </li>
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link" href="{{ url('login') }}">--}}
+                        {{--<i class="ni ni-key-25 text-info"></i> {{ __('Login') }}--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link" href="{{ url('register') }}">--}}
+                        {{--<i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}--}}
+                    {{--</a>--}}
+                {{--</li>--}}
             </ul>
             <!-- Divider -->
             {{--<hr class="my-3">--}}

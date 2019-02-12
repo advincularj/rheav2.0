@@ -38,27 +38,28 @@ Route::group(['middleware' => ['web']], function () {
     //---------------------------------------------------------------------
     Route::group(['middleware' => 'admin'], function () {
 
-    //Admin
+        //Admin
         Route::get('/admin/dashboard', 'AdminsController@dashboard');
         Route::get('/profile', 'AdminsController@profile');
 
-    //Admin-CRUD DOCTORS
+        //Admin-CRUD DOCTORS
         Route::resource('users', 'CrudDoctorController');
 
 
         //Admin - CRUD Maternal Guide
         Route::resource('guides', 'MaternalGuideController');
+        Route::get('/archived', 'MaternalGuideController@indexArchived');
+        Route::get('/restore/{id}', 'MaternalGuideController@restore')->name('guide.restore');
+
 
         // Admin - Maternal Guide Categories
         Route::resource('categories', 'MaternalGuideCategoryController', ['except' => ['create']]);
-    //Route::get('/categories/{id?}/edit', 'MaternalGuideCategoryController@store', ['except' => ['create']]);
-
     });
 
 
     //---------------------------------------------------------------------
     Route::group(['middleware' => 'doctor'], function () {
-    //Doctor
+        //Doctor
         Route::get('addpatient', 'DoctorPatientController@show');
         Route::post('addpatient', 'DoctorPatientController@addpatient');
         Route::get('patients', 'DoctorPatientController@index');
@@ -75,51 +76,51 @@ Route::group(['middleware' => ['web']], function () {
         });
         Route::resource('checkuprecords', 'CheckupRecordsController');
 
-    //Route::get('doctorsettings', 'DoctorSettingsController@editProfileForm');
+        //Route::get('doctorsettings', 'DoctorSettingsController@editProfileForm');
         Route::post('/doctorsettings', 'DoctorSettingsController@updateProfile');
-        Route::get('/changePhoto', function() {
+        Route::get('/changePhoto', function () {
             return view('doctor.pic');
-    });
+        });
     });
 
     //---------------------------------------------------------------------
     Route::group(['middleware' => 'patient'], function () {
-    //Patient
+        //Patient
 
         Route::get('/userprofile', 'UserProfileController@userprofile');
         Route::get('/settings', 'UserSettingsController@settings');
         Route::post('/uploadPhoto', 'UserSettingsController@uploadPhoto');
         Route::post('/settings', 'UserSettingsController@updateProfile');
-        Route::get('/changePhoto', function() {
+        Route::get('/changePhoto', function () {
             return view('patient.pic');
         });
         //Patient - Maternal Guide Dashboard
         Route::get('/maternalguide', 'MaternalGuideDashboardController@index');
         Route::resource('guides', 'MaternalGuideController')->only(['show']);
-        });
-        Route::get('indexnote', function () {
-            return view('patient.viewpregnancydiary');
-        });
-        Route::resource('indexnote', 'PregnancyDiariesController');
-        Route::get('diary', function () {
-            return view('patient.createpregnancydiary');
-         });
-    route::resource('pregnancydiaries', 'PregnancyDiariesController');
     });
+    Route::get('indexnote', function () {
+        return view('patient.viewpregnancydiary');
+    });
+    Route::resource('indexnote', 'PregnancyDiariesController');
+    Route::get('diary', function () {
+        return view('patient.createpregnancydiary');
+    });
+    route::resource('pregnancydiaries', 'PregnancyDiariesController');
+});
 
-        //register
-        Route::resource('/register', 'RegisterController')->only(['store', 'index']);
-        //login
-//        Route::resource('/login', 'LoginController')->only(['index', 'store']);
-    Route::get('/login', 'LoginController@index');
-    Route::post('/login', 'LoginController@store');
-        //logout
-        Route::get('/logout', 'LoginController@logout');
+//register
+Route::resource('/register', 'RegisterController')->only(['store', 'index']);
+//login
+// Route::resource('/login', 'LoginController')->only(['index', 'store']);
+Route::get('/login', 'LoginController@index');
+Route::post('/login', 'LoginController@store');
+//logout
+Route::get('/logout', 'LoginController@logout');
 
 
 
 
 
 
-    //Reset Password
-    //Route::get('/dashboard', 'ResetPaswordController@index');
+//Reset Password
+//Route::get('/dashboard', 'ResetPaswordController@index');

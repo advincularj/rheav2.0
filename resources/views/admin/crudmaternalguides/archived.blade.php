@@ -5,6 +5,7 @@
 
     <!-- Page content -->
     <div class="container-fluid mt--8">
+
         <!-- Maternal Guide Table -->
         <div class="row mt-5">
             <div class="col">
@@ -12,20 +13,18 @@
                     <div class="card-header border-0">
                         <div class="row mb-0">
                             <div class="element1 col-md-4">
-                                <h2>Maternal Guide</h2>
+                                <h2>Archived Maternal Guide</h2>
                             </div>
 
-                            <div class="w3-show-inline-block offset-4">
+                            <div class="w3-show-inline-block offset-6">
                                 <div class="w3-bar">
-                                    <a href="/guides/create" class="btn btn-primary">Create Guide</a>
-                                    <a href="/categories" class="btn btn-primary">Categories</a>
-                                    <a href="/archived" class="btn btn-primary">Archived</a>
+                                    <a href="/guides" class="btn btn-default">Go Back</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    @if(count($guides) > 0)
+                    @if(count($trash) > 0)
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
@@ -39,7 +38,7 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($guides as $guide)
+                                @foreach($trash as $guide)
                                     <tr>
                                         <td>
                                             {{$guide->title}}
@@ -51,34 +50,35 @@
                                             {{ $guide->created_at }}
                                         </td>
                                         <td>
-                                            <a href="/guides/{{$guide->id}}/edit" class="btn btn-default">Edit</a>
+                                            <a href="{{ route('guide.restore', $guide->id) }}" class="btn btn-success">Restore</a>
                                         </td>
-                                        <td>
-                                            {{--Delete Button - ARCHIVE dapat sa thesis--}}
-                                            {!!Form::open(['action' => ['MaternalGuideController@destroy', $guide->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
-                                            {{Form::hidden('_method', 'DELETE')}}
-                                            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                                            {!! Form::close() !!}
-                                        </td>
+                                        {{--<td>--}}
+                                        {{--Delete Button - ARCHIVE dapat sa thesis--}}
+                                        {{--{!!Form::open(['action' => ['MaternalGuideController@restore'], 'method' => 'POST', 'class' => 'pull-right'])!!}--}}
+                                        {{--{{Form::hidden('_method', 'RESTORE')}}--}}
+                                        {{--{{Form::submit('Restore', ['class' => 'btn btn-default'])}}--}}
+                                        {{--{!! Form::close() !!}--}}
+                                        {{--</td>--}}
                                     </tr>
                                 </tbody>
                                 @endforeach
 
                             </table>
                             @else
-                                <p style="text-align: center">You have no article</p>
+                                <p style="text-align: center">You have no archived article</p>
                             @endif
                         </div>
                         <div class="card-footer py-4">
                             <nav aria-label="...">
                                 <ul class="pagination justify-content-end mb-0">
-                                    {{ $guides->links() }}
+                                    {{--{{ $guides->links() }}--}}
                                 </ul>
                             </nav>
                         </div>
                 </div>
             </div>
         </div>
+
 
         <!-- Footer -->
         <footer class="footer">

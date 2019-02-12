@@ -34,6 +34,33 @@ class MaternalGuideController extends Controller
         return view('admin.guide')->with('guides',$user->guides)->with('guides',$guides);
     }
 
+    public function indexArchived()
+    {
+        $trash = MaternalGuide::withTrashed()
+            ->where('deleted_at', '!=', 'null')
+            ->get();
+        // show trashed data
+//        $trash = DB::table('maternal_guides')
+//            ->whereNotNull('deleted_at')->orderBy('created_at', 'dsc')
+//            ->get();
+//        $guides = MaternalGuide::orderBy('created_at', 'dsc')->get();
+
+        return view('admin.crudmaternalguides.archived', compact('trash'));
+    }
+
+    public function restore($id)
+    {
+        MaternalGuide::withTrashed()
+            ->where('id', $id)
+            ->restore();
+
+
+        // restore data
+//        MaternalGuide::orderBy('created_at', 'dsc')->paginate(5)->where('id', $id)->restore();
+//        $guides = MaternalGuide::onlyTrashed()->where('id', $id)->restore();
+        return redirect('/archived');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
