@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8cdc7418-ee90-45b6-b840-709ed1c27521" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/crudmaternalguides/archived.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/terminal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/terminal.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaternalGuideController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaternalGuideController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/MaternalGuide.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/MaternalGuide.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/crudmaternalguides/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/crudmaternalguides/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/guide.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/guide.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/inc/sidenav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/inc/sidenav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/inc/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inc/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/patient/inc/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/patient/inc/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/patient/maternalguide.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/patient/maternalguide.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/patient/settings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/patient/settings.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="8cdc7418-ee90-45b6-b840-709ed1c27521" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +54,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/crudmaternalguides/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
+            <state relative-caret-position="142">
               <caret line="32" column="107" selection-start-line="32" selection-start-column="107" selection-end-line="32" selection-end-column="107" />
             </state>
           </provider>
@@ -439,12 +424,12 @@
       <workItem from="1549518945589" duration="24764000" />
       <workItem from="1549604779081" duration="18890000" />
       <workItem from="1549734658473" duration="8693000" />
-      <workItem from="1549818842324" duration="11240000" />
+      <workItem from="1549818842324" duration="11567000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268231000" />
+    <option name="totallyTimeSpent" value="268558000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -456,10 +441,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-6" y="0" width="781" height="830" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29932886" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.6185853" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -473,7 +457,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49798658" weight="0.32719547" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49798658" visible="true" weight="0.4670487" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50201344" side_tool="true" weight="0.35977337" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="12" weight="0.32974428" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -861,7 +845,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/crudmaternalguides/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="142">
           <caret line="32" column="107" selection-start-line="32" selection-start-column="107" selection-end-line="32" selection-end-column="107" />
         </state>
       </provider>
