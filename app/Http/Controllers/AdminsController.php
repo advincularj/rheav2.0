@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
+
 class AdminsController extends Controller
 {
     public function __construct()
@@ -18,16 +20,28 @@ class AdminsController extends Controller
 
     public function dashboard(){
         $title = 'Dashboard';
-        return view('admin.dashboard')->with('title', $title);
+
+        //Viewed Dashboard
+        $activity = ActivityLogger::activity("Viewed Dashboard");
+
+        return view('admin.dashboard')->with('title', $title)->with('activity', $activity);
     }
 
     public function profile(){
         $title = 'Profile';
-        return view('admin.profile')->with('title', $title);
+
+        //Viewed Dashboard
+        $activity = ActivityLogger::activity("Viewed Profile");
+
+        return view('admin.profile')->with('title', $title)->with('activity', $activity);
     }
 
     public function tables(){
         $title = 'Users';
-        return view('admin.tables')->with('title', $title);
+
+        //Viewed Users
+        $activity = ActivityLogger::activity("Viewed Users");
+
+        return view('admin.tables')->with('title', $title)->with('activity', $activity);
     }
 }

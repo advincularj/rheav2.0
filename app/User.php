@@ -23,8 +23,11 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
     'role_id','first_name', 'last_name', 'birth_date', 'phone', 'email', 'password',
-];
 
+
+];
+    protected static $logAttributes = ['first_name', 'last_name', 'birth_date', 'phone', 'email', 'password'];
+    protected static $logName = 'User';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -41,6 +44,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function guides(){
         return $this->hasMany('App\MaternalGuide');
+    }
+
+    public function activity(){
+        return $this->hasMany('App\Activity');
     }
 
     public static function generatePassword()
@@ -61,17 +68,17 @@ class User extends Authenticatable implements MustVerifyEmail
         });
     }
 
-    public static function sendConfirmationEmail($data)
-    {
-
-        // Send email
-        Mail::send('patient.confirmation', ['user' => $data], function ($m) use ($data) {
-            $m->from('rhea.isproj2@gmail.com', 'RHEA');
-            $m->to($data->email, $data->first_name, $data->last_name)->subject('Welcome to RHEA');
-        });
-
-        return user();
-    }
+//    public static function sendConfirmationEmail($data)
+//    {
+//
+//        // Send email
+//        Mail::send('patient.confirmation', ['user' => $data], function ($m) use ($data) {
+//            $m->from('rhea.isproj2@gmail.com', 'RHEA');
+//            $m->to($data->email, $data->first_name, $data->last_name)->subject('Welcome to RHEA');
+//        });
+//
+//        return user();
+//    }
 
 
 

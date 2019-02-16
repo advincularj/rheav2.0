@@ -67,6 +67,11 @@
                         <i class="ni ni-bullet-list-67 text-red"></i> Maternal Guide
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/audits">
+                        <i class="ni ni-bullet-list-67 text-red"></i> Audit Logs
+                    </a>
+                </li>
 
                 {{--<li class="nav-item">--}}
                     {{--<a class="nav-link" href="{{ url('login') }}">--}}

@@ -104,6 +104,9 @@
       <path value="$PROJECT_DIR$/vendor/jlawrence/eos" />
       <path value="$PROJECT_DIR$/vendor/umpirsky/language-list" />
       <path value="$PROJECT_DIR$/vendor/jenssegers/date" />
+      <path value="$PROJECT_DIR$/vendor/jaybizzle/laravel-crawler-detect" />
+      <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/vendor/jeremykenedy/laravel-logger" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

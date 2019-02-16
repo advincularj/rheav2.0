@@ -8,6 +8,9 @@ use App\MaternalGuide;
 use App\MaternalGuideCategory;
 Use App\User;
 
+use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
+
+
 use DB;
 
 class MaternalGuideController extends Controller
@@ -28,10 +31,13 @@ class MaternalGuideController extends Controller
 //        $guides = MaternalGuide::orderBy('created_at', 'dsc')->paginate(10);
 //        return view('admin.crudmaternalguides.index')->with('guides', $guides);
 
+        //Viewed Maternal Guide Table
+        $activity = ActivityLogger::activity("Viewed Maternal Guide Table");
+
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $guides = MaternalGuide::orderBy('created_at', 'dsc')->paginate(5);
-        return view('admin.guide')->with('guides',$user->guides)->with('guides',$guides);
+        return view('admin.guide')->with('guides',$user->guides)->with('guides',$guides)->with('activity', $activity);
     }
 
     public function indexArchived()
@@ -45,7 +51,10 @@ class MaternalGuideController extends Controller
 //            ->get();
 //        $guides = MaternalGuide::orderBy('created_at', 'dsc')->get();
 
-        return view('admin.crudmaternalguides.archived', compact('trash'));
+        //Archived Maternal Guide Table
+        $activity = ActivityLogger::activity("Archived Maternal Guide");
+
+        return view('admin.crudmaternalguides.archived', compact('trash'))->with('activity', $activity);
     }
 
     public function restore($id)
@@ -54,11 +63,13 @@ class MaternalGuideController extends Controller
             ->where('id', $id)
             ->restore();
 
+        //Archived Maternal Guide Table
+        $activity = ActivityLogger::activity("Restored Maternal Guide");
 
         // restore data
 //        MaternalGuide::orderBy('created_at', 'dsc')->paginate(5)->where('id', $id)->restore();
 //        $guides = MaternalGuide::onlyTrashed()->where('id', $id)->restore();
-        return redirect('/archived');
+        return redirect('/archived')->with('activity', $activity);
     }
 
     /**
@@ -68,10 +79,12 @@ class MaternalGuideController extends Controller
      */
     public function create()
     {
+        //Viewed Categories Table of Maternal Guide
+        $activity = ActivityLogger::activity("Viewed Categories for Maternal Guide");
 
         $categories = MaternalGuideCategory::all();
 
-        return view('admin.crudmaternalguides.create')->withCategories($categories);
+        return view('admin.crudmaternalguides.create')->withCategories($categories)->with('activity', $activity);
     }
 
     /**
@@ -114,8 +127,11 @@ class MaternalGuideController extends Controller
         $guide->cover_image = $fileNametoStore;
         $guide->save();
 
+        //Viewed Contents of Maternal Guide
+        $activity = ActivityLogger::activity("Viewed Contents of Maternal Guide");
 
-        return redirect('/guides')->with('success', 'Maternal Guide Created');
+
+        return redirect('/guides')->with('success', 'Maternal Guide Created')->with('activity', $activity);
     }
 
     /**
@@ -126,8 +142,11 @@ class MaternalGuideController extends Controller
      */
     public function show($id)
     {
+        //Viewed Content of Maternal Guide
+        $activity = ActivityLogger::activity("Viewed Content of Maternal Guide");
+
         $guide = MaternalGuide::find($id);
-        return view('admin.crudmaternalguides.show')->with('guide', $guide);
+        return view('admin.crudmaternalguides.show')->with('guide', $guide)->with('activity', $activity);
     }
 
     /**
@@ -145,11 +164,14 @@ class MaternalGuideController extends Controller
             $cats[$category->id] = $category->name;
         }
 
+        //Edited Maternal Guide
+        $activity = ActivityLogger::activity("Edited for Maternal Guide");
+
         //Check for correct user
 //        if(auth()->user()->id !==$guide->user_id){
 //            return redirect('/guides')->with('error' , 'Unauthorized Page');
 //        }
-        return view('admin.crudmaternalguides.edit')->with('guide', $guide)->withCategories($cats);
+        return view('admin.crudmaternalguides.edit')->with('guide', $guide)->withCategories($cats)->with('activity', $activity);
     }
 
     /**
@@ -191,7 +213,10 @@ class MaternalGuideController extends Controller
         }
         $guide->save();
 
-        return redirect('/guides')->with('success', 'Maternal Guide Updated');
+        //Updated Maternal Guide
+        $activity = ActivityLogger::activity("Updated Maternal Guide");
+
+        return redirect('/guides')->with('success', 'Maternal Guide Updated')->with('activity', $activity);
     }
 
     /**
@@ -214,8 +239,11 @@ class MaternalGuideController extends Controller
 //            Storage::delete('public/cover_images/'.$guide->cover_image);
 //        }
 
+        //Removed Maternal Guide
+        $activity = ActivityLogger::activity("Removed Maternal Guide");
+
         $guide ->delete();
-        return redirect('/guides')->with('success','Maternal Guide Removed');
+        return redirect('/guides')->with('success','Maternal Guide Removed')->with('activity', $activity);
     }
 
 }

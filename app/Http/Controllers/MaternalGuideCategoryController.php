@@ -7,6 +7,8 @@ use App\MaternalGuide;
 use App\MaternalGuideCategory;
 use Illuminate\Support\Facades\Storage;
 
+use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
+
 use Session;
 
 class MaternalGuideCategoryController extends Controller
@@ -26,8 +28,11 @@ class MaternalGuideCategoryController extends Controller
         // display a view of all of our category
         // it will also have a form to create a new category
 
+        //Viewed Category for Maternal Guide
+        $activity = ActivityLogger::activity("Viewed Category for Maternal Guide");
+
         $categories = MaternalGuideCategory::orderBy('created_at', 'dsc')->paginate(5);
-        return view('admin.categories')->with('categories', $categories);
+        return view('admin.categories')->with('categories', $categories)->with('activity', $activity);
     }
 
     /**
@@ -67,7 +72,10 @@ class MaternalGuideCategoryController extends Controller
         $category->save();
         Session::flash('success', 'New Category has been created');
 
-        return redirect('/categories');
+        //Created Category for Maternal Guide
+        $activity = ActivityLogger::activity("Created Category for Maternal Guide");
+
+        return redirect('/categories')->with('activity', $activity);
     }
 
     /**
@@ -79,7 +87,11 @@ class MaternalGuideCategoryController extends Controller
     public function show($id)
     {
         $category = MaternalGuideCategory::find($id);
-        return view('admin.crudcategories.show')->with('category', $category);
+
+        //Viewed Category for Maternal Guide
+        $activity = ActivityLogger::activity("Viewed Category for Maternal Guide");
+
+        return view('admin.crudcategories.show')->with('category', $category)->with('activity', $activity);
     }
 
     /**
@@ -97,7 +109,10 @@ class MaternalGuideCategoryController extends Controller
 //            return redirect('/categories')->with('error' , 'Unauthorized Page');
 //        }
 
-        return view('admin.crudcategories.edit')->with('category', $category);
+        //Edited Category for Maternal Guide
+        $activity = ActivityLogger::activity("Edited Category for Maternal Guide");
+
+        return view('admin.crudcategories.edit')->with('category', $category)->with('activity', $activity);
     }
 
     /**
@@ -135,7 +150,10 @@ class MaternalGuideCategoryController extends Controller
         }
         $category->save();
 
-        return redirect('/categories')->with('success', 'Maternal Guide Category Updated');
+        //Updated Category for Maternal Guide
+        $activity = ActivityLogger::activity("Updated Category for Maternal Guide");
+
+        return redirect('/categories')->with('success', 'Maternal Guide Category Updated')->with('activity', $activity);
     }
 
     /**
@@ -158,8 +176,11 @@ class MaternalGuideCategoryController extends Controller
 //            Storage::delete('public/cover_images/'.$category->cover_image);
 //        }
 
+        //Deleted Category for Maternal Guide
+        $activity = ActivityLogger::activity("Deleted Category for Maternal Guide");
+
         $category ->delete();
-        return redirect('/categories')->with('success','Maternal Guide Category Removed');
+        return redirect('/categories')->with('success','Maternal Guide Category Removed')->with('activity', $activity);
     }
 }
 

@@ -31,7 +31,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('posts', 'PostsController');
 
 
-    Auth::routes();
+    Auth::routes(['verify' => true]);
 
     Route::get('/dashboard', 'DashboardController@index');
 
@@ -55,6 +55,9 @@ Route::group(['middleware' => ['web']], function () {
         // Admin - Maternal Guide Categories
         Route::resource('categories', 'MaternalGuideCategoryController', ['except' => ['create']]);
         Route::get('/admin/charts', 'ChartsController@index')->name('charts.index');
+
+        //Admin - User Logs
+        Route::resource('audits', 'AuditController');
     });
 
 
@@ -84,8 +87,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/changePic', function () {
             return view('doctor.pic');
         });
-        Route::get('/archivedpatients', 'DoctorPatientController@indexArchived');
-        Route::get('/restore/{id}', 'DoctorPatientController@restore')->name('user.restore');
+        //Route::get('/archivedpatients', 'DoctorPatientController@indexArchived');
+       // Route::get('/restore/{id}', 'DoctorPatientController@restore')->name('user.restore');
         Route::get('/changePassword','DoctorSettingsController@showChangePasswordForm');
         Route::post('/changePassword','DoctorSettingsController@changePassword')->name('changePassword');
     });
@@ -94,7 +97,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => 'patient'], function () {
         //Patient
 
-        Route::get('/userprofile', 'UserProfileController@userprofile');
+        Route::get('/userprofile', 'UserProfileController@userprofile', function () {
+            // Only verified users may enter...
+        })->middleware('verified');
+        //Route::get('/userprofile', 'UserProfileController@userprofile');
         Route::get('/settings', 'UserSettingsController@settings');
         Route::post('/uploadPhoto', 'UserSettingsController@uploadPhoto');
         Route::post('/settings', 'UserSettingsController@updateProfile');
@@ -127,9 +133,6 @@ Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@store');
 //logout
 Route::get('/logout', 'LoginController@logout');
-
-
-
 
 
 

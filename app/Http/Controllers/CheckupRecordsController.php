@@ -7,6 +7,8 @@ use foo\bar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
+
 class CheckupRecordsController extends Controller
 {
     /**
@@ -19,7 +21,10 @@ class CheckupRecordsController extends Controller
         //
         $checkuprecords = CheckupRecords::where("doctorid", Auth::user()->id)->get();
 
-        return view('doctor.viewcheckup', compact('checkuprecords'));
+        //Viewed Checkup Record
+        $activity = ActivityLogger::activity("Viewed Checkup Record");
+
+        return view('doctor.viewcheckup', compact('checkuprecords'))->with('activity', $activity);
     }
 
     /**
@@ -63,8 +68,11 @@ class CheckupRecordsController extends Controller
             'doctorid' => auth::user()->id
         ]);
 
+        //Created Checkup Record
+        $activity = ActivityLogger::activity("Created Checkup Record");
+
         $checkuprecords->save();
-        return redirect('indexrecord')->with('success', 'checkup record has been added');
+        return redirect('indexrecord')->with('success', 'checkup record has been added')->with('activity', $activity);
     }
 
     /**
@@ -89,7 +97,10 @@ class CheckupRecordsController extends Controller
         //
         $checkuprecord = CheckupRecords::find($id);
 
-        return view('doctor.editcheckup', compact('checkuprecord'));
+        //Edited Checkup Record
+        $activity = ActivityLogger::activity("Edited Checkup Record");
+
+        return view('doctor.editcheckup', compact('checkuprecord'))->with('activity', $activity);
     }
 
     /**
@@ -122,7 +133,10 @@ class CheckupRecordsController extends Controller
         $checkuprecord->weightGain = $request->get('weightGain');
         $checkuprecord->save();
 
-        return redirect('/checkuprecords')->with('success', 'Checkup record has been updated');
+        //Updated Checkup Record
+        $activity = ActivityLogger::activity("Updated Checkup Record");
+
+        return redirect('/checkuprecords')->with('success', 'Checkup record has been updated')->with('activity', $activity);
     }
 
     /**
@@ -137,6 +151,9 @@ class CheckupRecordsController extends Controller
         $checkuprecord = CheckupRecords::find($id);
         $checkuprecord->delete();
 
-        return redirect('/checkuprecords')->with('success', 'Checkup record has been deleted Successfully');
+        //Updated Checkup Record
+        $activity = ActivityLogger::activity("Deleted Checkup Record");
+
+        return redirect('/checkuprecords')->with('success', 'Checkup record has been deleted Successfully')->with('activity', $activity);
     }
 }

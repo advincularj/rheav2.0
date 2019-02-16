@@ -11,6 +11,8 @@ use Image;
 use DB;
 use Hash;
 
+use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
+
 class DoctorSettingsController extends Controller
 {
     public function __construct()
@@ -20,7 +22,11 @@ class DoctorSettingsController extends Controller
     public function settings(){
         $data = doctor_info::Where('user_id', '=', Auth::id())->first();
         $user  = User::find(Auth::id());
-        return view('doctor.doctorsettings', compact(['user', 'data']));
+
+        // Viewed Doctor's Settings
+        $activity = ActivityLogger::activity("Viewed Doctor's Settings");
+
+        return view('doctor.doctorsettings', compact(['user', 'data', $data, $user]))->with('activity', $activity);
     }
 
     public function uploadPic(Request $request){
@@ -39,7 +45,10 @@ class DoctorSettingsController extends Controller
 
         }
 
-        return redirect('doctorsettings');
+        //Uploaded Doctor
+        $activity = ActivityLogger::activity("Uploaded Doctor Picture");
+
+        return redirect('doctorsettings')->with('activity', $activity);
 
     }
 
@@ -61,7 +70,10 @@ class DoctorSettingsController extends Controller
             User::where('id', Auth::id())->update($request['user']);
         $user_id = Auth::user()->id;
 
-        DB::table('doctor_infos')->where('user_id', $user_id)->update($request->except('_token', 'user'));
+            //Updated Doctor Profile
+            $activity = ActivityLogger::activity("Updated Doctor Profile");
+
+        DB::table('doctor_infos')->where('user_id', $user_id)->update($request->except('_token', 'user'))->with('activity', $activity);
         return back();
     }
 
@@ -86,7 +98,11 @@ class DoctorSettingsController extends Controller
         $user = Auth::user();
         $user->password = bcrypt($request->get('new-password'));
         $user->save();
-        return redirect()->back()->with("success","Password changed successfully !");
+
+        //Changed Doctor's Password
+        $activity = ActivityLogger::activity("Changed Doctor's Password");
+
+        return redirect()->back()->with("success","Password changed successfully !")->with('activity', $activity);
     }
 
 

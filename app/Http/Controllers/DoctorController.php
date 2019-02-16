@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
+
 class DoctorController extends Controller
 {
     public function index()
@@ -13,6 +15,9 @@ class DoctorController extends Controller
 
     public function dashboard(){
         $title = 'Dashboard';
+
+        //
+
         return view('doctor.dashboard')->with('title', $title);
     }
 

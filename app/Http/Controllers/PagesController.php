@@ -4,17 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
+
 class PagesController extends Controller
 {
     public function index(){
         $title = 'Welcome to Rhea!';
         //return view('pages.index', compact('title'));
-        return view('pages.index')->with('title',$title);
+
+        //Viewed index
+        $activity = ActivityLogger::activity("Viewed Index");
+
+        return view('pages.index')->with('title',$title)->with('activity', $activity);
     }
 
     public function about(){
         $title = 'About Us';
-        return view('pages.about')->with('title', $title);
+
+        //Viewed about us
+        $activity = ActivityLogger::activity("Viewed About Us");
+
+        return view('pages.about')->with('title', $title)->with('activity', $activity);
     }
 
 //    public function services(){
@@ -27,6 +37,10 @@ class PagesController extends Controller
 
     public function services(){
         $title = 'Services';
-        return view('pages.services')->with('title', $title);
+
+        //Viewed about us
+        $activity = ActivityLogger::activity("Viewed Services");
+
+        return view('pages.services')->with('title', $title)->with('activity', $activity);
     }
 }

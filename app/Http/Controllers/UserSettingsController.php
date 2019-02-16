@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Image;
 use Hash;
 
+use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
+
 class UserSettingsController extends Controller
 {
     public function __construct()
@@ -21,7 +23,11 @@ class UserSettingsController extends Controller
 
         $data = userprofile::Where('user_id', '=', Auth::id())->first();
         $user  = User::find(Auth::id());
-        return view('patient.settings', compact(['user', 'data']));
+
+        //Viewed Settings
+        $activity = ActivityLogger::activity("Viewed User Profile");
+
+        return view('patient.settings', compact(['user', 'data']))->with('activity', $activity);
     }
 
     public function uploadPhoto(Request $request){
@@ -37,8 +43,11 @@ class UserSettingsController extends Controller
             $user->avatar = $filename;
             $user->save();
 
+            //Uploaded Photo
+            $activity = ActivityLogger::activity("Uploaded Photo");
+
             $user = Auth::user()->id;
-            DB::table('users')->where('id', $user)->update(['avatar' => $filename]);
+            DB::table('users')->where('id', $user)->update(['avatar' => $filename])->with('activity', $activity);
 
 
 

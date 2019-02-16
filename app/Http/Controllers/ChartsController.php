@@ -8,6 +8,8 @@ use App\Patient;
 use ConsoleTVs\Charts\Facades\Charts;
 use DB;
 
+use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
+
 class ChartsController extends Controller
 {
     public function index()
@@ -65,7 +67,10 @@ class ChartsController extends Controller
             ->dimensions(2000, 1000)
             ->responsive(true);
 
+        //Viewed Charts
+        $activity = ActivityLogger::activity("Viewed Charts");
 
-        return view('admin.charts', compact('chart', 'charts', 'patient_chart', 'pie_chart', 'barchart', 'barcharts'));
+
+        return view('admin.charts', compact('chart', 'charts', 'patient_chart', 'pie_chart', 'barchart', 'barcharts'))->with('activity', $activity);
     }
 }

@@ -9,6 +9,8 @@ use App\User;
 use Validator;
 use Redirect;
 
+use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
+
 
 class CrudDoctorController extends Controller
 {
@@ -22,12 +24,19 @@ class CrudDoctorController extends Controller
     public function index()
     {
         $users = User::orderBy('created_at', 'dsc')->where('role_id', 2)->paginate(10);
-        return view('admin.tables')->with('users', $users);
+
+        //Viewed Doctor's Table
+        $activity = ActivityLogger::activity("Viewed Doctors' Table");
+
+        return view('admin.tables')->with('users', $users)->with('activity', $activity);
     }
 
     protected function create()
     {
-        return view('admin.cruddoctors.create');
+        //Viewed Create Doctor Page
+        $activity = ActivityLogger::activity("Viewed Create Doctor Page");
+
+        return view('admin.cruddoctors.create')->with('activity', $activity);
 
     }
 
@@ -77,16 +86,18 @@ class CrudDoctorController extends Controller
         doctor_info::create(['user_id' => $user->id]);
 
 
-
+        //Created Doctor Account
+        $activity = ActivityLogger::activity("Created Doctor Account");
 
 
         User::sendWelcomeEmail($user);
-        return redirect('/users')->with('success', 'Doctor Added');
+        return redirect('/users')->with('success', 'Doctor Added')->with('activity', $activity);
     }
 
     public function show($id)
     {
         $user = User::find($id);
+
         return view('admin.cruddoctors.show')->with('user', $user);
     }
 
@@ -94,7 +105,11 @@ class CrudDoctorController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.cruddoctors.edit')->with('user', $user);
+
+        //Created Doctor Account
+        $activity = ActivityLogger::activity("Viewed Edit Doctor Page");
+
+        return view('admin.cruddoctors.edit')->with('user', $user)->with('activity', $activity);
     }
 
     public function update(Request $request, $id)
@@ -119,8 +134,10 @@ class CrudDoctorController extends Controller
 //        $user->user_id = auth()->user()->id;
         $user->save();
 
+        //Created Doctor Account
+        $activity = ActivityLogger::activity("Updated Doctor Account");
 
-        return redirect('/users')->with('success', 'User Updated');
+        return redirect('/users')->with('success', 'User Updated')->with('activity', $activity);
     }
 
     public function destroy($id)
@@ -128,6 +145,10 @@ class CrudDoctorController extends Controller
         $user = User::find($id);
 
         $user ->delete();
-        return redirect('/users')->with('success','User Removed');
+
+        //Removed Doctor Account
+        $activity = ActivityLogger::activity("Removed Doctor Page");
+
+        return redirect('/users')->with('success','User Removed')->with('activity', $activity);
     }
 }
