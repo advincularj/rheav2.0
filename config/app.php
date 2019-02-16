@@ -180,6 +180,8 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
 
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+
     ],
 
     /*
@@ -232,6 +234,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'auth.password.tokens' => Illuminate\Auth\Passwords\TokenRepositoryInterface::class,
         'Image' => Interveention\Image\Facades\Image::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
     ],
 

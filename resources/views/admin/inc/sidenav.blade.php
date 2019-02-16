@@ -59,7 +59,7 @@
                 <li class="nav-item">
                     {{--<a class="nav-link active" href="/users">--}}
                     <a class="nav-link" href="/users">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Users
+                        <i class="ni ni-bullet-list-67 text-red"></i> Doctors
                     </a>
                 </li>
                 <li class="nav-item">
@@ -67,6 +67,7 @@
                         <i class="ni ni-bullet-list-67 text-red"></i> Maternal Guide
                     </a>
                 </li>
+
                 {{--<li class="nav-item">--}}
                     {{--<a class="nav-link" href="{{ url('login') }}">--}}
                         {{--<i class="ni ni-key-25 text-info"></i> {{ __('Login') }}--}}

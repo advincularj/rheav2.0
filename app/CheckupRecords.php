@@ -14,6 +14,7 @@ class CheckupRecords extends Model
         'weight',
         'heartTones',
         'AOG',
-        'weightGain'
+        'weightGain',
+        'doctorid'
     ];
 }

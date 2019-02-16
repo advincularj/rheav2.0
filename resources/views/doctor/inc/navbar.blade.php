@@ -25,15 +25,15 @@
                 </div>
                 <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="/index">Check-up Records</a>
+                            <a class="nav-link" href="/checkup">Check-up Records</a>
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/index">Checklist</a>
+                                <a class="nav-link" href="/">Checklist</a>
                                 </a>
                             </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/index">Patients</a>
+                                    <a class="nav-link" href="/patients">Patients</a>
                                     </a>
                                 </li>
                         {{--DROPDOWN--}}

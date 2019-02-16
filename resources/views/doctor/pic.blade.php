@@ -28,7 +28,7 @@
 
                                 <div class="card-body">
                                         <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
-                                        <form enctype="multipart/form-data" action="/uploadPhoto" method="POST">
+                                        <form enctype="multipart/form-data" action="/uploadPic" method="POST">
                                             <label>Update Profile Picture</label><br>
                                             <input type="file" name="avatar"><br>
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}"><br><br><br>

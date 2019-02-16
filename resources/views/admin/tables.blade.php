@@ -29,8 +29,6 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Phone Number</th>
-                                    <th scope="col">Birth Date</th>
                                     <th scope="col">Created At</th>
                                     <th scope="col"></th>
                                 </tr>
@@ -45,12 +43,6 @@
                                         <td>
                                             {{ $user->email }}
                                         </td>
-                                        <td>
-                                            {{ $user->phone }}
-                                        </td>
-                                        <td>
-                                            {{ $user->birth_date }}
-                                        </td>
                                         {{--<td>--}}
                                         {{--{{ $user->status }}--}}
                                         {{--</td>--}}
@@ -58,7 +50,7 @@
                                             {{ $user->created_at }}
                                         </td>
                                         <td>
-
+                                            <a href="/doctorprofile" class="btn btn-default">View Profile</a>
                                         </td>
                                     </tr>
                                 </tbody>

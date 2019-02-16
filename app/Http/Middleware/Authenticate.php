@@ -18,4 +18,11 @@ class Authenticate extends Middleware
             return redirect()->to('/login');
         }
     }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed_password')],
+        ]);
+    }
 }

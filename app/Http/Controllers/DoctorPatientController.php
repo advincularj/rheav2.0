@@ -16,7 +16,7 @@ class DoctorPatientController extends Controller
 
     public function show()
     {
-        $users = User::select('users.id', 'first_name', 'last_name', 'email', 'phone', 'birth_date','created_at')->orderBy('created_at', 'dsc')->leftjoin('patients','patients.patient_id','users.id')->whereRaw('patients.patient_id IS null')->where('role_id', 3)->paginate(10);
+        $users = User::select('users.id', 'first_name', 'last_name', 'email','created_at')->orderBy('created_at', 'dsc')->leftjoin('patients','patients.patient_id','users.id')->whereRaw('patients.patient_id IS null')->where('role_id', 3)->paginate(10);
         return view('doctor.users')->with('users', $users);
     }
 
@@ -49,5 +49,32 @@ class DoctorPatientController extends Controller
             Patient::destroy($input);
             Return redirect()->back();
         }
+    }
+
+    public function indexArchived()
+    {
+        $trash = Patient::withTrashed()
+            ->where('deleted_at', '!=', 'null')
+            ->get();
+        // show trashed data
+//        $trash = DB::table('maternal_guides')
+//            ->whereNotNull('deleted_at')->orderBy('created_at', 'dsc')
+//            ->get();
+//        $guides = MaternalGuide::orderBy('created_at', 'dsc')->get();
+
+        return view('doctor.archived', compact('trash'));
+    }
+
+    public function restore($id)
+    {
+        Patient::withTrashed()
+            ->where('id', $id)
+            ->restore();
+
+
+        // restore data
+//        MaternalGuide::orderBy('created_at', 'dsc')->paginate(5)->where('id', $id)->restore();
+//        $guides = MaternalGuide::onlyTrashed()->where('id', $id)->restore();
+        return redirect('/archivedpatients');
     }
 }

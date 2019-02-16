@@ -10,10 +10,6 @@
                 <span></span>
                 <span></span>
                 <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
 
             @include('patient.inc.messages')
@@ -24,7 +20,7 @@
 
                             {{--HERE IS THE START--}}
                             <div class="card">
-                                <div class="card-header">Dashboard</div>
+                                <div class="card-header">Edit Profile</div>
                                 <div class="card-body">
 
                                     <div class="col-sm-12 col-md-12">
@@ -36,7 +32,7 @@
                                                 <br>
                                                 <br>
                                                 <br>
-                                                <br>
+
                                                 <p align="right"><a href="/changePhoto" class=" btn btn-sm btn-primary"
                                                                     role="button">Change Image</a></p>
                                             </div>
@@ -48,9 +44,6 @@
                                         @csrf
                                         <div class="col-sm-12 col-md-12">
 
-                                            <br>
-                                            <br>
-                                            <br>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <span id="basic-addon1">First Name</span>
@@ -130,7 +123,9 @@
                                             <br>
 
                                             <div class="form-group">
-                                                <input type="submit" class="btn btn-success pull-right">
+                                                <input type="submit" class="btn btn-success pull-left">
+                                                <a href="/userprofile" class="btn btn-default pull-left">Cancel</a>
+                                                <p align="right">  <a href="/changePass"  class=" btn btn-sm btn-primary" role="button">Change Password</a></p>
                                             </div>
                                         </div>
                                     </form>

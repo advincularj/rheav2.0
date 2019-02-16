@@ -34,6 +34,8 @@
                                     <br>
                                     <br>
                                     <br>
+                                    <br>
+                                    <br>
                                     <div class="col-sm-12 col-md-12">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -90,12 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- SVG separator -->
-                <div class="separator separator-bottom separator-skew">
-                    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-                    </svg>
-                </div>
+
             </div>
         </section>
     </div>

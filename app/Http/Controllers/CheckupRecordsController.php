@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CheckupRecords;
 use foo\bar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckupRecordsController extends Controller
 {
@@ -16,7 +17,7 @@ class CheckupRecordsController extends Controller
     public function index()
     {
         //
-        $checkuprecords = CheckupRecords::all();
+        $checkuprecords = CheckupRecords::where("doctorid", Auth::user()->id)->get();
 
         return view('doctor.viewcheckup', compact('checkuprecords'));
     }
@@ -58,7 +59,8 @@ class CheckupRecordsController extends Controller
             'weight' => $request->get('weight'),
             'heartTones' => $request->get('heartTones'),
             'AOG' => $request->get('AOG'),
-            'weightGain' => $request->get('weightGain')
+            'weightGain' => $request->get('weightGain'),
+            'doctorid' => auth::user()->id
         ]);
 
         $checkuprecords->save();

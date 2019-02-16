@@ -25,11 +25,11 @@
                 </div>
                 <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Pregnancy Diary</a>
+                        <a class="nav-link" href="/diary">Pregnancy Diary</a>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Check-up Records</a>
+                        <a class="nav-link" href="checkup">Check-up Records</a>
                         </a>
                     </li>
                     {{--Eto yung Maternal Guide--}}

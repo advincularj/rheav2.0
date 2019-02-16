@@ -21,7 +21,7 @@ class CrudDoctorController extends Controller
 
     public function index()
     {
-        $users = User::orderBy('created_at', 'dsc')->paginate(10);
+        $users = User::orderBy('created_at', 'dsc')->where('role_id', 2)->paginate(10);
         return view('admin.tables')->with('users', $users);
     }
 

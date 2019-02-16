@@ -75,11 +75,11 @@
 
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row mb-0">
-                            <div class="element1 col-md-4">
+                            <div class="element1 col-md-5">
                             </div>
                             {!! Form::open(['action' => ['MaternalGuideCategoryController@update', $category->id] , 'method' => 'post','enctype' => 'multipart/form-data']) !!}
                             <h2 class="form-group col-md-9">Update Category</h2>

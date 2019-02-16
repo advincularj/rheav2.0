@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\PregnancyDiaries;
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PregnancyDiariesController extends Controller
 {
@@ -15,7 +17,7 @@ class PregnancyDiariesController extends Controller
     public function index()
     {
         //
-        $diaries = PregnancyDiaries::all();
+        $diaries = PregnancyDiaries::where("userid", Auth::user()->id)->get();
 
         return view('patient.viewpregnancydiary', compact('diaries'));
     }
@@ -48,6 +50,7 @@ class PregnancyDiariesController extends Controller
         ]);
         $pregnancydiaries = new PregnancyDiaries([
             'note' => $request->get('note'),
+            'userid' => auth::user()->id
 
         ]);
 

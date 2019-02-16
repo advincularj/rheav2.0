@@ -47,26 +47,29 @@ Route::group(['middleware' => ['web']], function () {
 
 
         //Admin - CRUD Maternal Guide
-        Route::resource('guides', 'MaternalGuideController');
+        Route::resource('/guides', 'MaternalGuideController');
         Route::get('/archived', 'MaternalGuideController@indexArchived');
         Route::get('/restore/{id}', 'MaternalGuideController@restore')->name('guide.restore');
 
 
         // Admin - Maternal Guide Categories
         Route::resource('categories', 'MaternalGuideCategoryController', ['except' => ['create']]);
+        Route::get('/admin/charts', 'ChartsController@index')->name('charts.index');
     });
 
 
     //---------------------------------------------------------------------
     Route::group(['middleware' => 'doctor'], function () {
+
         //Doctor
+        Route::get('/doctor/dashboard', 'DoctorController@dashboard');
         Route::get('addpatient', 'DoctorPatientController@show');
         Route::post('addpatient', 'DoctorPatientController@addpatient');
         Route::get('patients', 'DoctorPatientController@index');
         Route::post('patient', 'DoctorPatientController@patient');
         Route::get('doctorprofile', 'DoctorProfileController@profile');
         Route::get('/doctorsettings', 'DoctorSettingsController@settings');
-        Route::post('/uploadPhoto', 'DoctorSettingsController@uploadPhoto');
+        Route::post('/uploadPic', 'DoctorSettingsController@uploadPic');
         Route::get('indexrecord', function () {
             return view('doctor.indexcheckup');
         });
@@ -78,9 +81,13 @@ Route::group(['middleware' => ['web']], function () {
 
         //Route::get('doctorsettings', 'DoctorSettingsController@editProfileForm');
         Route::post('/doctorsettings', 'DoctorSettingsController@updateProfile');
-        Route::get('/changePhoto', function () {
+        Route::get('/changePic', function () {
             return view('doctor.pic');
         });
+        Route::get('/archivedpatients', 'DoctorPatientController@indexArchived');
+        Route::get('/restore/{id}', 'DoctorPatientController@restore')->name('user.restore');
+        Route::get('/changePassword','DoctorSettingsController@showChangePasswordForm');
+        Route::post('/changePassword','DoctorSettingsController@changePassword')->name('changePassword');
     });
 
     //---------------------------------------------------------------------
@@ -97,7 +104,7 @@ Route::group(['middleware' => ['web']], function () {
         //Patient - Maternal Guide Dashboard
         Route::get('/maternalguide', 'MaternalGuideDashboardController@index');
         Route::resource('guides', 'MaternalGuideController')->only(['show']);
-    });
+
     Route::get('indexnote', function () {
         return view('patient.viewpregnancydiary');
     });
@@ -105,7 +112,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('diary', function () {
         return view('patient.createpregnancydiary');
     });
-    route::resource('pregnancydiaries', 'PregnancyDiariesController');
+    Route::resource('pregnancydiaries', 'PregnancyDiariesController');
+    Route::resource('checkup', 'CheckupRecordsController')->only(['show']);
+    });
+    Route::get('/changePass','UserSettingsController@showChangePasswordForm');
+    Route::post('/changePass','UserSettingsController@changePass')->name('changePass');
 });
 
 //register

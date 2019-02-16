@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Notifications\Messages\MailMessage;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -60,6 +60,20 @@ class User extends Authenticatable
             $m->to($user->email, $user->first_name, $user->last_name)->subject('Welcome to RHEA');
         });
     }
+
+    public static function sendConfirmationEmail($data)
+    {
+
+        // Send email
+        Mail::send('patient.confirmation', ['user' => $data], function ($m) use ($data) {
+            $m->from('rhea.isproj2@gmail.com', 'RHEA');
+            $m->to($data->email, $data->first_name, $data->last_name)->subject('Welcome to RHEA');
+        });
+
+        return user();
+    }
+
+
 
     public function profile() {
         return $this->hasOne('App\User');

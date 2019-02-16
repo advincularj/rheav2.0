@@ -15,7 +15,7 @@
                                 <h2>Maternal Guide</h2>
                             </div>
 
-                            <div class="w3-show-inline-block offset-4">
+                            <div class="w3-show-inline-block offset-3">
                                 <div class="w3-bar">
                                     <a href="/guides/create" class="btn btn-primary">Create Guide</a>
                                     <a href="/categories" class="btn btn-primary">Categories</a>

@@ -78,7 +78,7 @@
                 </div>
             </div> <!-- end of .col-md-8 -->
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row mb-0">

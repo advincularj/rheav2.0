@@ -17,12 +17,12 @@ class LoginController extends Controller
         if (Auth::user()) {
 
             if (Auth::user()->role_id == 3) {
-                return redirect('/settings');
+                return redirect('/userprofile');
             } elseif (Auth::user()->role_id == 1) {
                 return redirect('/admin/dashboard');
             }elseif(Auth::user()->role_id == 2)
             {
-                return redirect('addpatient');
+                return redirect('/doctorprofile');
             }
         } else {
             return view('auth.login');
@@ -46,12 +46,12 @@ class LoginController extends Controller
                 session(['role' => $user->role_id]);
 
                 if (Auth::user()->role_id == 3) {
-                    return redirect('/settings');
+                    return redirect('/userprofile');
                 } elseif (Auth::user()->role_id == 1) {
                     return redirect('/admin/dashboard');
                 }elseif(Auth::user()->role_id == 2)
                 {
-                    return redirect('addpatient');
+                    return redirect('/doctorprofile');
                 }
 
 

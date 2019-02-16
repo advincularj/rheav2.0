@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('doctor.layouts.app')
 
 @section('content')
     <!-- Main content -->
@@ -18,11 +18,11 @@
                             </div>
 
                             <form action="/addpatient" method="post">
-                            <div class="element2 col-md-2 offset-md-6 pull-right">
-
+                                <div class="w3-show-inline-block offset-5">
                                     <input type="submit" class="btn btn-primary pull-right" value="Add Patient" />
+                                    <a href="/patients" class="btn btn-default">Go Back</a>
                             </div>
-
+                            </form>
                         </div>
                     </div>
 
@@ -31,10 +31,9 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                 <tr>
+                                    <th scope="col"></th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Phone Number</th>
-                                    <th scope="col">Birth Date</th>
                                     <th scope="col">Created At</th>
                                     <th scope="col"></th>
                                 </tr>
@@ -44,16 +43,14 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <td>
+                                            <input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>
+
+                                        </td>
+                                        <td>
                                             {{$user->first_name}} {{ $user->last_name }}
                                         </td>
                                         <td>
                                             {{ $user->email }}
-                                        </td>
-                                        <td>
-                                            {{ $user->phone }}
-                                        </td>
-                                        <td>
-                                            {{ $user->birth_date }}
                                         </td>
                                         {{--<td>--}}
                                         {{--{{ $user->status }}--}}
@@ -61,11 +58,6 @@
                                         <td>
                                             {{ $user->created_at }}
                                         </td>
-                                        <td>
-                                            <input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>
-
-                                        </td>
-
                                     </tr>
                                 </tbody>
                                 @endforeach

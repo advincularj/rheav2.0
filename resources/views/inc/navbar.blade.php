@@ -88,9 +88,6 @@
 
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="/dashboard">Dashboard</a>
-                                </li>
-                                <li>
                                     <a class="dropdown-item" href="/userprofile">My Profile</a>
                                 </li>
                                 <li>

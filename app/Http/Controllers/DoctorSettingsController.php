@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Image;
 use DB;
+use Hash;
 
 class DoctorSettingsController extends Controller
 {
@@ -22,7 +23,7 @@ class DoctorSettingsController extends Controller
         return view('doctor.doctorsettings', compact(['user', 'data']));
     }
 
-    public function uploadPhoto(Request $request){
+    public function uploadPic(Request $request){
 
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
@@ -62,6 +63,30 @@ class DoctorSettingsController extends Controller
 
         DB::table('doctor_infos')->where('user_id', $user_id)->update($request->except('_token', 'user'));
         return back();
+    }
+
+    public function showChangePasswordForm(){
+        return view('doctor.resetpass');
+    }
+
+    public function changePassword(Request $request){
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+        }
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            //Current password and new password are same
+            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+        }
+        $validatedData = $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|string|min:6|confirmed',
+        ]);
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+        return redirect()->back()->with("success","Password changed successfully !");
     }
 
 
