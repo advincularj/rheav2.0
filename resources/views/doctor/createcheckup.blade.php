@@ -42,7 +42,7 @@
                         <input type="text" class="form-control" name="weightGain"/>
                     </div>
                     <button type="submit" class="btn btn-primary">Add Checkup record</button>
-                    <a href="/patientprofile" class="btn btn-default">Cancel</a>
+                    <a href="/patients" class="btn btn-default">Cancel</a>
                 </form>
             </div>
         </div>

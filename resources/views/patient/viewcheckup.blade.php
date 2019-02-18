@@ -20,46 +20,58 @@
             <div class="container py-lg-md d-flex">
                 <div class="col px-0">
                     <div class="row justify-content-center">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
 
-                            <div class="card">
-                                <div class="card-header">
-                                    Check-up Record
-                                </div>
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>IE Findings</td>
-                                        <td>Blood Pressure</td>
-                                        <td>Height</td>
-                                        <td>Weight</td>
-                                        <td>AOG</td>
-                                        <td>Weight Gain</td>
-                                        <td colspan="2">Action</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
+                            {{--HERE IS THE START--}}
+                            <h1>Articles</h1>
+                            <a href="{{url('diary/create')}}" class="btn btn-success">Add Diary</a>
+                            <div class="row row-grid">
+                                @if (count($checkuprecords) > 0)
                                     @foreach($checkuprecords as $checkuprecord)
-                                        <tr>
-                                            <td>{{$checkuprecord->id}}</td>
-                                            <td>{{$checkuprecord->ieFindings}}</td>
-                                            <td>{{$checkuprecord->bloodPressure}}</td>
-                                            <td>{{$checkuprecord->height}}</td>
-                                            <td>{{$checkuprecord->weight}}</td>
-                                            <td>{{$checkuprecord->AOG}}</td>
-                                            <td>{{$checkuprecord->weightGain}}</td>
-                                            </form>
-                                            </td>
-                                        </tr>
+                                        <div class="col-lg-4">
+                                            <br>
+                                            <div class="card card-lift--hover shadow border-0">
+                                                <div class="card-body py-5">
+                                                    <div>
+
+                                                        <img style="width:100%;"
+                                                             src="/storage/cover_images/{{$checkuprecord->cover_image}}"/>
+                                                        {{--                                                        <img style="width:100%; height: 140px !important; margin: 0 auto 1em auto;" src="/storage/cover_images/{{$guide->cover_image}}"/>--}}
+                                                    </div>
+                                                    <h3><a href="/diary/{{$checkuprecord->id}}">{{$checkuprecord->title}}</a></h3>
+                                                    <div>
+                                                        <small>Written on {{$checkuprecord->created_at}} </small>
+                                                    </div>
+                                                    {{--<div>--}}
+                                                    {{--<small>by {{$guide->user->first_name }} {{$guide->user->last_name }}</small>--}}
+                                                    {{--</div>--}}
+                                                    <a href="/diary/{{$checkuprecord->id}}" class="btn btn-primary mt-4">Learn
+                                                        more</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
-                                    </tbody>
-                                </table>
+                                @else
+                                    <p>No maternal guide found</p>
+                                @endif
+                                {{--END--}}
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <div class="pull-right">
+                        {{$checkuprecords->links()}}
+                    </div>
                 </div>
             </div>
+            <!-- SVG separator -->
+            <div class="separator separator-bottom separator-skew">
+                <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+                </svg>
+            </div>
         </section>
+        <!-- 1st Hero Variation -->
     </div>
 @endsection

@@ -71,7 +71,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Experiences</span>
-                                                <h2>{{ old('experiences') }}{{($data == null) ? '' : $data->experiences}}</h2>
+                                                <h2>{{ old('experience') }}{{($data == null) ? '' : $data->experience}}</h2>
                                             </div>
                                         </div>
                                         <br>

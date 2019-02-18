@@ -83,7 +83,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <span id="basic-addon1">Expected Date of Delivery</span>
-                                                    <input type="text" class="form-control"
+                                                    <input type="date" class="form-control"
                                                            placeholder="Expected Date of Delivery" name="edod"
                                                            value="{{ old('edod') }}{{($data == null) ? '' : $data->edod}}">
                                                 </div>

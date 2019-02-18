@@ -47,9 +47,9 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/doctor/dashboard">
-                        <i class="ni ni-tv-2 text-primary"></i> Doctor Dashboard
-                    </a>
+                    {{--<a class="nav-link" href="/doctor/dashboard">--}}
+                        {{--<i class="ni ni-tv-2 text-primary"></i> Doctor Dashboard--}}
+                    {{--</a>--}}
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/doctorprofile">

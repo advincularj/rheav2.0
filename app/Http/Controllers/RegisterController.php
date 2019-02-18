@@ -44,6 +44,7 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+
         $helper = new Helper();
 
         $valid = Validator::make($request->all(), [
@@ -54,6 +55,7 @@ class RegisterController extends Controller
             'phone' => ['required','size:11'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'g-recaptcha-response' => 'required'
 
 
         ]);
@@ -64,7 +66,9 @@ class RegisterController extends Controller
                 $data['password'] = bcrypt($data['password']);
                 $data['role_id'] = 3;
                 //$data['verification_code'] = str_random(20);
+
                 $id = User::create($data)->id;
+
                 userprofile::create(['user_id' => $id]);
 
                 //User::sendConfirmationEmail($data);
@@ -79,7 +83,7 @@ class RegisterController extends Controller
 
 
 
-                return redirect('/register');
+                return redirect('/log-in');
             } else {
                 return redirect('/register')->withErrors($valid)->withInput();
             }
@@ -87,7 +91,7 @@ class RegisterController extends Controller
             return redirect('/register')->withErrors($valid)->withInput();
         }}
 
-        protected function registered(Request $request, $data) {
+    protected function registered(Request $request, $data) {
         $data->notify(new UserRegisteredNotification($data));
     }
 

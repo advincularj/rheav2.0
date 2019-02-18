@@ -57,7 +57,7 @@
 
                     @guest
                         <li class="nav-item d-none d-lg-block ml-lg-4">
-                            <a href="/login" class="btn btn-neutral btn-icon">
+                            <a href="/log-in" class="btn btn-neutral btn-icon">
                                 </span>
                                 <span class="nav-link-inner--text">Login</span>
                             </a>

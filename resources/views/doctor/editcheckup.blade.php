@@ -1,58 +1,62 @@
 @extends('doctor.layouts.app')
 
 @section('content')
-    <style>
-        .uper {
-            margin-top: 40px;
-        }
-    </style>
-    <div class="card uper">
-        <div class="card-header">
-            Edit Share
+    <!-- Main content -->
+
+    <!-- Page content -->
+    <div class="container-fluid mt--8">
+        <!-- Table -->
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <h3 class="mb-0" style="text-align: center">Edit</h3>
+                    </div>
+
+                    {{--HERE IS THE START--}}
+                    <div class="container">
+                        {!! Form::open(['action' => ['PregnancyDiariesController@update', $pregnancydiaries->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                        @method('PUT')
+                        <div class="form-group">
+                            {{Form::label('title', 'Title')}}
+                            {{Form::text('title', $pregnancydiaries->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::label('body', 'Body')}}
+                            {{Form::textarea('body', $pregnancydiaries->body, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body Text'])}}
+                        </div>
+                        <div class="form-group">
+                            {{Form::file('cover_image')}}
+                        </div>
+                        {{--Hindi pweds gawing 'PUT' and 'POST' method--}}
+                        {{Form::hidden('_method','PUT')}}
+                        {{--{{Form::submit('Submit', ['class'=>'btn btn-primary'])}}--}}
+                        {{--{!! Form::close() !!}--}}
+                        <div class="form-group row col-md-12">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Submit') }}
+                            </button>
+                            <a href="/indexnote" class="btn btn-default">Cancel</a>
+                        </div>
+                        {!! Form::close() !!}
+                        {{--END--}}
+
+                        <br>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div><br />
-            @endif
-            <form method="resource" action="{{ route('checkuprecords.edit', $checkuprecord->id) }}">
-                @method('PATCH')
-                @csrf
-                <div class="form-group">
-                    <label for="name">IE Findings: </label>
-                    <input type="text" class="form-control" name="ieFindings" value={{ $checkuprecord->ieFindings }} />
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="row align-items-center justify-content-xl-between">
+                <div class="col-xl-6">
+                    <div class="copyright text-center text-xl-left text-muted">
+                        &copy; 2019 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Rhea</a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="name">Blood Pressure: </label>
-                    <input type="text" class="form-control" name="bloodPressure" value={{ $checkuprecord->bloodPressure }} />
-                </div>
-                <div class="form-group">
-                    <label for="name">Height: </label>
-                    <input type="text" class="form-control" name="height" value={{ $checkuprecord->height }} />
-                </div>
-                <div class="form-group">
-                    <label for="name">Weight: </label>
-                    <input type="text" class="form-control" name="weight" value={{ $checkuprecord->weight }} />
-                </div>
-                <div class="form-group">
-                    <label for="name">Heart Tones: </label>
-                    <input type="text" class="form-control" name="heartTones" value={{ $checkuprecord->heartTones }} />
-                </div>
-                <div class="form-group">
-                    <label for="name">AOG: </label>
-                    <input type="text" class="form-control" name="AOG" value={{ $checkuprecord->AOG }} />
-                </div>
-                <div class="form-group">
-                    <label for="name">Weight Gain: </label>
-                    <input type="text" class="form-control" name="weightGain" value={{ $checkuprecord->weightGain }} />
-                </div>
-                <button type="submit" class="btn btn-primary">Update</button>
-            </form>
-        </div>
+            </div>
+        </footer>
     </div>
-    @endsection
+@endsection

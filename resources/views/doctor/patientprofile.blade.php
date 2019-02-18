@@ -24,15 +24,15 @@
 
                             <div class="card">
                                 <div class="card-header">My Profile </div>
-                                <div class="w3-show-inline-block offset-2">
+                                <div class="w3-show-inline-block offset-7">
                                     <a href="/checkup" class="btn btn-default">Add Check-up Record</a>
                                     <a href="/patients" class="btn btn-default">Go Back</a>
                                 </div>
                                 <div class="card-body">
 
 
-                                    <h3>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
-                                    <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
+                                    <h3>{{ $user->patient->first_name }} {{ $user->patient->last_name }}</h3>
+                                    <img src="/uploads/avatar/{{ $user->patient->avatar }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                     <br>
                                     <br>
                                     <br>
@@ -43,44 +43,44 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Address</span>
-                                                <h2>{{ old('address') }}{{($data == null) ? '' : $data->address}}</h2>
+                                                <h2>{{ old('address') }}{{($user == null) ? '' : $user->patient->userprofile->address}}</h2>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Contact Number</span>
-                                                <h2>{{ old('number') }}{{($data == null) ? '' : $data->number}}</h2>
+                                                <h2>{{ old('number') }}{{($user == null) ? '' : $user->patient->userprofile->number}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Expected Date of Delivery</span>
-                                                <h2>{{ old('edod') }}{{($data == null) ? '' : $data->edod}}</h2>
+                                                <h2>{{ old('edod') }}{{($user == null) ? '' : $user->patient->userprofile->edod}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Allergies</span>
-                                                <h2>{{ old('allergies') }}{{($data == null) ? '' : $data->allergies}}</h2>
+                                                <h2>{{ old('allergies') }}{{($user == null) ? '' : $user->patient->userprofile->allergies}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Blood Type</span>
-                                                <h2>{{ old('bloodtype') }}{{($data == null) ? '' : $data->bloodtype}}</h2>
+                                                <h2>{{ old('bloodtype') }}{{($user == null) ? '' : $user->patient->userprofile->bloodtype}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Hospital/Clinic</span>
-                                                <h2>{{ old('clinic') }}{{($data == null) ? '' : $data->clinic}}</h2>
+                                                <h2>{{ old('clinic') }}{{($user == null) ? '' : $user->patient->userprofile->clinic}}</h2>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Attending Physician</span>
-                                                <h2>{{ old('doctor') }}{{($data == null) ? '' : $data->doctor}}</h2>
+                                                <h2>{{ old('doctor') }}{{($user == null) ? '' : $user->patient->userprofile->doctor}}</h2>
                                             </div>
                                         </div>
                                         <br>

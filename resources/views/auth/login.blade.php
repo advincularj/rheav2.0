@@ -127,7 +127,7 @@
                             <div class="text-center text-muted mb-4">
                                 <small>Login</small>
                             </div>
-                            <form method="POST" action="{{ url('login') }}">
+                            <form method="POST" action="{{ url('log-in') }}">
                                     @csrf
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-alternative">

@@ -24,33 +24,42 @@
 
                             <div class="table-responsive">
 
-                                @if(count($items) > 0)
-
-                                <table class="table table-striped table-bordered">
+                                <table class="table" id="table">
                                     <thead>
                                     <tr>
-                                        <td>Name</td>
-                                        <td>Email</td>
-                                        <td>Created At</td>
+                                        <th class="text-center">#</th>
+                                        <th class="text-center">First Name</th>
+                                        <th class="text-center">Last Name</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Created At</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($users as $user)
-                                        <tr>
-                                            <td>{{ $user->first_name}}</td>
-                                            <td>{{ $user->email}}</td>
-                                            <td>{{ $user->created_at->toDayDateTimeStrin()}}</td>
+                                    @foreach($data as $item)
+                                        <tr class="item{{$item->id}}">
+                                            <td>{{$item->id}}</td>
+                                            <td>{{$item->first_name}}</td>
+                                            <td>{{$item->last_name}}</td>
+                                            <td>{{$item->email}}</td>
+                                            <td>{{$item->created_at}}</td>
+                                            <td></td>
                                         </tr>
-                                        @endforeach
+                                    @endforeach
                                     </tbody>
                                 </table>
-
-                                @else
-                                    <div align="center">
-                                        <h4>No records found.</h4>
-                                    </div>
-                                @endif
-
-
-
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="//code.jquery.com/jquery-1.12.3.js"></script>
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script
+            src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">

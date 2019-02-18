@@ -35,7 +35,7 @@ class CheckupRecordsController extends Controller
     public function create()
     {
         //
-        return view('doctor.createcheckup');
+        return view('doctor.checkup.createcheckup');
     }
 
     /**
@@ -84,6 +84,8 @@ class CheckupRecordsController extends Controller
     public function show($id)
     {
         //
+        $checkuprecords = CheckupRecords::find($id);
+        return view('patient.showcheckup')->with('checkuprecord', $checkuprecords);
     }
 
     /**
@@ -100,7 +102,7 @@ class CheckupRecordsController extends Controller
         //Edited Checkup Record
         $activity = ActivityLogger::activity("Edited Checkup Record");
 
-        return view('doctor.editcheckup', compact('checkuprecord'))->with('activity', $activity);
+        return view('doctor.checkup.editcheckup', compact('checkuprecord'))->with('activity', $activity);
     }
 
     /**
@@ -136,7 +138,7 @@ class CheckupRecordsController extends Controller
         //Updated Checkup Record
         $activity = ActivityLogger::activity("Updated Checkup Record");
 
-        return redirect('/checkuprecords')->with('success', 'Checkup record has been updated')->with('activity', $activity);
+        return redirect('/checkup')->with('success', 'Checkup record has been updated')->with('activity', $activity);
     }
 
     /**
@@ -154,6 +156,6 @@ class CheckupRecordsController extends Controller
         //Updated Checkup Record
         $activity = ActivityLogger::activity("Deleted Checkup Record");
 
-        return redirect('/checkuprecords')->with('success', 'Checkup record has been deleted Successfully')->with('activity', $activity);
+        return redirect('/checkup')->with('success', 'Checkup record has been deleted Successfully')->with('activity', $activity);
     }
 }

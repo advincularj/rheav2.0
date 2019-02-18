@@ -93,7 +93,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Experiences</span>
-                                                <input type="text" class="form-control" placeholder="Experiences" name="experience" value="{{ old('experiences') }}{{($data == null) ? '' : $data->experiences}}">
+                                                <input type="text" class="form-control" placeholder="Experiences" name="experience" value="{{ old('experience') }}{{($data == null) ? '' : $data->experience}}">
                                             </div>
                                         </div>
                                         <br>

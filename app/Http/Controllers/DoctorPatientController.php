@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\userprofile;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Patient;
+use App\doctor_info;
 
 use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
 
@@ -28,9 +30,12 @@ class DoctorPatientController extends Controller
 
     public function index()
     {
-        $users = User::orderBy('created_at', 'dsc')
-            ->join('patients','patients.patient_id','users.id')
-            ->where('patients.doctor_id', Auth::user()->id)->paginate(10);
+//        $users = User::orderBy('created_at', 'dsc')
+//            ->join('patients','patients.patient_id','users.id')
+//            ->where('patients.doctor_id', Auth::user()->id)->paginate(10);
+
+        $users = Patient::where('doctor_id', Auth::user()->id)->paginate(10);
+
 //        $users = User::orderBy('created_at', 'dsc')->paginate(10);
         return view('doctor.patients')->with('users', $users);
     }
@@ -59,6 +64,17 @@ class DoctorPatientController extends Controller
         }
     }
 
+    public function showprofile($id){
+
+//        $user = userprofile::find($id);
+        $user = Patient::where('patient_id', $id)->first();
+
+
+
+        return view('doctor.patientprofile', compact(['user']));
+    }
+
+
 //    public function indexArchived()
 //    {
 //        $trash = Patient::withTrashed()
@@ -86,3 +102,4 @@ class DoctorPatientController extends Controller
 //        return redirect('/archivedpatients');
 //    }
 }
+

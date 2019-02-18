@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\doctor_info;
+//use App\Mail\verifyEmail;
 use App\User;
+use Mail;
 use App\userprofile;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Str;
+use App\Notifications\VerifyEmail;
 
 class RegisterController extends Controller
 {
@@ -30,7 +35,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/log-in';
 
     /**
      * Create a new controller instance.
@@ -57,6 +62,7 @@ class RegisterController extends Controller
             'phone' => ['required','size:11'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'g-recaptcha-response' => 'required'
         ]);
     }
 
@@ -74,11 +80,29 @@ class RegisterController extends Controller
             'birth_date' => $data['birth_date'],
             'phone' => $data['phone'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
+            'role_id' => 3,
+            //'token' => str_random(25),
         ]);
+
+        //$user->notify(new verifyEmail($user));
 
 
         userprofile::create(['user_id' => $user->id]);
         return $user;
     }
+
+//    public function sendEmail($thisUser){
+//        Mail::to($thisUser['email'])->send(new verifyEmail($thisUser));
+//    }
+//
+//    public function verifyEmailFirst(){
+//        return view('email.verifyEmailFirst');
+//    }
+//
+//    public function sendEmailDone($email,$verifyToken){
+//        $user = User::where(['email' => $email, 'verifyToken' => $verifyToken])->first();
+//        return $user;
+//
+//    }
 }

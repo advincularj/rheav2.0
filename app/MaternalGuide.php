@@ -25,6 +25,6 @@ class MaternalGuide extends Model
     }
 
     public function category(){
-        return $this->belongsTo('App\MaternalGuideCategory');
+        return $this->belongsTo('App\MaternalGuideCategory', 'id');
     }
 }

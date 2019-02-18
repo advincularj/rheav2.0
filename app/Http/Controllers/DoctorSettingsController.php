@@ -46,9 +46,10 @@ class DoctorSettingsController extends Controller
         }
 
         //Uploaded Doctor
-        $activity = ActivityLogger::activity("Uploaded Doctor Picture");
+       // $activity = ActivityLogger::activity("Uploaded Doctor Picture");
 
-        return redirect('doctorsettings')->with('activity', $activity);
+        return redirect('doctorsettings');
+           // ->with('activity', $activity);
 
     }
 
@@ -73,8 +74,8 @@ class DoctorSettingsController extends Controller
             //Updated Doctor Profile
             $activity = ActivityLogger::activity("Updated Doctor Profile");
 
-        DB::table('doctor_infos')->where('user_id', $user_id)->update($request->except('_token', 'user'))->with('activity', $activity);
-        return back();
+        DB::table('doctor_infos')->where('user_id', $user_id)->update($request->except('_token', 'user'));
+        return back()->with('activity', $activity);
     }
 
     public function showChangePasswordForm(){

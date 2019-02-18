@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MaternalGuide;
 use App\PregnancyDiaries;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Http\Request;
@@ -19,12 +20,12 @@ class PregnancyDiariesController extends Controller
     public function index()
     {
         //
-        $diaries = PregnancyDiaries::where("userid", Auth::user()->id)->get();
+        $pregnancydiaries = PregnancyDiaries::where('userid', Auth::user()->id)->paginate(5);
 
         //Viewed Pregnancy Diary
         $activity = ActivityLogger::activity("Viewed Pregnancy Diary");
 
-        return view('patient.viewpregnancydiary', compact('diaries'))->with('activity', $activity);
+        return view('patient.diary.viewpregnancydiary', compact('pregnancydiaries'))->with('activity', $activity);
     }
 
     /**
@@ -37,7 +38,7 @@ class PregnancyDiariesController extends Controller
         //Viewed Create Page
         $activity = ActivityLogger::activity("Viewed Create Page for Pregnancy Diary");
 
-        return view('patient.createpregnancydiary')->with('activity', $activity)->with('activity', $activity);
+        return view('patient.diary.createpregnancydiary')->with('activity', $activity)->with('activity', $activity);
 
 
     }
@@ -52,14 +53,31 @@ class PregnancyDiariesController extends Controller
     {
         //
         $request->validate([
-            'note'=>'required'
+            'body'=>'required',
+            'title'=>'required',
+            'cover_images' => 'image|nullable|max:1999'
 
         ]);
-        $pregnancydiaries = new PregnancyDiaries([
-            'note' => $request->get('note'),
-            'userid' => auth::user()->id
+        if($request->hasFile('cover_image')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // Get just file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNametoStore = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNametoStore);
+        }else{
+            $fileNametoStore = 'noimage.jpg';
+        }
 
-        ]);
+        $pregnancydiaries = new PregnancyDiaries;
+        $pregnancydiaries->title = $request->input('title');
+        $pregnancydiaries->body = $request->input('body');
+        $pregnancydiaries->userid = auth()->user()->id;
+        $pregnancydiaries->cover_image = $fileNametoStore;
 
         //Created Note for Pregnancy Diary
         $activity = ActivityLogger::activity("Created Note for Pregnancy Diary");
@@ -77,6 +95,8 @@ class PregnancyDiariesController extends Controller
     public function show($id)
     {
         //
+        $pregnancydiary = PregnancyDiaries::find($id);
+        return view('patient.diary.showdiary')->with('pregnancydiary', $pregnancydiary);
     }
 
     /**
@@ -88,12 +108,12 @@ class PregnancyDiariesController extends Controller
     public function edit($id)
     {
         //
-        $diaries = PregnancyDiaries::find($id);
+        $pregnancydiaries = PregnancyDiaries::find($id);
 
         //Edited Pregnancy Diary
         $activity = ActivityLogger::activity("Edited Pregnancy Diary");
 
-        return view('patient.editpregnancydiary', compact('diaries'))->with('activity', $activity);
+        return view('patient.diary.editpregnancydiary', compact('pregnancydiaries'))->with('activity', $activity);
     }
 
     /**
@@ -108,17 +128,36 @@ class PregnancyDiariesController extends Controller
 
         //
         $request->validate([
-            'note'=>'required',
+            'body'=>'required',
+            'title'=>'required',
+            'cover_images' => 'image|nullable|max:1999'
         ]);
 
-        $diary = PregnancyDiaries::find($id);
-        $diary->note = $request->get('note');
-        $diary->save();
+        if($request->hasFile('cover_image')){
+            // Get filename with the extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // Get just file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNametoStore = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNametoStore);
+        }
+        //Create MaternalGuide -we can use new 'model' because we included use App\MaternalGuide; here
+        $pregnancydiaries = PregnancyDiaries::find($id);
+        $pregnancydiaries->title = $request->input('title');
+        $pregnancydiaries->body = $request->input('body');
+        if($request->hasFile('cover_image')){
+            $pregnancydiaries->cover_image = $fileNametoStore;
+        }
+        $pregnancydiaries->save();
 
         //Updated Pregnancy Diary
         $activity = ActivityLogger::activity("Updated Pregnancy Diary");
 
-        return redirect('/pregnancydiaries')->with('success', 'Pregnancy note has been updated')->with('activity', $activity);
+        return redirect('diary')->with('success', 'Pregnancy note has been updated')->with('activity', $activity);
     }
 
     /**

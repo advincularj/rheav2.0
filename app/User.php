@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Notifications\Messages\MailMessage;
 
-
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
@@ -86,8 +85,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\User');
     }
 
+
     public function userprofile() {
-        return $this->hasOne('App\User');
+        return $this->hasOne('App\userprofile', 'user_id');
+    }
+
+    public function reports(){
+        return $this->hasMany('App\Report');
     }
 
 }

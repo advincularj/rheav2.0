@@ -51,6 +51,7 @@
                                             {{$audit->description }}
                                         </td>
                                         <td>
+                                            {{($audit->user == null) ? 'N/A' : $audit->user->first_name . ' ' . $audit->user->last_name}}
                                             {{--{{$audit->user->first_name}} {{$audit->user->last_name}}--}}
                                         </td>
                                         <td>

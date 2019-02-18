@@ -30,13 +30,15 @@ class ChartsController extends Controller
             ->responsive(true)
             ->groupByMonth(date('Y'), true);
 
-        $patient = Patient::select('id')->get();
+        $patient = User::all()->where('role_id', '3');
+
+
         $patient_chart = Charts::database($patient, 'bar', 'highcharts')
             ->title("Number of Patients")
             ->elementLabel("Total Patients")
             ->dimensions(2000, 1000)
             ->responsive(true)
-            ->groupBy('');
+            ->groupByMonth(date('Y'), true);
 
         $user = DB::table('users')
             ->select(DB::raw("(CASE WHEN (status = 1) THEN 'Active' ELSE 'Inactive' END) as status"))
@@ -48,7 +50,7 @@ class ChartsController extends Controller
             ->groupBy('status');
 
         $guide = DB::table('maternal_guides')
-            ->select(DB::raw("(CASE WHEN (deleted_at = 00000000000000) THEN 'Active' ELSE 'Inactive' END) as deleted_at"))
+            ->select(DB::raw("(CASE WHEN (deleted_at = Null) THEN 'Active' ELSE 'Inactive' END) as deleted_at"))
             ->get();
         $barchart = Charts::database($guide, 'pie', 'highcharts')
             ->title("Maternal Guide")
@@ -73,4 +75,5 @@ class ChartsController extends Controller
 
         return view('admin.charts', compact('chart', 'charts', 'patient_chart', 'pie_chart', 'barchart', 'barcharts'))->with('activity', $activity);
     }
+
 }

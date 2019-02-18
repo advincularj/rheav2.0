@@ -47,7 +47,8 @@ class UserSettingsController extends Controller
             $activity = ActivityLogger::activity("Uploaded Photo");
 
             $user = Auth::user()->id;
-            DB::table('users')->where('id', $user)->update(['avatar' => $filename])->with('activity', $activity);
+            DB::table('users')->where('id', $user)->update(['avatar' => $filename]);
+                //->with('activity', $activity);
 
 
 
