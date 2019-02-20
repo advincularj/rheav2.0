@@ -61,8 +61,19 @@ Route::group(['middleware' => ['web']], function () {
 //            $data = Data::all ();
 //            return view ( 'admin.reports' )->withData ( $data );
 //        });
-        Route::get('ajaxdata', 'AjaxdataController@index')->name('ajaxdata');
-        Route::get('ajaxdata/getdata', 'AjaxdataController@getdata')->name('ajaxdata.getdata');
+        Route::get('ajaxdata', 'AjaxdataController@index');
+        Route::get('doctors', 'AjaxdataController@doctor');
+        Route::get('articles', 'AjaxdataController@article');
+        Route::post('/data/users', 'DatatableController@getUsers')->name('dataProcessing');
+        Route::post('/data/articles', 'DatatableController@getArticles')->name('articleProcessing');
+        Route::post('/data/doctors', 'DatatableController@getDoctors')->name('doctorProcessing');
+////            ->name('ajaxdata');
+//        Route::get('ajaxdata/getdata', 'AjaxdataController@getdata')->name('ajaxdata.getdata');
+//        //Reports
+//        Route::resource('/articles', 'ArticleController');
+//        Route::resource('/doctors', 'ReportDoctorController');
+//        Route::resource('/patientreport', 'ReportPatientController');
+
 
     });
 
@@ -151,8 +162,9 @@ Route::post('log-in', 'LoginController@store');
 Route::get('/logout', 'LoginController@logout');
 
 
-//Reports
-Route::resource('/articles', 'ArticleController');
+
+
+
 
 
 

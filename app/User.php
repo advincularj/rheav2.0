@@ -20,6 +20,9 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
+
+    public $table = 'users';
+    public $primaryKey ='id';
     protected $fillable = [
     'role_id','first_name', 'last_name', 'birth_date', 'phone', 'email', 'password',
 
@@ -93,5 +96,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function reports(){
         return $this->hasMany('App\Report');
     }
+
+    public function userprofiles(){
+        return $this->hasMany('App\userprofile','user_id');
+    }
+
+
 
 }

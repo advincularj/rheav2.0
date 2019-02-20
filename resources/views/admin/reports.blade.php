@@ -1,65 +1,115 @@
 @extends('admin.layouts.app')
 
+
 @section('content')
-    <div class="position-relative">
-        <!-- shape Hero -->
-        <section class="section section-lg section-shaped pb-250">
-            <div class="shape shape-style-1 shape-default">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <!-- Main content -->
+    <title>Users - Reports</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 
-            @include('admin.inc.messages')
-            <div class="container-fluid mt--8">
-                <div class="col">
-                    <div class="row justify-content-center">
-                        <div class="col-md-10">
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 
-                            <div class="table-responsive">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
 
-                                <table class="table" id="table">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-center">#</th>
-                                        <th class="text-center">First Name</th>
-                                        <th class="text-center">Last Name</th>
-                                        <th class="text-center">Email</th>
-                                        <th class="text-center">Created At</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($data as $item)
-                                        <tr class="item{{$item->id}}">
-                                            <td>{{$item->id}}</td>
-                                            <td>{{$item->first_name}}</td>
-                                            <td>{{$item->last_name}}</td>
-                                            <td>{{$item->email}}</td>
-                                            <td>{{$item->created_at}}</td>
-                                            <td></td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+    <!-- Page content -->
+    <div class="container-fluid mt--8">
+        <!-- Maternal Guide Table -->
+        <div class="row mt-6">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <div class="row mb-0">
+                            <div class="element1 col-md-4">
+                                <h2>List of Users</h2>
                             </div>
+                        </div>
+                    </div>
+
+                            <h2 align="center"></h2>
+
+                            <table id="users" class="table table-hover table-striped align-items-center table-flush">
+                                <div class="element1 col-md-4">
+                                <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Birthdate</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Created At</th>
+                                    <th>Updated At</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Birthdate</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Created At</th>
+                                    <th>Updated At</th>
+                                </tr>
+                                </tfoot>
+                                </div>
+                            </table>
+                </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        {{--</div>--}}
 
-    <script src="//code.jquery.com/jquery-1.12.3.js"></script>
-    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script
-            src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <link rel="stylesheet"
-          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="row align-items-center justify-content-xl-between">
+                <div class="col-xl-6">
+                    <div class="copyright text-center text-xl-left text-muted">
+                        &copy; 2019 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
+                                       target="_blank">Rhea</a>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+    {{--</div>--}}
+    {{--</div>--}}
+
+    <script type="text/javascript">
+        $('#users').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url":"<?= route('dataProcessing') ?>",
+                "dataType":"json",
+                "type":"POST",
+                "data":{"_token":"<?= csrf_token() ?>"}
+            },
+            "columns":[
+                {"data":"first_name"},
+                {"data":"last_name"},
+                {"data":"birth_date"},
+                {"data":"phone"},
+                {"data":"email"},
+                {"data":"created_at"},
+                {"data":"updated_at"},
+            ],
+        } );
+    </script>
+
+@endsection

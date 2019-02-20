@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\MaternalGuide;
-use App\MaternalGuideCategory;
 use Illuminate\Http\Request;
+use App\User;
+use App\doctor_info;
 use DB;
 
-class ArticleController extends Controller
+class ReportDoctorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article = MaternalGuideCategory::all();
-//        dd($dashboard);
-        $maternalguide = MaternalGuide::all();
-        return view('admin.reports.article', compact('maternalguide'))->with(['article' => $article, 'maternalguide' => $maternalguide]);
+        $dinfo = doctor_info::all();
+        $doctor = User::all()->where('role_id', 2);
+        return view('admin.reports.doctors', compact('doctor'))->with(['dinfo' => $dinfo, 'doctor' => $doctor]);
     }
 
     /**
@@ -51,14 +50,14 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article = MaternalGuideCategory::find($id);
+        $dinfo = doctor_info::find($id);
         /*dd($dashboard);*/
-        $maternalguide = MaternalGuide::where('id', $id)
+        $doctor = User::where('id', $id)
             /*->orderBy('timein', 'asc')->where('timein', '!=','0000-00-00 00:00:00')*/
             ->get();
 
         /* dd($vattendance);*/
-        return view('admin.reports.article')->with(['article' => $article, 'maternalguide' => $maternalguide]);
+        return view('admin.reports.doctors')->with(['dinfo' => $dinfo, 'doctor' => $doctor]);
     }
 
     /**

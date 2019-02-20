@@ -24,7 +24,7 @@ class DoctorPatientController extends Controller
             ->orderBy('created_at', 'dsc')
             ->leftjoin('patients','patients.patient_id','users.id')
             ->whereRaw('patients.patient_id IS null')
-            ->where('role_id', 3)->paginate(10);
+            ->where('role_id', 4)->paginate(10);
         return view('doctor.users')->with('users', $users);
     }
 
@@ -48,8 +48,13 @@ class DoctorPatientController extends Controller
             $input['patient_id'] = $id;
             $input['doctor_id'] = Auth::user()->id;
             Patient::create($input);
+
+            //User::create(['role_id' => 3]);
+
+
             Return redirect()->back();
         }
+        User::create(['role_id' => 3]);
     }
 
     public function patient(Request $request)
@@ -62,6 +67,7 @@ class DoctorPatientController extends Controller
             Patient::destroy($input);
             Return redirect()->back();
         }
+        User::create(['role_id' => 4]);
     }
 
     public function showprofile($id){

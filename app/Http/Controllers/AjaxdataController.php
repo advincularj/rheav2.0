@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Data;
 //use DataTables;
 use Yajra\Datatables\Datatables;
@@ -11,13 +12,21 @@ class AjaxdataController extends Controller
 {
     function index()
     {
-        return view('admin.ajaxdata');
+//        return view('admin.reports.ajaxdata');
+        return view('admin.reports');
         //http://127.0.0:8000/ajaxdata
     }
 
-    function getdata()
+    function doctor()
     {
-        $data = Data::select('first_name', 'last_name');
-        return Datatables::make($data)->make(true);
+        return view('admin.reports.doctors');
+        //http://127.0.0:8000/ajaxdata
     }
+
+    function article()
+    {
+        return view('admin.reports.article');
+        //http://127.0.0:8000/ajaxdata
+    }
+
 }

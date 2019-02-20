@@ -1,4 +1,4 @@
-@extends('doctor.layouts.app')
+@extends('doctor.layouts.app2')
 
 @section('content')
     <div class="position-relative">
@@ -15,7 +15,7 @@
                 <span></span>
                 <span></span>
             </div>
-
+s
             @include('doctor.inc.messages')
             <div class="container-fluid mt--8">
                 <div class="col">

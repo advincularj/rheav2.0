@@ -166,6 +166,7 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
 
 
+
         /*
          * Package Service Providers...
          */
@@ -237,6 +238,7 @@ return [
         'Image' => Interveention\Image\Facades\Image::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'DataTables' => Yajra\Datatables\Facades\DataTables::class,
+
 
     ],
 

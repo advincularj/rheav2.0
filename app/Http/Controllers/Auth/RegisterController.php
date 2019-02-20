@@ -81,7 +81,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'role_id' => 3,
+            'role_id' => 4,
             //'token' => str_random(25),
         ]);
 
