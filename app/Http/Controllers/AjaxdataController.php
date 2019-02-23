@@ -13,7 +13,7 @@ class AjaxdataController extends Controller
     function index()
     {
 //        return view('admin.reports.ajaxdata');
-        return view('admin.reports');
+        return view('admin.reports.ajaxdata');
         //http://127.0.0:8000/ajaxdata
     }
 

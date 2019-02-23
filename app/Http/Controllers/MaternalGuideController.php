@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\MaternalGuide;
 use App\MaternalGuideCategory;
 Use App\User;
+use Alert;
 
 use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
 
@@ -65,6 +66,8 @@ class MaternalGuideController extends Controller
 
         //Archived Maternal Guide Table
         $activity = ActivityLogger::activity("Restored Maternal Guide");
+
+        Alert::success("Your file has been restored.", "Restored!")->persistent("Close");
 
         // restore data
 //        MaternalGuide::orderBy('created_at', 'dsc')->paginate(5)->where('id', $id)->restore();
@@ -242,8 +245,11 @@ class MaternalGuideController extends Controller
         //Removed Maternal Guide
         $activity = ActivityLogger::activity("Removed Maternal Guide");
 
+        // Sweet Alert
+        Alert::success("Your file has been archived.", "Archived!")->persistent("Close");
+
         $guide ->delete();
-        return redirect('/guides')->with('success','Maternal Guide Removed')->with('activity', $activity);
+        return redirect('/guides')->with('activity', $activity);
     }
 
 }

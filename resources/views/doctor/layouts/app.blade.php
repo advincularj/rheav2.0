@@ -23,6 +23,14 @@
     <!-- Argon CSS -->
     <link type="text/css" href="{{ asset('aaa/admin/css/argon.css?v=1.0.0') }}" rel="stylesheet">
 
+    {{--Sweet Alert CSS--}}
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
+    {{--Custom CSS--}}
+
+
+
+
     {{--<!-- Alert -->--}}
     {{--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--}}
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>--}}
@@ -30,11 +38,32 @@
 
 </head>
 
+<script type="text/javascript">
+    $('#addpatient').on('click', function (e) {
+        e.preventDefault();
+        var form = $(this).parents('form');
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, save it!'
+        }).then((result) => {
+            if (result.value) {
+                form.submit();
+            }
+        })
+    });
+
+</script>
+
 <body>
 <div id="app">
     @include('doctor.inc.sidenav')
     <main class="main-content">
-        @include('doctor.inc.topnav')
+        @include('admin.inc.topnav')
         {{--@include('ainc.messages')--}}
         @yield('content')
     </main>
@@ -42,8 +71,8 @@
 
 <!-- Argon Scripts -->
 <!-- Core -->
-{{--<script src="{{ asset('aaa/admin/vendor/jquery/dist/jquery.min.js') }}"></script>--}}
-{{--<script src="{{ asset('aaa/admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>--}}
+<script src="{{ asset('aaa/admin/vendor/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('aaa/admin/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Argon JS -->
 <script src="{{ asset('aaa/admin/js/argon.js?v=1.0.0') }}"></script>
@@ -53,6 +82,11 @@
 <script>
     CKEDITOR.replace( 'article-ckeditor' );
 </script>
+
+{{--Sweet Alert--}}
+<script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+<script src="sweetalert2.all.min.js"></script>
+@include('sweet::alert')
 
 
 </body>

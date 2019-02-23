@@ -20,6 +20,7 @@
 //});
 
 Route::group(['middleware' => ['web']], function () {
+
     //PagesController
     Route::get('/', 'PagesController@index');
     Route::get('/about', 'PagesController@about');
@@ -42,6 +43,8 @@ Route::group(['middleware' => ['web']], function () {
 
         //Admin-CRUD DOCTORS
         Route::resource('users', 'CrudDoctorController');
+        Route::get('/doctorprofile/{id}', 'CrudDoctorController@showprofile');
+        Route::post('doctor', 'CrudDoctorController@doctor');
 
 
         //Admin - CRUD Maternal Guide
@@ -56,23 +59,19 @@ Route::group(['middleware' => ['web']], function () {
 
         //Admin - User Logs
         Route::resource('audits', 'AuditController');
+        Route::get('/archived-audits', 'AuditController@indexArchived');
 
-//        Route::get('/reports', function() {
-//            $data = Data::all ();
-//            return view ( 'admin.reports' )->withData ( $data );
-//        });
+        Route::delete('/clear-activity', ['uses' => 'AuditController@clearActivityLog'])->name('clear-activity');
+        Route::delete('/destroy-activity', ['uses' => 'AuditController@destroyActivityLog'])->name('destroy-activity');
+        Route::post('/restore-log', ['uses' => 'AuditController@restoreClearedActivityLog'])->name('restore-activity');
+
+        //Reports
         Route::get('ajaxdata', 'AjaxdataController@index');
         Route::get('doctors', 'AjaxdataController@doctor');
         Route::get('articles', 'AjaxdataController@article');
         Route::post('/data/users', 'DatatableController@getUsers')->name('dataProcessing');
         Route::post('/data/articles', 'DatatableController@getArticles')->name('articleProcessing');
         Route::post('/data/doctors', 'DatatableController@getDoctors')->name('doctorProcessing');
-////            ->name('ajaxdata');
-//        Route::get('ajaxdata/getdata', 'AjaxdataController@getdata')->name('ajaxdata.getdata');
-//        //Reports
-//        Route::resource('/articles', 'ArticleController');
-//        Route::resource('/doctors', 'ReportDoctorController');
-//        Route::resource('/patientreport', 'ReportPatientController');
 
 
     });
@@ -82,16 +81,29 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => 'doctor'], function () {
 
         //Doctor
-        Route::get('/admin/charts', 'ChartsController@index');
+
+        //Dashboard
         Route::get('/doctor/doctorcharts', 'DoctorChartsController@index');
+
+        //Add Patients
         Route::get('addpatient', 'DoctorPatientController@show');
         Route::post('addpatient', 'DoctorPatientController@addpatient');
         Route::get('/patients', 'DoctorPatientController@index');
         Route::get('/patientprofile/{id}', 'DoctorPatientController@showprofile');
         Route::post('patient', 'DoctorPatientController@patient');
+
+        //Doctor Profile
         Route::get('doctorprofile', 'DoctorProfileController@profile');
         Route::get('/doctorsettings', 'DoctorSettingsController@settings');
         Route::post('/uploadPic', 'DoctorSettingsController@uploadPic');
+        Route::post('/doctorsettings', 'DoctorSettingsController@updateProfile');
+        Route::get('/changePic', function () {
+            return view('doctor.pic');
+        });
+        Route::get('/changePassword', 'DoctorSettingsController@showChangePasswordForm');
+        Route::post('/changePassword', 'DoctorSettingsController@changePassword')->name('changePassword');
+
+        //Check-up
         Route::get('indexrecord', function () {
             return view('doctor.indexcheckup');
         });
@@ -101,69 +113,102 @@ Route::group(['middleware' => ['web']], function () {
         });
         Route::resource('checkuprecords', 'CheckupRecordsController');
 
-        //Route::get('doctorsettings', 'DoctorSettingsController@editProfileForm');
-        Route::post('/doctorsettings', 'DoctorSettingsController@updateProfile');
-        Route::get('/changePic', function () {
-            return view('doctor.pic');
-        });
-        //Route::get('/archivedpatients', 'DoctorPatientController@indexArchived');
-        // Route::get('/restore/{id}', 'DoctorPatientController@restore')->name('user.restore');
-        Route::get('/changePassword', 'DoctorSettingsController@showChangePasswordForm');
-        Route::post('/changePassword', 'DoctorSettingsController@changePassword')->name('changePassword');
+
     });
 
     //---------------------------------------------------------------------
     Route::group(['middleware' => 'verified'], function () {
+        //---------------------------------------------------------------------
         Route::group(['middleware' => 'patient'], function () {
+
+            //Check-up
+            Route::resource('checkup', 'CheckupRecordsController')->only(['show']);
+
+         //---------------------------------------------------------------------
+//         Route::group(['middleware' => 'guest'], function () {
+
             //Patient
 
-//        Route::get('/userprofile', function () {
-//            return redirect(e'patient.userprofile');
-//            return redirect(e'patient.userprofile');
-//        })->middleware('verified');
+            //Patient Profile
             Route::get('/userprofile', 'UserProfileController@userprofile');
-        Route::get('/settings', 'UserSettingsController@settings');
-        Route::post('/uploadPhoto', 'UserSettingsController@uploadPhoto');
-        Route::post('/settings', 'UserSettingsController@updateProfile');
-        Route::get('/changePhoto', function () {
+            Route::get('/settings', 'UserSettingsController@settings');
+            Route::post('/uploadPhoto', 'UserSettingsController@uploadPhoto');
+            Route::post('/settings', 'UserSettingsController@updateProfile');
+            Route::get('/changePhoto', function () {
             return view('patient.pic');
-        });
-        //Patient - Maternal Guide Dashboard
-        Route::get('/maternalguide', 'MaternalGuideDashboardController@index');
-        Route::resource('guides', 'MaternalGuideController')->only(['show']);
+            });
+            Route::get('/changePass', 'UserSettingsController@showChangePasswordForm');
+            Route::post('/changePass', 'UserSettingsController@changePass')->name('changePass');
 
-    Route::get('indexnote', function () {
-        return view('patient.viewpregnancydiary');
-    });
-    Route::resource('indexnote', 'PregnancyDiariesController');
-    Route::get('diary', function () {
-        return view('patient.createpregnancydiary');
-    });
-    Route::resource('pregnancydiaries', 'PregnancyDiariesController');
-    Route::resource('checkup', 'CheckupRecordsController')->only(['show']);
+            //Patient - Maternal Guide Dashboard
+            Route::get('/maternalguide', 'MaternalGuideDashboardController@index');
+            Route::resource('guides', 'MaternalGuideController')->only(['show']);
 
-        Route::get('/changePass', 'UserSettingsController@showChangePasswordForm');
-        Route::post('/changePass', 'UserSettingsController@changePass')->name('changePass');
-        });
+            //Pregnancy Diary
+            Route::get('indexnote', function () {
+                return view('patient.viewpregnancydiary');
+            });
+            Route::resource('indexnote', 'PregnancyDiariesController');
+            Route::get('diary', function () {
+                return view('patient.createpregnancydiary');
+            });
+            Route::resource('pregnancydiaries', 'PregnancyDiariesController');
+            Route::get('/notification', 'PusherNotificationController@sendNotification');
+
+
+//        });
+     });
     });
-    });
+
+
+    //---------------------------------------------------------------------
+//    Route::group(['middleware' => 'guest'], function () {
+//        //Guest
+//
+//        //Patient Profile
+//        Route::get('/userprofile', 'UserProfileController@userprofile');
+//        Route::get('/settings', 'UserSettingsController@settings');
+//        Route::post('/uploadPhoto', 'UserSettingsController@uploadPhoto');
+//        Route::post('/settings', 'UserSettingsController@updateProfile');
+//        Route::get('/changePhoto', function () {
+//            return view('patient.pic');
+//        });
+//        Route::get('/changePass', 'UserSettingsController@showChangePasswordForm');
+//        Route::post('/changePass', 'UserSettingsController@changePass')->name('changePass');
+//
+//        //Patient - Maternal Guide Dashboard
+//        Route::get('/maternalguide', 'MaternalGuideDashboardController@index');
+//        Route::resource('guides', 'MaternalGuideController')->only(['show']);
+//
+//        //Pregnancy Diary
+//        Route::get('indexnote', function () {
+//            return view('patient.viewpregnancydiary');
+//        });
+//        Route::resource('indexnote', 'PregnancyDiariesController');
+//        Route::get('diary', function () {
+//            return view('patient.createpregnancydiary');
+//        });
+//        Route::resource('pregnancydiaries', 'PregnancyDiariesController');
+//
+//
+//    });
+
+
+
 
 
 //register
-Route::resource('/register', 'RegisterController')->only(['create', 'index']);
-//Route::get('verifyEmailFirst', 'Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
-//Route::get('verify/{email}/{verifyToken}', 'Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
-//Route::get('/verify/{token}', 'VerifyController@verify')->name('verify');
+//Route::resource('/register', 'RegisterController')->only(['create', 'index']);
+    Route::resource('signup', 'SignupController')->only(['store', 'index']);;
+
 //login
 // Route::resource('/login', 'LoginController')->only(['index', 'store']);
-Route::get('log-in', 'LoginController@index');
-Route::post('log-in', 'LoginController@store');
+Route::get('signin', 'SigninController@index');
+Route::post('signin', 'SigninController@store');
 //logout
-Route::get('/logout', 'LoginController@logout');
+Route::get('logout', 'SigninController@logout');
 
-
-
-
+});
 
 
 

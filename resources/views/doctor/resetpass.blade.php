@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('doctor.layouts.app')
 
 @section('content')
     <div class="position-relative">
@@ -27,16 +27,6 @@
                                             <div class="card-header">Change password</div>
 
                                             <div class="card-body">
-                                                @if (session('error'))
-                                                    <div class="alert alert-danger">
-                                                        {{ session('error') }}
-                                                    </div>
-                                                @endif
-                                                @if (session('success'))
-                                                    <div class="alert alert-success">
-                                                        {{ session('success') }}
-                                                    </div>
-                                                @endif
                                                 <form class="form-horizontal" method="POST" action="changePassword">
                                                     {{ csrf_field() }}
 
@@ -88,11 +78,12 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <div class="col-md-6 col-md-offset-4">
-                                                            <button type="submit" class="btn btn-primary">
+                                                        <p align="right">
+                                                            <button type="submit" class="btn  btn-sm btn-primary">
                                                                 Change Password
                                                             </button>
-                                                        </div>
+                                                            <a href="/doctorsettings" class="btn  btn-sm btn-primary">Cancel</a>
+                                                        </p>
                                                     </div>
                                                 </form>
                                             </div>

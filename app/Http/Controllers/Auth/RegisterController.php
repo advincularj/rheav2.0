@@ -28,6 +28,16 @@ class RegisterController extends Controller
     |
     */
 
+    public function index()
+    {//
+    }
+
+    public function create()
+    {
+        $this->index();
+    }
+
+
     use RegistersUsers;
 
     /**
@@ -36,6 +46,8 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/log-in';
+
+
 
     /**
      * Create a new controller instance.
@@ -72,7 +84,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function store(array $data)
     {
         $user = User::create([
             'first_name' => $data['first_name'],

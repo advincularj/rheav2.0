@@ -16,7 +16,7 @@
         </form>
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
-            {{--<li class="nav-item dropdown">--}}
+            <li class="nav-item dropdown">
                 {{--<a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
                 {{--<div class="media align-items-center">--}}
                 {{--<div class="media-body ml-2 d-none d-lg-block">--}}
@@ -24,94 +24,33 @@
                 {{--</div>--}}
                 {{--</div>--}}
                 {{--</a>--}}
-                {{--<a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
-                    {{--<div class="media align-items-center">--}}
-                        {{--<div class="media-body ml-2 d-none d-lg-block">--}}
-                            {{--<span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</a>--}}
-
-                {{--GerStartCode--}}
-
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position: relative; padding-left: 50px;: ">
-                    <i class="ni ni-collection d-lg-none"></i>
-                    <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%">
-                    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <div class="media align-items-center">
+                        <div class="media-body ml-2 d-none d-lg-block">
+                            <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
+                        </div>
+                    </div>
                 </a>
-
-
-                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <li>
-                        <a class="dropdown-item" href="/userprofile">My Profile</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/settings">Settings</a>
-                    </li>
-
-
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                </ul>
-
-
-                {{--GerEndCode--}}
-
-               {{-- <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <li>
-                        <a class="dropdown-item" href="/userprofile">My Profile</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="/settings">Settings</a>
-                    </li>
-
-
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                </ul>--}}
-
-
-                {{--<div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
-                    {{--<div class=" dropdown-header noti-title">--}}
-                        {{--<h6 class="text-overflow m-0">Welcome!</h6>--}}
-                    {{--</div>--}}
-                    {{--<div class="dropdown-divider"></div>--}}
+                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                    <div class=" dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">Welcome!</h6>
+                    </div>
+                    <div class="dropdown-divider"></div>
                     {{--<a href="#!" class="dropdown-item">--}}
                     {{--<i class="ni ni-user-run"></i>--}}
                     {{--<span>Logout</span>--}}
                     {{--</a>--}}
-                    {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
-                       {{--onclick="event.preventDefault()--}}
-                       {{--document.getElementById('logout-form').submit();">--}}
-                        {{--<i class="ni ni-user-run"></i>--}}
-                        {{--<span>{{ __('Logout') }}</span>--}}
-                    {{--</a>--}}
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+                        <i class="ni ni-user-run"></i>
+                        <span>{{ __('Logout') }}</span>
+                    </a>
 
-                    {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                        {{--@csrf--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-
-
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
             </li>
         </ul>
     </div>
@@ -121,11 +60,11 @@
     <div class="container-fluid">
         <div class="header-body">
             @include('admin.inc.messages')
-            @if (session('status'))
-            <div class="aert alert-success" role="alert">
-            {{ session('status') }}
-            </div>
-            @endif
+            {{--@if (session('status'))--}}
+            {{--<div class="aert alert-success" role="alert">--}}
+            {{--{{ session('status') }}--}}
+            {{--</div>--}}
+            {{--@endif--}}
         </div>
     </div>
 </div>

@@ -1,5 +1,11 @@
 @extends('patient.layouts.app')
 
+@if (Auth::user()->role_id == 3)
+    @include ('patient.inc.navbar')
+@else
+    @include ('guest.navbar')
+@endif
+
 @section('content')
     <div class="position-relative">
         <!-- shape Hero -->
@@ -27,10 +33,10 @@
                                 <div class="card-header">My Profile </div>
 
                                 <div class="card-body">
-                                    <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
+                                    <img src="/uploads/image/{{Auth::user()->image }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                     <form enctype="multipart/form-data" action="/uploadPhoto" method="POST">
                                         <label>Update Profile Picture</label><br>
-                                        <input type="file" name="avatar"><br>
+                                        <input type="file" name="image"><br>
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}"><br><br><br>
                                         <input type="submit" class="pull-right btn btn-sm btn-primary">
 

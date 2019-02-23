@@ -12,7 +12,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 
 
-class Patient
+class ePatient
 {
     public function handle($request, Closure $next)
     {

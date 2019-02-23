@@ -24,11 +24,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public $table = 'users';
     public $primaryKey ='id';
     protected $fillable = [
-    'role_id','first_name', 'last_name', 'birth_date', 'phone', 'email', 'password',
+    'role_id','first_name', 'last_name', 'phone', 'email', 'password',
 
 
 ];
-    protected static $logAttributes = ['first_name', 'last_name', 'birth_date', 'phone', 'email', 'password'];
+    protected static $logAttributes = ['first_name', 'last_name', 'phone', 'email', 'password'];
     protected static $logName = 'User';
 
     /**
@@ -101,6 +101,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\userprofile','user_id');
     }
 
-
+    public function doctorprofile() {
+        return $this->hasOne('App\doctor_info', 'user_id');
+    }
 
 }

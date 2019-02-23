@@ -1,5 +1,4 @@
-@extends('doctor.layouts.app2')
-
+@extends('doctor.layouts.app')
 @section('content')
     <div class="position-relative">
         <!-- shape Hero -->
@@ -16,7 +15,6 @@
                 <span></span>
             </div>
 
-            @include('doctor.inc.messages')
             <div class="container py-lg-md d-flex">
                 <div class="col px-0">
                     <div class="row justify-content-center">
@@ -27,13 +25,16 @@
                                 <div class="card-header">My Profile </div>
 
                                 <div class="card-body">
-                                        <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
-                                        <form enctype="multipart/form-data" action="/uploadPic" method="POST">
-                                            <label>Update Profile Picture</label><br>
-                                            <input type="file" name="avatar"><br>
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}"><br><br><br>
+                                    @include('doctor.inc.messages')
+                                    <img src="/uploads/image/{{Auth::user()->image }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
+                                    <form enctype="multipart/form-data" action="/uploadPic" method="POST">
+                                        <label>Update Profile Picture</label><br>
+                                        <input type="file" name="image"><br>
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <p align="right">
                                             <input type="submit" class="pull-right btn btn-sm btn-primary">
-
+                                            <a href="/doctorsettings" class="btn  btn-sm btn-primary">Cancel</a>
+                                        </p>
                                     </form>
                                 </div>
                             </div>
@@ -41,13 +42,13 @@
 
                         </div>
                     </div>
+                    <!-- SVG separator -->
+                    <div class="separator separator-bottom separator-skew">
+                        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+                        </svg>
+                    </div>
                 </div>
-            </div>
-            <!-- SVG separator -->
-            <div class="separator separator-bottom separator-skew">
-                <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                    <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-                </svg>
             </div>
         </section>
         <!-- 1st Hero Variation -->

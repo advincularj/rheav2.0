@@ -159,12 +159,6 @@
 
                                     </div>
                                     <br>
-                                <div class="custom-control custom-control-alternative custom-checkbox">
-                                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                                    <label class="custom-control-label" for=" customCheckLogin">
-                                        <span>Remember me</span>
-                                    </label>
-                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary my-4">{{ __('Login') }}</button>
                                     </button>
@@ -187,7 +181,7 @@
                             {{--</a>--}}
                         </div>
                         <div class="col-6 text-right">
-                            <a href="/register" class="text-white">
+                            <a href="{{ url('/register') }}" class="text-white">
                                 <small>Create new account</small>
                             </a>
                         </div>

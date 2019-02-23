@@ -1,4 +1,4 @@
-@extends('doctor.layouts.app2')
+@extends('doctor.layouts.app')
 
 @section('content')
     <div class="position-relative">
@@ -15,22 +15,25 @@
                 <span></span>
                 <span></span>
             </div>
-s
-            @include('doctor.inc.messages')
+
             <div class="container-fluid mt--8">
-                <div class="col">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
+                <div class="col-lg-12">
 
                             {{--HERE IS THE START--}}
                             <div class="card">
                                 <div class="card-header">Edit Profile</div>
                                 <div class="card-body">
-
-                                    <div class="col-sm-12 col-md-12">
+                                    {{--@if(session('success'))--}}
+                                        {{--<div class="alert alert-success">--}}
+                                            {{--{{session('success')}}--}}
+                                        {{--</div>--}}
+                                    {{--@endif--}}
+                                        <div class="row">
+                                            <div class="col-sm-6 required">
+                                                <div class="form-group">
                                         <div class="thumbnail">
                                             <h3 align="center">{{ucwords(Auth::user()->name)}}</h3>
-                                            <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
+                                            <img src="/uploads/image/{{Auth::user()->image }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                             <div class="caption">
                                                 <br>
                                                 <br>
@@ -40,62 +43,85 @@ s
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="col-sm-12 col-md-12">
                                         <form action="/doctorsettings" method="post">
                                             @csrf
-                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <span  id="basic-addon1">First Name</span>
-                                                    <input type="text" class="form-control" placeholder="First Name" name="user[first_name]" value="{{ old('first_name')}}{{$user->first_name}}">
+                                                    <input type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" placeholder="First Name" name="user[first_name]" value="{{ old('first_name')}}{{$user->first_name}}">
+                                                    @if ($errors->has('first_name'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('first_name') }}</strong>
+                                                </span>
+                                                    @endif
                                                 </div>
-                                            </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-12">
-                                        <div class="col-md-6">
+
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Last Name</span>
-                                                <input type="text" class="form-control" placeholder="Last Name" name="user[last_name]" value="{{ old('last_name')}}{{$user->last_name}}">
+                                                <input type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" placeholder="Last Name" name="user[last_name]" value="{{ old('last_name')}}{{$user->last_name}}">
+                                                @if ($errors->has('last_name'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('last_name') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-12">
-                                        <div class="col-md-6">
+
                                             <div class="form-group">
                                                 <span  id="basic-addon1">About</span>
-                                                <textarea type="text" class="form-control" name="about">{{ old('about') }}{{($data == null) ? '' : $data->about}}</textarea>
+                                                <textarea type="text" class="form-control{{ $errors->has('about') ? ' is-invalid' : '' }}" name="about">{{ old('about') }}{{($data == null) ? '' : $data->about}}</textarea>
+                                                @if ($errors->has('about'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('about') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Address</span>
-                                                <input type="text" class="form-control" placeholder="Address" name="address" value="{{ old('address') }}{{($data == null) ? '' : $data->address}}">
+                                                <input type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" placeholder="Address" name="address" value="{{ old('address') }}{{($data == null) ? '' : $data->address}}">
+                                                @if ($errors->has('address'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('address') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                            <div class="col-sm-6 required">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Services</span>
-                                                <input type="text" class="form-control" placeholder="Services" name="services" value="{{ old('services') }}{{($data == null) ? '' : $data->services}}">
+                                                <input type="text" class="form-control{{ $errors->has('services') ? ' is-invalid' : '' }}" placeholder="Services" name="services" value="{{ old('services') }}{{($data == null) ? '' : $data->services}}">
+                                                @if ($errors->has('services'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('services') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Specialization</span>
-                                                <input type="text" class="form-control" placeholder="Specialization" name="specialization" value="{{ old('specialization') }}{{($data == null) ? '' : $data->specialization}}">
+                                                <input type="text" class="form-control{{ $errors->has('specialization') ? ' is-invalid' : '' }}" placeholder="Specialization" name="specialization" value="{{ old('specialization') }}{{($data == null) ? '' : $data->specialization}}">
+                                                @if ($errors->has('specialization'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('specialization') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Education</span>
-                                                <input type="text" class="form-control" placeholder="Education" name="education" value="{{ old('education') }}{{($data == null) ? '' : $data->education}}">
+                                                <input type="text" class="form-control{{ $errors->has('education') ? ' is-invalid' : '' }}" placeholder="Education" name="education" value="{{ old('education') }}{{($data == null) ? '' : $data->education}}">
+                                                @if ($errors->has('education'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('education') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <span  id="basic-addon1">Experiences</span>
-                                                <input type="text" class="form-control" placeholder="Experiences" name="experience" value="{{ old('experience') }}{{($data == null) ? '' : $data->experience}}">
+                                                <input type="text" class="form-control{{ $errors->has('experience') ? ' is-invalid' : '' }}" placeholder="Experiences" name="experience" value="{{ old('experience') }}{{($data == null) ? '' : $data->experience}}">
+                                                @if ($errors->has('experience'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('experience') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
-                                        </div>
                                         <br>
 
                                         <div class="form-group">
@@ -115,6 +141,6 @@ s
             </div>
         </section>
     </div>
-        <!-- 1st Hero Variation -->
+    <!-- 1st Hero Variation -->
     </div>
 @endsection

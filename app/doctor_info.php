@@ -12,8 +12,13 @@ class doctor_info extends Model
 
         return view('doctor.doctorprofile');
     }*/
-    public function user() {
-        return $this->belongsTo('App\doctor_info');
+//    public function user() {
+//        return $this->belongsTo('App\doctor_info');
+//    }
+
+    public function doctor()
+    {
+        return $this->belongsTo('App\User', 'user_id');
     }
 
 }

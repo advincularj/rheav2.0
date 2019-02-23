@@ -1,6 +1,21 @@
-@extends('patient.layouts.app')
+@extends('layouts.app')
 
 @section('content')
+    <div class="position-relative">
+        <!-- shape Hero -->
+        <section class="section section-lg section-shaped pb-250">
+            <div class="shape shape-style-1 shape-default">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

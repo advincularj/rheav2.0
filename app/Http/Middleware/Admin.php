@@ -17,7 +17,7 @@ class Admin
     public function handle($request, Closure $next)
     {
         if (!Auth::user()) {
-            return redirect('/login');
+            return redirect('/log-in');
         } else {
             if (Auth::user()->role_id != 1) {
                 // user value cannot be found in session

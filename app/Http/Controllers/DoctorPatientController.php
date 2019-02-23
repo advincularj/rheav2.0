@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Patient;
 use App\doctor_info;
+use DB;
 
 use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
 
@@ -20,9 +21,9 @@ class DoctorPatientController extends Controller
 
     public function show()
     {
-        $users = User::select('users.id', 'first_name', 'last_name', 'email','created_at')
+        $users = User::select('users.id', 'first_name', 'last_name', 'email', 'created_at')
             ->orderBy('created_at', 'dsc')
-            ->leftjoin('patients','patients.patient_id','users.id')
+            ->leftjoin('patients', 'patients.patient_id', 'users.id')
             ->whereRaw('patients.patient_id IS null')
             ->where('role_id', 4)->paginate(10);
         return view('doctor.users')->with('users', $users);
@@ -43,38 +44,46 @@ class DoctorPatientController extends Controller
     public function addpatient(Request $request)
     {
         $input = $request->all();
-        foreach ($input['id'] as $id)
-        {
+
+        foreach ($input['id'] as $id) {
             $input['patient_id'] = $id;
             $input['doctor_id'] = Auth::user()->id;
+//            $input = DB::table('users')
+//                ->where('role_id', 4)
+//                ->update('role_id', 3)->save();
             Patient::create($input);
 
             //User::create(['role_id' => 3]);
 
-
-            Return redirect()->back();
         }
-        User::create(['role_id' => 3]);
+
+//        $input['role_id'] = 3;
+
+        Return redirect()->back();
+
+
     }
 
     public function patient(Request $request)
     {
         $input = $request->all();
-        foreach ($input['id'] as $id)
-        {
-            $input['patient_id'] = $id;
-            $input['doctor_id'] = Auth::user()->id;
-            Patient::destroy($input);
-            Return redirect()->back();
+
+        foreach ($input['id'] as $id) {
+            $patient = Patient::find($id);
+            $user_id = $patient->patient_id;
+            $user = User::find($user_id);
+            $user->role_id = '4';
+            $user->save();
+            Patient::destroy($id);
         }
-        User::create(['role_id' => 4]);
+        Return redirect()->back();
     }
 
-    public function showprofile($id){
+    public function showprofile($id)
+    {
 
 //        $user = userprofile::find($id);
         $user = Patient::where('patient_id', $id)->first();
-
 
 
         return view('doctor.patientprofile', compact(['user']));

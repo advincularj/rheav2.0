@@ -30,7 +30,7 @@
 
 <body>
 <div id="app">
-    @include('patient.inc.navbar')
+    {{--@include('patient.inc.navbar')--}}
     {{--<main class="container">--}}
         {{--@include('inc.messages')--}}
     {{--</main>--}}

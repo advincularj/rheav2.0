@@ -40,14 +40,14 @@
                     {{--<i class="ni ni-user-run"></i>--}}
                     {{--<span>Logout</span>--}}
                     {{--</a>--}}
-                    <a class="dropdown-item" href="{{ route('logout') }}"
+                    <a class="dropdown-item" href="{{ url('logout') }}"
                        onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();">
                         <i class="ni ni-user-run"></i>
-                        <span>{{ __('Logout') }}</span>
+                        <span>Logout</span>
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </div>

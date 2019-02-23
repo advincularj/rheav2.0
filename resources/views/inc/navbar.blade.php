@@ -24,52 +24,14 @@
                     </div>
                 </div>
                 <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/diary">Pregnancy Diary</a>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="checkup">Check-up Records</a>
-                        </a>
-                    </li>
                     {{--Eto yung Maternal Guide--}}
-                    <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="maternalguide">RHEA Maternal Guide</a>
-                            </a>
-                        </li>
-                    </ul>
                 </ul>
                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank" data-toggle="tooltip" title="Like us on Facebook">
-                            <i class="fa fa-facebook-square"></i>
-                            <span class="nav-link-inner--text d-lg-none">Facebook</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="https://www.instagram.com/creativetimofficial" target="_blank" data-toggle="tooltip" title="Follow us on Instagram">
-                            <i class="fa fa-instagram"></i>
-                            <span class="nav-link-inner--text d-lg-none">Instagram</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="https://twitter.com/creativetim" target="_blank" data-toggle="tooltip" title="Follow us on Twitter">
-                            <i class="fa fa-twitter-square"></i>
-                            <span class="nav-link-inner--text d-lg-none">Twitter</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="https://github.com/creativetimofficial/argon-design-system" target="_blank" data-toggle="tooltip" title="Star us on Github">
-                            <i class="fa fa-github"></i>
-                            <span class="nav-link-inner--text d-lg-none">Github</span>
-                        </a>
-                    </li>
 
                     @guest
                         <li class="nav-item d-none d-lg-block ml-lg-4">
-                            <a href="/log-in" class="btn btn-neutral btn-icon">
-                                </span>
+                            <a href="{{ url('signin') }}" class="btn btn-neutral btn-icon">
+
                                 <span class="nav-link-inner--text">Login</span>
                             </a>
                             {{--@if (Route::has('register'))--}}
@@ -78,12 +40,12 @@
                             {{--<span class="nav-link-inner--text">{{ __('Register') }}</span>--}}
                             {{--</a>--}}
                             {{--@endif--}}
-                            @if (Route::has('/register'))
-                                <a href="/register" class="btn btn-neutral btn-icon">
-                                    </span>
-                                    <span class="nav-link-inner--text">Register</span>
+
+                                <a href="{{ url('signup') }}" class="btn btn-neutral btn-icon">
+
+                                    <span class="nav-link-inner--text">{{ __('Register') }}</span>
                                 </a>
-                            @endif
+
                         </li>
 
                         {{--<li class="nav-item">--}}
@@ -106,32 +68,29 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position: relative; padding-left: 50px;: ">
                                 <i class="ni ni-collection d-lg-none"></i>
-                                <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%">
+                                <img src="/uploads/image/{{Auth::user()->image }}" style="width:32px; height:32px; position:absolute; top:10px; left:10px; border-radius:50%">
                                 {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                             </a>
+                            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+                                <div class=" dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Welcome!</h6>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                {{--<a href="#!" class="dropdown-item">--}}
+                                {{--<i class="ni ni-user-run"></i>--}}
+                                {{--<span>Logout</span>--}}
+                                {{--</a>--}}
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+                                    <i class="ni ni-user-run"></i>
+                                    <span>{{ __('Logout') }}</span>
+                                </a>
 
-
-                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="/userprofile">My Profile</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/settings">Settings</a>
-                                </li>
-
-
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
                     @endguest
                 </ul>

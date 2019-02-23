@@ -15,7 +15,6 @@
                 <span></span>
                 <span></span>
             </div>
-
             @include('patient.inc.messages')
             <div class="container py-lg-md d-flex">
                 <div class="col px-0">
@@ -82,10 +81,27 @@
                                         </div>
                                         <br>
 
+                                        <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
+                                        <!-- Alert whenever a new notification is pusher to our Pusher Channel -->
+                                        <script>
+                                            //Remember to replace key and cluster with your credentials.
+                                            var pusher = new Pusher('6ef31bbfd6a4f31ed06a', {
+                                                cluster: 'ap1',
+                                                encrypted: true
+                                            });
+
+                                            //Also remember to change channel and event name if your's are different.
+                                            var channel = pusher.subscribe('notification');
+                                            channel.bind('notification-event', function(message) {
+                                                alert(message);
+                                            });
+
+                                        </script>
                                         </form>
 
                                     </div>
                                 </div>
+
                                 {{--END--}}
 
                             </div>
@@ -94,6 +110,7 @@
                 </div>
 
             </div>
+
         </section>
     </div>
 

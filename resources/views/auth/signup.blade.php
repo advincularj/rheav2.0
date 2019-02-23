@@ -41,30 +41,33 @@
         </div>
         <div class="container pt-lg-md">
             <div class="row justify-content-center">
-                <div class="col-lg-5">
+                <div class="col-lg-9">
                     <div class="card bg-secondary shadow border-0">
                         <div class="card-body px-lg-5 py-lg-5">
                             <div class="text-center text-muted mb-4">
                                 <small>Register</small>
                             </div>
 
-                            <form method="POST" action="{{ url('register') }}">
+                            <form method="POST" action="{{ url('signup') }}">
                                 @csrf
-
+                                <div class="row">
+                                    <div class="col-md-4 required">
                                 <div class="form-group">
                                     <div class="input-group input-group-alternative mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                                         </div>
                                         <input id="name" placeholder="First Name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
-                                            @if ($errors->has('first_name'))
-                                                <span class="invalid-feedback" role="alert">
+                                        @if ($errors->has('first_name'))
+                                            <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('first_name') }}</strong>
                                                 </span>
-                                            @endif
+                                        @endif
                                     </div>
                                 </div>
+                                    </div>
 
+                                        <div class="col-md-4 required">
                                 <div class="form-group">
                                     <div class="input-group input-group-alternative mb-3">
                                         <div class="input-group-prepend">
@@ -78,22 +81,26 @@
                                         @endif
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                         </div>
-                                        <input id="name" type="date" class="form-control{{ $errors->has('birth_date') ? ' is-invalid' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required autofocus>
 
-                                        @if ($errors->has('birth_date'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('birth_date') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
+                                    {{--<div class="col-md-4 required">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<div class="input-group input-group-alternative mb-3">--}}
+                                        {{--<div class="input-group-prepend">--}}
+                                            {{--<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>--}}
+                                        {{--</div>--}}
+                                        {{--<input id="name" type="date" class="form-control{{ $errors->has('birth_date') ? ' is-invalid' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required autofocus>--}}
 
+                                        {{--@if ($errors->has('birth_date'))--}}
+                                            {{--<span class="invalid-feedback" role="alert">--}}
+                                                {{--<strong>{{ $errors->first('birth_date') }}</strong>--}}
+                                            {{--</span>--}}
+                                        {{--@endif--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                                    {{--</div>--}}
+
+                                    <div class="col-md-4 required">
                                 <div class="form-group">
                                     <div class="input-group input-group-alternative mb-3">
                                         <div class="input-group-prepend">
@@ -108,7 +115,9 @@
                                         @endif
                                     </div>
                                 </div>
+                                    </div>
 
+                                    <div class="col-md-4 required">
                                 <div class="form-group">
                                     <div class="input-group input-group-alternative mb-3">
                                         <div class="input-group-prepend">
@@ -123,7 +132,9 @@
                                         @endif
                                     </div>
                                 </div>
+                                    </div>
 
+                                    <div class="col-md-4 required">
                                 <div class="form-group">
                                     <div class="input-group input-group-alternative">
                                         <div class="input-group-prepend">
@@ -138,7 +149,9 @@
                                         @endif
                                     </div>
                                 </div>
+                                    </div>
 
+                                    <div class="col-md-4 required">
                                 <div class="form-group">
                                     <div class="input-group input-group-alternative">
                                         <div class="input-group-prepend">
@@ -147,8 +160,9 @@
                                         <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required>
                                     </div>
                                 </div>
+                                    </div>
                                 <div class="col-lg-12">
-                                    <div class="row">
+                                    <div class="row justify-content-center">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="g-recaptcha"
@@ -160,33 +174,33 @@
 
                                 {{--reCaptcha--}}
                                 {{--<div class="form-group row">--}}
-                                    {{--<div class="col-md-6 offset-4">--}}
-                                        {{--<div class="g-recaptcha" data-sitekey="6Lfn-4sUAAAAAIRKayYF_bzD3AFAzo5P1kA6sDjP"></div>--}}
-                                    {{--</div>--}}
+                                {{--<div class="col-md-6 offset-4">--}}
+                                {{--<div class="g-recaptcha" data-sitekey="6Lfn-4sUAAAAAIRKayYF_bzD3AFAzo5P1kA6sDjP"></div>--}}
+                                {{--</div>--}}
                                 {{--</div>--}}
 
                                 {{--PASSWORD STRENGTH--}}
                                 {{--<div class="text-muted font-italic">--}}
-                                    {{--<small>password strength:--}}
-                                        {{--<span class="text-success font-weight-700">strong</span>--}}
-                                    {{--</small>--}}
+                                {{--<small>password strength:--}}
+                                {{--<span class="text-success font-weight-700">strong</span>--}}
+                                {{--</small>--}}
                                 {{--</div>--}}
 
                                 {{--Privacy Policy--}}
                                 {{--<div class="row my-4">--}}
-                                    {{--<div class="col-12">--}}
-                                        {{--<div class="custom-control custom-control-alternative custom-checkbox">--}}
-                                            {{--<input class="custom-control-input" id="customCheckRegister" type="checkbox">--}}
-                                            {{--<label class="custom-control-label" for="customCheckRegister">--}}
-                                                {{--<span>I agree with the--}}
-                                                    {{--<a href="#">Privacy Policy</a>--}}
-                                                {{--</span>--}}
-                                            {{--</label>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
+                                {{--<div class="col-12">--}}
+                                {{--<div class="custom-control custom-control-alternative custom-checkbox">--}}
+                                {{--<input class="custom-control-input" id="customCheckRegister" type="checkbox">--}}
+                                {{--<label class="custom-control-label" for="customCheckRegister">--}}
+                                {{--<span>I agree with the--}}
+                                {{--<a href="#">Privacy Policy</a>--}}
+                                {{--</span>--}}
+                                {{--</label>--}}
+                                {{--</div>--}}
+                                {{--</div>--}}
                                 {{--</div>--}}
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary mt-4">{{ __('Register') }}</button>
+                                    <button type="submit" class="btn btn-primary mt-6">Register</button>
                                 </div>
                             </form>
                         </div>
@@ -243,82 +257,82 @@
 
 {{--@section('content')--}}
 {{--<div class="container">--}}
-    {{--<div class="row justify-content-center">--}}
-        {{--<div class="col-md-8">--}}
-            {{--<div class="card">--}}
-                {{--<div class="card-header">{{ __('Register') }}</div>--}}
+{{--<div class="row justify-content-center">--}}
+{{--<div class="col-md-8">--}}
+{{--<div class="card">--}}
+{{--<div class="card-header">{{ __('Register') }}</div>--}}
 
-                {{--<div class="card-body">--}}
-                    {{--<form method="POST" action="{{ route('register') }}">--}}
-                        {{--@csrf--}}
+{{--<div class="card-body">--}}
+{{--<form method="POST" action="{{ route('register') }}">--}}
+{{--@csrf--}}
 
-                        {{--<div class="form-group row">--}}
-                            {{--<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>--}}
+{{--<div class="form-group row">--}}
+{{--<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>--}}
 
-                            {{--<div class="col-md-6">--}}
-                                {{--<input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>--}}
+{{--<div class="col-md-6">--}}
+{{--<input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>--}}
 
-                                {{--@if ($errors->has('name'))--}}
-                                    {{--<span class="invalid-feedback" role="alert">--}}
-                                        {{--<strong>{{ $errors->first('name') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+{{--@if ($errors->has('name'))--}}
+{{--<span class="invalid-feedback" role="alert">--}}
+{{--<strong>{{ $errors->first('name') }}</strong>--}}
+{{--</span>--}}
+{{--@endif--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                        {{--<div class="form-group row">--}}
-                            {{--<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>--}}
+{{--<div class="form-group row">--}}
+{{--<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>--}}
 
-                            {{--<div class="col-md-6">--}}
-                                {{--<input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>--}}
+{{--<div class="col-md-6">--}}
+{{--<input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>--}}
 
-                                {{--@if ($errors->has('email'))--}}
-                                    {{--<span class="invalid-feedback" role="alert">--}}
-                                        {{--<strong>{{ $errors->first('email') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+{{--@if ($errors->has('email'))--}}
+{{--<span class="invalid-feedback" role="alert">--}}
+{{--<strong>{{ $errors->first('email') }}</strong>--}}
+{{--</span>--}}
+{{--@endif--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                        {{--<div class="form-group row">--}}
-                            {{--<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
+{{--<div class="form-group row">--}}
+{{--<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
 
-                            {{--<div class="col-md-6">--}}
-                                {{--<input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>--}}
+{{--<div class="col-md-6">--}}
+{{--<input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>--}}
 
-                                {{--@if ($errors->has('password'))--}}
-                                    {{--<span class="invalid-feedback" role="alert">--}}
-                                        {{--<strong>{{ $errors->first('password') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+{{--@if ($errors->has('password'))--}}
+{{--<span class="invalid-feedback" role="alert">--}}
+{{--<strong>{{ $errors->first('password') }}</strong>--}}
+{{--</span>--}}
+{{--@endif--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                        {{--<div class="form-group row">--}}
-                            {{--<label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>--}}
+{{--<div class="form-group row">--}}
+{{--<label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>--}}
 
-                            {{--<div class="col-md-6">--}}
-                                {{--<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+{{--<div class="col-md-6">--}}
+{{--<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                        {{--<div class="form-group row">--}}
-                            {{--<div class="col-md-6 offset-4">--}}
-                                {{--<div class="g-recaptcha" data-sitekey="6Lfn-4sUAAAAAIRKayYF_bzD3AFAzo5P1kA6sDjP"></div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
+{{--<div class="form-group row">--}}
+{{--<div class="col-md-6 offset-4">--}}
+{{--<div class="g-recaptcha" data-sitekey="6Lfn-4sUAAAAAIRKayYF_bzD3AFAzo5P1kA6sDjP"></div>--}}
+{{--</div>--}}
+{{--</div>--}}
 
-                        {{--<div class="form-group row mb-0">--}}
-                            {{--<div class="col-md-6 offset-md-4">--}}
-                                {{--<button type="submit" class="btn btn-primary">--}}
-                                    {{--{{ __('Register') }}--}}
-                                {{--</button>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
+{{--<div class="form-group row mb-0">--}}
+{{--<div class="col-md-6 offset-md-4">--}}
+{{--<button type="submit" class="btn btn-primary">--}}
+{{--{{ __('Register') }}--}}
+{{--</button>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</form>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</div>--}}
 {{--</div>--}}
 {{--@endsection--}}

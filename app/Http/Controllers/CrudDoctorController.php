@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\doctor_info;
+use App\Http\Middleware\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use App\User;
@@ -150,5 +151,24 @@ class CrudDoctorController extends Controller
         $activity = ActivityLogger::activity("Removed Doctor Page");
 
         return redirect('/users')->with('success','User Removed')->with('activity', $activity);
+    }
+
+    public function doctor(Request $request)
+    {
+        $input = $request->all();
+        foreach ($input['id'] as $id)
+        {
+            $input['id'] = Auth::user()->id;
+            User::destroy($input);
+
+        }
+        Return redirect()->back();
+    }
+
+    public function showprofile($id){
+
+        $user = doctor_info::where('user_id', $id)->first();
+
+        return view('admin.doctorprofile', compact(['user']));
     }
 }

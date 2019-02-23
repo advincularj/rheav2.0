@@ -17,7 +17,7 @@ class Doctor
     public function handle($request, Closure $next)
     {
         if (Auth::guest()) {
-            return redirect('/login');
+            return redirect('/log-in');
         } else {
             if (Auth::user()->role_id != 2) {
                 // user value cannot be found in session
