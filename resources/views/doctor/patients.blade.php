@@ -19,14 +19,15 @@
 
 
                                     <div class="w3-show-inline-block offset-8">
-                                        <input type="submit" class="btn btn-danger pull-right" value="Remove Patient" />
+                                        <input type="text" name="search" id="search" class="form-control" placeholder="Search Patient" />
+                                        <input type="submit" class="btn btn-danger pull-right" value="Remove Patient" onclick="removePatient()"/>
                                         <a href="/addpatient" class="btn btn-primary">Find Patients</a>
                                     </div>
 
                             </div>
                         </div>
 
-                        @if(count($users) > 0)
+                        {{--@if(count($users) > 0)--}}
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
@@ -42,37 +43,37 @@
                                     </thead>
                                     <tbody>
 
-                                    @foreach($users as $user)
-                                        @if($user->patient)
-                                        <tr>
+                                    {{--@foreach($users as $user)--}}
+                                        {{--@if($user->patient)--}}
+                                        {{--<tr>--}}
 
-                                            <td>
-                                                <input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>
-                                            </td>
-                                            <td>
-                                                {{ $user->patient->first_name ?? ""}} {{ $user->patient->last_name ?? ""}}
-                                            </td>
-                                            <td>
-                                                {{ $user->patient->email ?? ""}}
-                                            </td>
-                                            <td>
-                                                {{ $user->patient->created_at ?? ""}}
-                                            </td>
-                                            <td>
-                                                <div class="w3-show-inline-block offset-1">
-                                                    <a href="/patientprofile/{{$user->patient_id}}" class="btn btn-primary btn-sm">View Profile</a>
-                                                    <a href="/indexrecord" class="btn btn-default btn-sm">View Check-up Records</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endif
+                                            {{--<td>--}}
+                                                {{--<input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>--}}
+                                            {{--</td>--}}
+                                            {{--<td>--}}
+                                                {{--{{ $user->patient->first_name ?? ""}} {{ $user->patient->last_name ?? ""}}--}}
+                                            {{--</td>--}}
+                                            {{--<td>--}}
+                                                {{--{{ $user->patient->email ?? ""}}--}}
+                                            {{--</td>--}}
+                                            {{--<td>--}}
+                                                {{--{{ $user->patient->created_at ?? ""}}--}}
+                                            {{--</td>--}}
+                                            {{--<td>--}}
+                                                {{--<div class="w3-show-inline-block offset-1">--}}
+                                                    {{--<a href="/patientprofile/{{$user->patient_id}}" class="btn btn-primary btn-sm">View Profile</a>--}}
+                                                    {{--<a href="/indexrecord" class="btn btn-default btn-sm">View Check-up Records</a>--}}
+                                                {{--</div>--}}
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
+                                        {{--@endif--}}
                                     </tbody>
-                                    @endforeach
+                                    {{--@endforeach--}}
 
                                 </table>
-                                @else
-                                    <p>There are no users</p>
-                                @endif
+                                {{--@else--}}
+                                    {{--<p>There are no users</p>--}}
+                                {{--@endif--}}
                             </div>
                             <div class="card-footer py-4">
                                 <nav aria-label="...">
@@ -116,6 +117,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script>
+        function removePatient() {
+            event.preventDefault(); // prevent form submit
+            var form = event.target.form; // storing the form
+            swal({
+                    title: "Are you sure?",
+                    text: "But you will still be able to add this patient again.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, remove my patient!",
+                    cancelButtonText: "No, cancel please!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+
+                    } else {
+                        swal("Cancelled", "The list of patients are safe.", "error");
+                    }
+                });
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#select-all').click(function(event) {
@@ -130,6 +156,32 @@
                 }
             });
 
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+
+            fetch_customer_data();
+
+            function fetch_customer_data(query = '')
+            {
+                $.ajax({
+                    url:"{{ route('action') }}",
+                    method:'GET',
+                    data:{query:query},
+                    dataType:'json',
+                    success:function(data)
+                    {
+                        $('tbody').html(data.table_data);
+                        $('#total_records').text(data.total_data);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#search', function(){
+                var query = $(this).val();
+                fetch_customer_data(query);
+            });
         });
     </script>
 @endsection

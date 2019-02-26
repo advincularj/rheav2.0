@@ -18,15 +18,18 @@
                                 </div>
 
                                 <form action="/addpatient" method="post">
+                                    {{ csrf_field() }}
                                     <div class="w3-show-inline-block offset-5">
-                                        <input type="submit" class="btn btn-primary pull-right" value="Add Patient" />
+                                        <input type="text" name="search" id="search" class="form-control" placeholder="Search Patient" />
+                                        <input type="submit" class="btn btn-primary pull-right" value="Add Patient" onclick="addPatient()">
+
                                         <a href="/patients" class="btn btn-default">Go Back</a>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        @if(count($users) > 0)
+                        {{--@if(count($users) > 0)--}}
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
@@ -40,31 +43,31 @@
                                     </thead>
                                     <tbody>
 
-                                    @foreach($users as $user)
-                                        <tr>
-                                            <td>
-                                                <input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>
-                                            </td>
-                                            <td>
-                                                {{$user->first_name}} {{ $user->last_name }}
-                                            </td>
-                                            <td>
-                                                {{ $user->email }}
-                                            </td>
+                                    {{--@foreach($users as $user)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>--}}
+                                                {{--<input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>--}}
+                                            {{--</td>--}}
+                                            {{--<td>--}}
+                                                {{--{{$user->first_name}} {{ $user->last_name }}--}}
+                                            {{--</td>--}}
+                                            {{--<td>--}}
+                                                {{--{{ $user->email }}--}}
+                                            {{--</td>--}}
                                             {{--<td>--}}
                                             {{--{{ $user->status }}--}}
                                             {{--</td>--}}
-                                            <td>
-                                                {{ $user->created_at }}
-                                            </td>
-                                        </tr>
+                                            {{--<td>--}}
+                                                {{--{{ $user->created_at }}--}}
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
                                     </tbody>
-                                    @endforeach
+                                    {{--@endforeach--}}
 
                                 </table>
-                                @else
-                                    <p>There are no users</p>
-                                @endif
+                                {{--@else--}}
+                                    {{--<p>There are no users</p>--}}
+                                {{--@endif--}}
                             </div>
                             <div class="card-footer py-4">
                                 <nav aria-label="...">
@@ -107,6 +110,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script>
+        function addPatient() {
+            event.preventDefault(); // prevent form submit
+            var form = event.target.form; // storing the form
+            swal({
+                    title: "Are you sure?",
+                    // text: "But you will still be able to retrieve this file.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, add this user!",
+                    cancelButtonText: "No, cancel please!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+
+                    } else {
+                        swal("Cancelled", "The user is not your patient.", "error");
+                    }
+                });
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#select-all').click(function(event) {
@@ -121,6 +149,32 @@
                 }
             });
 
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+
+            fetch_customer_data();
+
+            function fetch_customer_data(query = '')
+            {
+                $.ajax({
+                    url:"{{ route('addaction') }}",
+                    method:'GET',
+                    data:{query:query},
+                    dataType:'json',
+                    success:function(data)
+                    {
+                        $('tbody').html(data.table_data);
+                        $('#total_records').text(data.total_data);
+                    }
+                })
+            }
+
+            $(document).on('keyup', '#search', function(){
+                var query = $(this).val();
+                fetch_customer_data(query);
+            });
         });
     </script>
 @endsection

@@ -91,6 +91,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/patients', 'DoctorPatientController@index');
         Route::get('/patientprofile/{id}', 'DoctorPatientController@showprofile');
         Route::post('patient', 'DoctorPatientController@patient');
+        Route::get('patients.action', 'DoctorPatientController@action')->name('action');
+        Route::get('users.addaction', 'DoctorPatientController@addaction')->name('addaction');
 
         //Doctor Profile
         Route::get('doctorprofile', 'DoctorProfileController@profile');
