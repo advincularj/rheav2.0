@@ -8,6 +8,8 @@
 
 namespace App;
 
+use PHPMailer\PHPMailer\PHPMailer;
+
 
 class Helper
 {
@@ -28,5 +30,45 @@ class Helper
         curl_close($ch);
         return $returncode;
     }
+
+    function emailSend($receiver, $body, $subject)
+    {
+        $bodyhtml = $body;
+        //https://stackoverflow.com/questions/38309422/phpmailer-server-smtp-error-password-command-failed-smtp-connect-failed
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();                       // telling the class to use SMTP
+        $mail->SMTPDebug = 0;
+        // 0 = no output, 1 = errors and messages, 2 = messages only.
+        $mail->SMTPAuth = true;                // enable SMTP authentication
+        $mail->SMTPSecure = "tls";              // sets the prefix to the servier
+        $mail->Host = "smtp.gmail.com";        // sets Gmail as the SMTP server
+        $mail->Port = 587;                     // set the SMTP port for the GMAIL
+        $mail->Username = "rhea.isproj2@gmail.com";  // Gmail username
+        $mail->Password = "rhearhea";      // Gmail password
+        $mail->CharSet = 'windows-1250';
+        $mail->SetFrom($receiver); // send to mail
+        /*   $mail->AddBCC(); // send to mail*/
+        $mail->Subject = $subject;
+        $mail->ContentType = 'text/plain';
+        $mail->isHTML(true);
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+        $mail->Body = $bodyhtml;
+        // you may also use $mail->Body =       file_get_contents('your_mail_template.html');
+        $mail->AddAddress($receiver);
+        // you may also use this format $mail->AddAddress ($recipient);
+        if ($result = $mail->Send()) {
+            alert()->success('Email sent!' ,'Your Email was sent successfully!');
+            return $result;
+        } else {
+            return alert()->error('Oops!' ,'Something went wrong');
+        }
+    }
+
 
 }

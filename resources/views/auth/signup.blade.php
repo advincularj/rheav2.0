@@ -39,8 +39,13 @@
             <span></span>
             <span></span>
         </div>
+
+
         <div class="container pt-lg-md">
+
             <div class="row justify-content-center">
+                {{--@include('patient.inc.messages')--}}
+
                 <div class="col-lg-9">
                     <div class="card bg-secondary shadow border-0">
                         <div class="card-body px-lg-5 py-lg-5">
@@ -199,7 +204,7 @@
                                 {{--</div>--}}
                                 {{--</div>--}}
                                 {{--</div>--}}
-                                <div class="text-center">
+                                <div style="align-content: center">
                                     <button type="submit" class="btn btn-primary mt-6">Register</button>
                                 </div>
                             </form>

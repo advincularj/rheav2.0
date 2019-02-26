@@ -47,7 +47,7 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/dashboard">
+                    <a class="nav-link" href="/admin/charts">
                         <i class="ni ni-tv-2 text-primary"></i> Dashboard
                     </a>
                 </li>

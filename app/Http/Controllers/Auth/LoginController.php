@@ -39,7 +39,7 @@ class LoginController extends Controller
                 return redirect('/userprofile');
             }
         } else {
-            return view('auth.login');
+            return view('auth.signin');
         }
     }
     public function store(Request $request)
@@ -72,10 +72,10 @@ class LoginController extends Controller
 
 
             } else {
-                return redirect('/log-in');
+                return redirect('/signin');
             }
         } else {
-            return redirect('/log-in')->withErrors($valid);
+            return redirect('/signin')->withErrors($valid);
         }
     }
 
@@ -85,7 +85,7 @@ class LoginController extends Controller
     {
         Session::flush();
         session()->flush();
-        Auth::user()->logout();
+        Auth::logout();
         return redirect('/index');
     }
 

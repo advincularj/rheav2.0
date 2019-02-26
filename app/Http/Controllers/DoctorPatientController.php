@@ -48,16 +48,18 @@ class DoctorPatientController extends Controller
         foreach ($input['id'] as $id) {
             $input['patient_id'] = $id;
             $input['doctor_id'] = Auth::user()->id;
-//            $input = DB::table('users')
-//                ->where('role_id', 4)
-//                ->update('role_id', 3)->save();
-            Patient::create($input);
 
-            //User::create(['role_id' => 3]);
+            Patient::create($input);
+            $patient = Patient::find($id);
+            $user_id = $patient->patient_id;
+            $user = User::find($user_id);
+//            $user->role_id = '3';
+            $user->save();
+
+
 
         }
 
-//        $input['role_id'] = 3;
 
         Return redirect()->back();
 

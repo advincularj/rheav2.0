@@ -16,7 +16,7 @@ class userprofile extends Model
 
     public $table = 'userprofiles';
     public $primaryKey = 'id';
-    protected $fillable = ['address', 'number', 'edod', 'allergies', 'bloodtype', 'clinic', 'doctor', 'user_id'];
+    protected $fillable = ['address', 'number', 'edod', 'birth_date', 'allergies', 'bloodtype', 'clinic', 'doctor', 'user_id'];
 
 
     public function user()

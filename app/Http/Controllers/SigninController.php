@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper;
 use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -11,6 +12,8 @@ use Illuminate\Support\Facades\Validator;
 
 class SigninController extends Controller
 {
+    use AuthenticatesUsers;
+
     public function index()
     {
         if (Auth::user()) {
@@ -33,34 +36,36 @@ class SigninController extends Controller
     public function store(Request $request)
     {
         $helper = new Helper();
-        $valid = Validator::make($request->all(), [
-            'email' => 'required|exists:users',
-            'password' => 'required',
-            /*'g-recaptcha-response' => 'required|captcha'*/
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|max:255|exists:users',
+            'password' => 'required|max:64',
+            'g-recaptcha-response' => 'required'
+        ], [
+            'g-recaptcha-response.required' => 'Please check the recaptcha box before logging in.'
         ]);
         if ($helper->reCaptchaVerify($request['g-recaptcha-response'])->success &&
-            $valid->passes()) {
+            $validator->passes()) {
             $attempt = Auth::attempt(['email' => $request['email'], 'password' => $request['password']]);
             if ($attempt) {
                 $user = Auth::user();
                 session(['user' => $user]);
                 session(['role' => $user->role_id]);
                 if (Auth::user()->role_id == 3) {
-                    return redirect('/userprofile');
+                    return redirect('/userprofile')->with("success", "Login Success!");;
                 } elseif (Auth::user()->role_id == 1) {
-                    return redirect('/admin/dashboard');
+                    return redirect('/admin/charts')->with("success", "Login Success!");;
                 }elseif(Auth::user()->role_id == 2)
                 {
-                    return redirect('/doctorprofile');
+                    return redirect('/doctorprofile')->with("success", "Login Success!");;
                 } elseif(Auth::user()->role_id == 4)
                 {
-                    return redirect('/userprofile');
+                    return redirect('/userprofile')->with("success", "Login Success!");;
                 }
             } else {
-                return redirect('/signin');
+                return redirect()->back()->with("error", "Please try again.");
             }
         } else {
-            return redirect('/signin')->withErrors($valid);
+            return back()->with("error", "Please try again.");
         }
     }
     public function logout()

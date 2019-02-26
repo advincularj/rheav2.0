@@ -87,12 +87,12 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <span id="basic-addon1">Contact Number</span>
-                                                    <input type="number" class="form-control{{ $errors->has('number') ? ' is-invalid' : '' }}" placeholder="Contact Number (09xxxxxxxxx)"
-                                                           name="number"
-                                                           value="{{ old('number') }}{{($data == null) ? '' : $data->number}}">
-                                                    @if ($errors->has('number'))
+                                                    <input type="number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" placeholder="Contact Number (09xxxxxxxxx)"
+                                                           name="user[phone]"
+                                                           value="{{ old('phone') }}{{$user->phone}}">
+                                                    @if ($errors->has('phone'))
                                                         <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('number') }}</strong>
+                                                    <strong>{{ $errors->first('phone') }}</strong>
                                                 </span>
                                                     @endif
                                                 </div>

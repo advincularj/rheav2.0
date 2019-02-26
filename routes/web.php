@@ -119,7 +119,7 @@ Route::group(['middleware' => ['web']], function () {
     //---------------------------------------------------------------------
     Route::group(['middleware' => 'verified'], function () {
         //---------------------------------------------------------------------
-        Route::group(['middleware' => 'patient'], function () {
+//        Route::group(['middleware' => 'patient'], function () {
 
             //Check-up
             Route::resource('checkup', 'CheckupRecordsController')->only(['show']);
@@ -157,7 +157,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
 //        });
-     });
+//     });
     });
 
 
@@ -201,12 +201,17 @@ Route::group(['middleware' => ['web']], function () {
 //Route::resource('/register', 'RegisterController')->only(['create', 'index']);
     Route::resource('signup', 'SignupController')->only(['store', 'index']);;
 
+    //Forgot Password
+    Route::get('forgotpassword', 'ForgotPasswordController@getKeys');
+    Route::post('forgotpassword/save', 'ForgotPasswordController@saveNewPassword');
+    Route::resource('forgotpassword', 'ForgotPasswordController')->except(['index', 'destroy', 'show', 'update']);
+
 //login
 // Route::resource('/login', 'LoginController')->only(['index', 'store']);
 Route::get('signin', 'SigninController@index');
 Route::post('signin', 'SigninController@store');
 //logout
-Route::get('logout', 'SigninController@logout');
+Route::get('logout', 'LoginController@logout');
 
 });
 

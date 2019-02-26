@@ -16,7 +16,6 @@
                 <span></span>
             </div>
 
-            @include('admin.inc.messages')
             <div class="container-fluid mt--8">
                 <div class="col-lg-10 center">
 
@@ -37,8 +36,8 @@
 
                                         <div class="form-group">
                                             <div class="thumbnail">
-                                                <h3>{{ $user->doctor->doctorprofile->first_name }} {{ $user->doctor->doctorprofile->last_name }}</h3>
-                                                <img src="/uploads/image/{{ $user->doctor->doctorprofile->image }}"
+                                                <h3>{{ $user->doctor->doctorprofile->first_name ?? "First Name" }} {{ $user->doctor->doctorprofile->last_name ?? "Last Name"}}</h3>
+                                                <img src="/uploads/image/{{ $user->doctor->doctorprofile->image ?? ""}}"
                                                      style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                             </div>
                                         </div>

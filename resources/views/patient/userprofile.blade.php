@@ -1,5 +1,11 @@
 @extends('patient.layouts.app')
 
+@if (Auth::user()->role_id == 3)
+    @include ('patient.inc.navbar')
+@else
+    @include ('guest.navbar')
+@endif
+
 @section('content')
     <div class="position-relative">
         <!-- shape Hero -->
@@ -28,7 +34,7 @@
 
 
                                     <h3>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
-                                    <img src="/uploads/avatar/{{Auth::user()->avatar }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
+                                    <img src="/uploads/image/{{Auth::user()->image }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                     <br>
                                     <br>
                                     <br>

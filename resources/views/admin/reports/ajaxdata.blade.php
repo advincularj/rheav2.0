@@ -68,11 +68,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    {{--</div>--}}
-
-    <!-- Footer -->
     <!-- Footer -->
     <footer class="footer">
         <div class="row align-items-center justify-content-xl-between">
@@ -99,6 +94,12 @@
             </div>
         </div>
     </footer>
+    </div>
+    </div>
+    {{--</div>--}}
+
+    <!-- Footer -->
+
     {{--</div>--}}
     {{--</div>--}}
 

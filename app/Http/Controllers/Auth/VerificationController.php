@@ -40,9 +40,9 @@ class VerificationController extends Controller
     }
 
     protected $listen = [
-        'Illuminate\Auth\Events\Verified' => [
-            'App\Listeners\LogVerifiedUser',
-        ],
+//        'Illuminate\Auth\Events\Verified' => [
+//            'App\Listeners\LogVerifiedUser',
+//        ],
     ];
 
 
