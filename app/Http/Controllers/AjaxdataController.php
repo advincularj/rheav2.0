@@ -29,4 +29,12 @@ class AjaxdataController extends Controller
         //http://127.0.0:8000/ajaxdata
     }
 
+    function logs()
+    {
+        return view('admin.reports.userlogs');
+        //http://127.0.0:8000/ajaxdata
+    }
+
+
+
 }

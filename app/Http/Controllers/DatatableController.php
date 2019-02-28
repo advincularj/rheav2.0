@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
 use Illuminate\Http\Request;
 use App\User;
 use App\MaternalGuide;
@@ -198,6 +199,82 @@ class DatatableController extends Controller
                 $nestedData['first_name'] = $r->first_name;
                 $nestedData['last_name'] = $r->last_name;
                 $nestedData['email'] = $r->email;
+                $nestedData['created_at'] = date('d-m-Y H:i:s',strtotime($r->created_at));
+                $nestedData['updated_at'] = date('d-m-Y H:i:s',strtotime($r->updated_at));
+                $data[] = $nestedData;
+            }
+        }
+
+        $json_data = array(
+            "draw"			=> intval($request->input('draw')),
+            "recordsTotal"	=> intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data"			=> $data
+        );
+
+        echo json_encode($json_data);
+    }
+
+    public function getLogs(Request $request){
+        //print_r($request->all());
+        $columns = array(
+            0 => 'id',
+            1 => 'description',
+            2 => 'userType',
+            3 => 'userId',
+            4 => 'route',
+            5 => 'ipAddress',
+            6 => 'created_at',
+            7 => 'updated_at',
+        );
+
+        $totalData = Activity::count();
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        if(empty($request->input('search.value'))){
+            $posts = Activity::offset($start)
+                ->limit($limit)
+                ->orderBy($order,$dir)
+                ->get();
+            $totalFiltered = Activity::count();
+        }else{
+            $search = $request->input('search.value');
+            $posts = Activity::where('id', 'like', "%{$search}%")
+                ->orWhere('description','like',"%{$search}%")
+                ->orWhere('userType','like',"%{$search}%")
+                ->orWhere('userId','like',"%{$search}%")
+                ->orWhere('route','like',"%{$search}%")
+                ->orWhere('ipAddress','like',"%{$search}%")
+                ->orWhere('created_at','like',"%{$search}%")
+                ->orWhere('updated_at','like',"%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+            $totalFiltered = Activity::where('id', 'like', "%{$search}%")
+                ->orWhere('description','like',"%{$search}%")
+                ->orWhere('userType','like',"%{$search}%")
+                ->orWhere('userId','like',"%{$search}%")
+                ->orWhere('route','like',"%{$search}%")
+                ->orWhere('ipAddress','like',"%{$search}%")
+                ->orWhere('created_at','like',"%{$search}%")
+                ->orWhere('updated_at','like',"%{$search}%")
+                ->count();
+        }
+
+        $data = array();
+
+        if($posts){
+            foreach($posts as $r){
+                $nestedData['id'] = $r->id;
+                $nestedData['description'] = $r->description;
+                $nestedData['userType'] = $r->userType;
+                $nestedData['userId'] = $r->userId;
+                $nestedData['route'] = $r->route;
+                $nestedData['ipAddress'] = $r->ipAddress;
                 $nestedData['created_at'] = date('d-m-Y H:i:s',strtotime($r->created_at));
                 $nestedData['updated_at'] = date('d-m-Y H:i:s',strtotime($r->updated_at));
                 $data[] = $nestedData;

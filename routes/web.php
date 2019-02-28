@@ -74,9 +74,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('ajaxdata', 'AjaxdataController@index');
         Route::get('doctors', 'AjaxdataController@doctor');
         Route::get('articles', 'AjaxdataController@article');
+        Route::get('logs', 'AjaxdataController@logs');
         Route::post('/data/users', 'DatatableController@getUsers')->name('dataProcessing');
         Route::post('/data/articles', 'DatatableController@getArticles')->name('articleProcessing');
         Route::post('/data/doctors', 'DatatableController@getDoctors')->name('doctorProcessing');
+        Route::post('/data/logs', 'DatatableController@getLogs')->name('logsProcessing');
+
 
 
     });
@@ -96,8 +99,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/patients', 'DoctorPatientController@index');
         Route::get('/patientprofile/{id}', 'DoctorPatientController@showprofile');
         Route::post('patient', 'DoctorPatientController@patient');
-        Route::get('patients.action', 'DoctorPatientController@action')->name('action');
-        Route::get('users.addaction', 'DoctorPatientController@addaction')->name('addaction');
+//        Route::get('patients.action', 'DoctorPatientController@action')->name('action');
+//        Route::get('users.addaction', 'DoctorPatientController@addaction')->name('addaction');
 
         //Doctor Profile
         Route::get('doctorprofile', 'DoctorProfileController@profile');

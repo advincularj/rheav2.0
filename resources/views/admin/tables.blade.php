@@ -60,7 +60,7 @@
                                             {{ $user->created_at }}
                                         </td>
                                         <td>
-                                            <a href="/doctorprofile/{{$user->id}}" class="btn btn-default">View Profile</a>
+                                            <a href="/doctorprofile/{{$user->id}}" class="btn btn-default btn-sm">View Profile</a>
                                         </td>
                                     </tr>
 

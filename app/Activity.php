@@ -16,7 +16,8 @@ class Activity extends Model
      *
      * @var string
      */
-    protected $table;
+
+    public $table = 'laravel_logger_activity';
 
     /**
      * The connection name for the model.
