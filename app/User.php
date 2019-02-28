@@ -63,10 +63,20 @@ class User extends Authenticatable implements MustVerifyEmail
         // Generate a new reset password token
         $token = app('auth.password.broker')->createToken($user);
 
+
         // Send email
         Mail::send('admin.cruddoctors.welcome', ['user' => $user, 'token' => $token], function ($m) use ($user) {
             $m->from('rhea.isproj2@gmail.com', 'RHEA');
             $m->to($user->email, $user->first_name, $user->last_name)->subject('Welcome to RHEA');
+        });
+    }
+
+    public static function sendAddedPatientEmail($id)
+    {
+        // Send email
+        Mail::send('doctor.email.added-patient', ['id' => $id, ], function ($m) use ($id) {
+            $m->from('rhea.isproj2@gmail.com', 'RHEA');
+            $m->to($id->email, $id->first_name, $id->last_name)->subject('Rhea');
         });
     }
 

@@ -2,7 +2,6 @@
 
 @section('content')
 
-    @include('doctor.inc.messages')
     <div class="container-fluid mt--8">
 
         <div class="card">

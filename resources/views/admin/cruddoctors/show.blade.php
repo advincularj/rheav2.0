@@ -6,7 +6,7 @@
     <img style="width:100%" src="/storage/cover_images/{{$guide->cover_image}}">
     <br>
     <br>
-    <div>
+    <div class="card-body">
         {!!$guide->body!!}
     </div>
     <hr>

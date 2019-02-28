@@ -25,15 +25,18 @@
                         <img style="width:100%" src="/storage/cover_images/{{$guide->cover_image}}" class="image-responsive"/>
                         <br>
                         <br>
-                        <div>
-                            {!!$guide->body!!}
+                        <div class="card">
+                            <div class="card-body py--5">
+                                {!!$guide->body!!}
+                            </div>
                         </div>
                         <hr>
                         <small>Written on {{$guide->created_at}}</small>
                         {{--<small>Written on {{$guide->created_at}} by {{$guide->user->first_name }} {{$guide->user->last_name }}</small>--}}
 
-                        <hr>
-                        <p>Category: {{ $guide->category->name}}</p>
+                        {{--<hr>--}}
+                        <p>Category: {{ $guide->category->name ?? ''}}</p>
+
                         @if(!Auth::guest())
                             @if(Auth::user()-> id == $guide->user_id)
                                 {{--Edit Button--}}

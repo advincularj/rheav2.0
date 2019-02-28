@@ -85,7 +85,11 @@ class ForgotPasswordController extends Controller
         $valid = Validator::make($request->all(), [
             'password' => 'required|confirmed|min:6|max:64|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
             'password_confirmation' => 'required'
-        ]);
+        ]); [
+        'password.regex' => 'The password must be more than 6 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 Special Character.',
+        'password_confirmation.same' => 'Password must match',
+    ];
+
         if ($valid->passes()) {
             $query = DB::table('users')
                 ->where('email', '=', $request['emailAddress'])

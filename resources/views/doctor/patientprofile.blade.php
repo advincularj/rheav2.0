@@ -39,7 +39,7 @@
                                         <div class="form-group">
                                             <div class="thumbnail">
                                                 <h3>{{ $user->patient->first_name }} {{ $user->patient->last_name }}</h3>
-                                                <img src="/uploads/avatar/{{ $user->patient->image }}"
+                                                <img src="/uploads/image/{{ $user->patient->image }}"
                                                      style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                             </div>
                                         </div>

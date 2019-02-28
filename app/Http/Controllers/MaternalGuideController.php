@@ -237,10 +237,10 @@ class MaternalGuideController extends Controller
 //            return redirect('/guides')->with('error' , 'Unauthorized Page');
 //        }
 //
-//        if($guide->cover_image != 'noimage.jpg'){
-//            // Delete Image
-//            Storage::delete('public/cover_images/'.$guide->cover_image);
-//        }
+        if($guide->cover_image != 'noimage.jpg'){
+            // Delete Image
+            Storage::delete('public/cover_images/'.$guide->cover_image);
+        }
 
         //Removed Maternal Guide
         $activity = ActivityLogger::activity("Removed Maternal Guide");
@@ -251,5 +251,7 @@ class MaternalGuideController extends Controller
         $guide ->delete();
         return redirect('/guides')->with('activity', $activity);
     }
+
+
 
 }

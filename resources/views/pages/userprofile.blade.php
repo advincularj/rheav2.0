@@ -16,14 +16,17 @@
                 <span></span>
             </div>
 
-            @include('inc.messages')
+
             <div class="container py-lg-md d-flex">
                 <div class="col px-0">
                     <div class="row justify-content-center">
                         <div class="col-md-10">
 
                             {{--HERE IS THE START--}}
+                            @include('inc.messages')
+
                             <div class="card">
+
                                 <div class="card-header">My Profile </div>
 
                                 <div class="card-body">

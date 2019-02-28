@@ -42,22 +42,22 @@ class CheckupRecordsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         //
         $request->validate([
-            'ieFindings' => 'required',
-            'bloodPressure' => 'required|regex:/\d{1,3}\/\d{1,3}/',
-            'height' => 'required|numeric|',
-            'weight' => 'required|numeric|(\d*\.?\d+)\s?(\w+)',
-            'heartTones' => 'required|numeric',
-            'AOG' => 'required|numeric',
-            'weightGain' => 'required|numeric'
+            'ieFindings'=>'required',
+            'bloodPressure'=>'required|regex:/\d{1,3}\/\d{1,3}/',
+            'height'=>  'required|numeric|min:4',
+            'weight'=>'required|numeric|min:6',
+            'heartTones'=>'required|max:2',
+            'AOG'=>'required|max:8',
+            'weightGain'=>'required|numeric'
 
-        ], [
+        ],[
             'bloodPressure.regex' => 'Must follow format ##/##'
 
         ]);
@@ -82,20 +82,20 @@ class CheckupRecordsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
         $checkuprecords = CheckupRecords::find($id);
-        return view('doctor.showcheckup')->with('checkuprecords', $checkuprecords);
+        return view('patient.showcheckup')->with('checkuprecords', $checkuprecords);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -112,21 +112,21 @@ class CheckupRecordsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
         $request->validate([
-            'ieFindings' => 'required',
-            'bloodPressure' => 'required',
-            'height' => 'required',
-            'weight' => 'required',
-            'heartTones' => 'required',
-            'AOG' => 'required',
-            'weightGain' => 'required'
+            'ieFindings'=>'required',
+            'bloodPressure'=>'required',
+            'height'=>'required',
+            'weight'=>'required',
+            'heartTones'=>'required',
+            'AOG'=>'required',
+            'weightGain'=>'required'
         ]);
 
         $checkuprecord = CheckupRecords::find($id);
@@ -148,7 +148,7 @@ class CheckupRecordsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -163,8 +163,7 @@ class CheckupRecordsController extends Controller
         return redirect('/checkup')->with('success', 'Checkup record has been deleted Successfully')->with('activity', $activity);
     }
 
-    public function sendNotification()
-    {
+    public function sendNotification(){
         //Remember to change this with your cluster name.
         $options = array(
             'cluster' => 'ap1',
@@ -178,10 +177,23 @@ class CheckupRecordsController extends Controller
             '715720', $options
         );
 
-        $message = "RHEA has sent a checkup record";
+        $message= "Your doctor has sent a checkup record";
 
         //Send a message to notify channel with an event name of notify-event
         $pusher->trigger('notification', 'notification-event', $message);
+
     }
+
+    public function check()
+    {
+//        $user_id = auth()->user()->id;
+//        $user = User::find($user_id);
+//        return view('admin.guide')->with('guides',$user->guides);
+        $activity = ActivityLogger::activity("Viewed Checkup Records");
+
+        $checkuprecords = CheckupRecords::orderBy('created_at', 'dsc')->paginate(5);
+        return view('patient.viewcheckup')->with('checkuprecords', $checkuprecords)->with('activity', $activity);
+    }
+
 
 }

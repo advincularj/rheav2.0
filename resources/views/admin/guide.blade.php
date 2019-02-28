@@ -11,11 +11,13 @@
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row mb-0">
-                            <div class="element1 col-md-4">
+                            <div class="element1 col-md-3">
                                 <h2>Maternal Guide</h2>
                             </div>
-
-                            <div class="w3-show-inline-block offset-3">
+                            {{--<div class="element2 col-md-2">--}}
+                                {{--<input style="width: 450px;" type="text" name="search" id="search" class="form-control" placeholder="Search Article" />--}}
+                            {{--</div>--}}
+                            <div class="w3-show-inline-block offset-5">
                                 <div class="w3-bar">
                                     <a href="/guides/create" class="btn btn-primary">Create Guide</a>
                                     <a href="/categories" class="btn btn-primary">Categories</a>
@@ -65,8 +67,8 @@
                                                   method="POST">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
-                                                <a href="/guides/{{$guide->id}}/edit" class="btn btn-default">Edit</a>
-                                                <button class="btn btn-danger" name="archive" type="submit"
+                                                <a href="/guides/{{$guide->id}}/edit" class="btn btn-default btn-sm">Edit</a>
+                                                <button class="btn btn-danger btn-sm" name="archive" type="submit"
                                                         onclick="archiveFunction()">
                                                     Archive
                                                 </button>

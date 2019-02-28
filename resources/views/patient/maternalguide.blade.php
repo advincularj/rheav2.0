@@ -1,11 +1,5 @@
 @extends('patient.layouts.app')
 
-@if (Auth::user()->role_id == 3)
-    @include ('patient.inc.navbar')
-@else
-    @include ('guest.navbar')
-@endif
-
 @section('content')
 
     <div class="position-relative">
@@ -24,8 +18,8 @@
             </div>
 
             @include('patient.inc.messages')
-            <div class="container py-lg-md d-flex">
-                <div class="col px-0">
+            <div class="container py-lg-md d-flex ">
+                <div class="col px-1">
                     <div class="row justify-content-center">
                         <div class="col-md-12">
 
@@ -39,9 +33,9 @@
                                             <div class="card card-lift--hover shadow border-0">
                                                 <div class="card-body py-5">
                                                     <div>
-                                                        <img style="width:100%;"
-                                                             src="/storage/cover_images/{{$guide->cover_image}}"/>
-                                                        {{--                                                        <img style="width:100%; height: 140px !important; margin: 0 auto 1em auto;" src="/storage/cover_images/{{$guide->cover_image}}"/>--}}
+                                                        {{--<img style="width:100%;"--}}
+                                                             {{--src="/storage/cover_images/{{$guide->cover_image}}"/>--}}
+                                                                                                                <img style="width:100%; height: 140px !important; margin: 0 auto 1em auto;" src="/storage/cover_images/{{$guide->cover_image}}"/>
                                                     </div>
                                                     <h3><a href="/guides/{{$guide->id}}">{{$guide->title}}</a></h3>
                                                     <div>

@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Support\Facades\Mail;
+
+
 class Patient extends Model
 {
 
@@ -15,5 +18,11 @@ class Patient extends Model
     public function patient(){
         return $this->belongsTo('App\User', 'patient_id');
     }
+
+    public function doctor(){
+        return $this->belongsTo('App\User', 'doctor_id');
+    }
+
+
 
 }

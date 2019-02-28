@@ -4,7 +4,7 @@
     <!-- Main content -->
 
     <!-- Page content -->
-    <div class="container-fluid mt--9">
+    <div class="container-fluid mt--8">
 
         <!-- Maternal Guide Table -->
         <div class="row mt-5">
@@ -13,7 +13,7 @@
                     <div class="card-header border-0">
                         <div class="row mb-0">
                             <div class="element1 col-md-4">
-                                <h2>Archived Maternal Guide</h2>
+                                <h2>Archived Diary</h2>
                             </div>
 
                             <div class="w3-show-inline-block offset-6">
@@ -38,19 +38,19 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($trash as $guide)
+                                @foreach($trash as $diary)
                                     <tr>
                                         <td>
-                                            {{$guide->title}}
+                                            {{$diary->title}}
                                         </td>
                                         <td >
-                                            {{ str_limit($guide->body, 50) }}
+                                            {{ str_limit($diary->body, 50) }}
                                         </td>
                                         <td>
-                                            {{ $guide->created_at }}
+                                            {{ $diary->created_at }}
                                         </td>
                                         <td>
-                                            <a href="{{ route('guide.restore', $guide->id) }}" class="btn btn-success">Restore</a>
+                                            <a href="{{ route('diary.restore', $diary->id) }}" class="btn btn-success">Restore</a>
                                         </td>
                                         {{--<td>--}}
                                         {{--Delete Button - ARCHIVE dapat sa thesis--}}
@@ -65,7 +65,7 @@
 
                             </table>
                             @else
-                                <p style="text-align: center">You have no archived article</p>
+                                <p style="text-align: center">You have no archived Diaries</p>
                             @endif
                         </div>
                         <div class="card-footer py-4">
@@ -81,30 +81,15 @@
 
 
         <!-- Footer -->
-        <!-- Footer -->
         <footer class="footer">
             <div class="row align-items-center justify-content-xl-between">
                 <div class="col-xl-6">
                     <div class="copyright text-center text-xl-left text-muted">
-                        &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+                        &copy; 2019 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
+                                       target="_blank">Rhea</a>
                     </div>
                 </div>
-                <div class="col-xl-6">
-                    <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
         </footer>
     </div>

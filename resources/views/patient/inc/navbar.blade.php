@@ -29,7 +29,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="checkup">Check-up Records</a>
+                        <a class="nav-link" href="/checkups">Check-up Records</a>
                         </a>
                     </li>
                     {{--Eto yung Maternal Guide--}}
@@ -67,7 +67,7 @@
                     </li>
 
                     @guest
-                        <li class="nav-item d-none d-lg-block ml-lg-4">
+                        <li class="nav-item d-none d-lg-block ml-lg-6 ">
                             <a href="/login" class="btn btn-neutral btn-icon">
                                 </span>
                                 <span class="nav-link-inner--text">Login</span>

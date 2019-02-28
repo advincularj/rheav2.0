@@ -13,14 +13,18 @@
                     <div class="card shadow">
                         <div class="card-header border-0">
                             <div class="row mb-0">
-                                <div class="element1 col-md-4">
+                                <div class="element1 col-md-3">
                                     <h3>Find Patients</h3>
                                 </div>
 
+                                {{--<div class="element2 col-md-4">--}}
+                                {{--<input style="width: 425px;" type="text" name="search" id="search" class="form-control" placeholder="Search Patient" />--}}
+                                {{--</div>--}}
+
+
                                 <form action="/addpatient" method="post">
                                     {{ csrf_field() }}
-                                    <div class="w3-show-inline-block offset-5">
-                                        <input type="text" name="search" id="search" class="form-control" placeholder="Search Patient" />
+                                    <div class="w3-show-inline-block offset-6">
                                         <input type="submit" class="btn btn-primary pull-right" value="Add Patient" onclick="addPatient()">
 
                                         <a href="/patients" class="btn btn-default">Go Back</a>
@@ -29,7 +33,7 @@
                             </div>
                         </div>
 
-                        {{--@if(count($users) > 0)--}}
+                        @if(count($users) > 0)
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
@@ -43,31 +47,31 @@
                                     </thead>
                                     <tbody>
 
-                                    {{--@foreach($users as $user)--}}
-                                        {{--<tr>--}}
-                                            {{--<td>--}}
-                                                {{--<input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>--}}
-                                            {{--</td>--}}
-                                            {{--<td>--}}
-                                                {{--{{$user->first_name}} {{ $user->last_name }}--}}
-                                            {{--</td>--}}
-                                            {{--<td>--}}
-                                                {{--{{ $user->email }}--}}
-                                            {{--</td>--}}
-                                            {{--<td>--}}
-                                            {{--{{ $user->status }}--}}
-                                            {{--</td>--}}
-                                            {{--<td>--}}
-                                                {{--{{ $user->created_at }}--}}
-                                            {{--</td>--}}
-                                        {{--</tr>--}}
+                                    @foreach($users as $user)
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>
+                                            </td>
+                                            <td>
+                                                {{$user->first_name}} {{ $user->last_name }}
+                                            </td>
+                                            <td>
+                                                {{ $user->email }}
+                                            </td>
+                                            <td>
+                                            {{ $user->status }}
+                                            </td>
+                                            <td>
+                                                {{ $user->created_at }}
+                                            </td>
+                                        </tr>
                                     </tbody>
-                                    {{--@endforeach--}}
+                                    @endforeach
 
                                 </table>
-                                {{--@else--}}
-                                    {{--<p>There are no users</p>--}}
-                                {{--@endif--}}
+                                @else
+                                    <p>There are no users</p>
+                                @endif
                             </div>
                             <div class="card-footer py-4">
                                 <nav aria-label="...">

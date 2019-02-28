@@ -1,10 +1,6 @@
 @extends('patient.layouts.app')
 
-@if (Auth::user()->role_id == 3)
-    @include ('patient.inc.navbar')
-@else
-    @include ('guest.navbar')
-@endif
+@extends('patient.layouts.app')
 
 
 @section('content')
@@ -28,31 +24,30 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <a href="diary" class="btn btn-default">Go Back</a>
-                                <h1>{{$checkuprecords->title}}</h1>
-                                <img style="width:100%" src="/storage/cover_images/{{$checkuprecords->cover_image}}" class="image-responsive"/>
+                                <a href="/checkups" class="btn btn-default">Go Back</a>
+                                {{--<img style="width:100%" src="/storage/cover_images/{{$checkuprecords->cover_image}}" class="image-responsive"/>--}}
                                 <br>
                                 <br>
                                 <div>
-                                    {!!$checkuprecords->ieFindings!!}
+                                    IE Findings: <strong>{!!$checkuprecords->ieFindings!!}</strong>
                                 </div>
                                 <div>
-                                    {!!$checkuprecords->bloodPressure!!}
+                                    Blood Pressure: <strong>{!!$checkuprecords->bloodPressure!!}</strong>
                                 </div>
                                 <div>
-                                    {!!$checkuprecords->height!!}
+                                    Height: <strong>{!!$checkuprecords->height!!}</strong>
                                 </div>
                                 <div>
-                                    {!!$checkuprecords->weight!!}
+                                    Weight: <strong>{!!$checkuprecords->weight!!}</strong>
                                 </div>
                                 <div>
-                                    {!!$checkuprecords->AOG!!}
+                                    AOG: <strong>{!!$checkuprecords->AOG!!}</strong>
                                 </div>
                                 <div>
-                                    {!!$checkuprecords->weightGain!!}
+                                    Weight Gain: <strong>{!!$checkuprecords->weightGain!!}</strong>
                                 </div>
                                 <hr>
-                                <small>Written on {{$checkuprecords->created_at}}</small>
+                                <small>Written on: {{$checkuprecords->created_at}}</small>
 
                                 <hr>
                                 @if(!Auth::guest())

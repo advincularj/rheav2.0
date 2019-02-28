@@ -1,11 +1,5 @@
 @extends('patient.layouts.app')
 
-@if (Auth::user()->role_id == 3)
-    @include ('patient.inc.navbar')
-@else
-    @include ('guest.navbar')
-@endif
-
 @section('content')
     <div class="position-relative">
         <!-- shape Hero -->
@@ -29,8 +23,7 @@
                         <div class="col-md-12">
 
                             {{--HERE IS THE START--}}
-                            <h1>Articles</h1>
-                            <a href="{{url('diary/create')}}" class="btn btn-success">Add Diary</a>
+                            <h1>Checkup Records</h1>
                             <div class="row row-grid">
                                 @if (count($checkuprecords) > 0)
                                     @foreach($checkuprecords as $checkuprecord)
@@ -40,8 +33,8 @@
                                                 <div class="card-body py-5">
                                                     <div>
 
-                                                        <img style="width:100%;"
-                                                             src="/storage/cover_images/{{$checkuprecord->cover_image}}"/>
+                                                        {{--<img style="width:100%;"--}}
+                                                             {{--src="/storage/cover_images/{{$checkuprecord->cover_image}}"/>--}}
                                                         {{--                                                        <img style="width:100%; height: 140px !important; margin: 0 auto 1em auto;" src="/storage/cover_images/{{$guide->cover_image}}"/>--}}
                                                     </div>
                                                     <h3><a href="/diary/{{$checkuprecord->id}}">{{$checkuprecord->title}}</a></h3>
@@ -51,14 +44,13 @@
                                                     {{--<div>--}}
                                                     {{--<small>by {{$guide->user->first_name }} {{$guide->user->last_name }}</small>--}}
                                                     {{--</div>--}}
-                                                    <a href="/diary/{{$checkuprecord->id}}" class="btn btn-primary mt-4">Learn
-                                                        more</a>
+                                                    <a href="/checkups/{{$checkuprecord->id}}" class="btn btn-primary mt-4">View Details</a>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
                                 @else
-                                    <p>No maternal guide found</p>
+                                    <p>No Checkup Record found</p>
                                 @endif
                                 {{--END--}}
                             </div>

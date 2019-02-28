@@ -22,7 +22,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-8">
 
-                            @include('inc.messages')
+                            {{--@include('inc.messages')--}}
 
                             {{--HERE IS THE START--}}
                             <div class="card">

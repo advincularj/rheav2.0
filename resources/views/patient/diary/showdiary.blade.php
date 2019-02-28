@@ -1,12 +1,5 @@
 @extends('patient.layouts.app')
 
-@if (Auth::user()->role_id == 3)
-    @include ('patient.inc.navbar')
-@else
-    @include ('guest.navbar')
-@endif
-
-
 @section('content')
     <!-- shape Hero -->
     <section class="section section-lg section-shaped pb-250">
@@ -25,10 +18,8 @@
             <div class="col px-0">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-body">
 
-                                <a href="diary" class="btn btn-default">Go Back</a>
+                                <a href="/diary" class="btn btn-default">Go Back</a>
                                 <h1>{{$pregnancydiary->title}}</h1>
                                 <img style="width:100%" src="/storage/cover_images/{{$pregnancydiary->cover_image}}" class="image-responsive"/>
                                 <br>

@@ -20,7 +20,7 @@ class PregnancyDiariesController extends Controller
     public function index()
     {
         //
-        $pregnancydiaries = PregnancyDiaries::where('userid', Auth::user()->id)->paginate(5);
+        $pregnancydiaries = PregnancyDiaries::where('userid', Auth::user()->id)->paginate(6);
 
         //Viewed Pregnancy Diary
         $activity = ActivityLogger::activity("Viewed Pregnancy Diary");
@@ -83,7 +83,7 @@ class PregnancyDiariesController extends Controller
         $activity = ActivityLogger::activity("Created Note for Pregnancy Diary");
 
         $pregnancydiaries->save();
-        return redirect('indexnote')->with('success', 'Pregnancy Note has been added')->with('activity', $activity);
+        return redirect('/diary')->with('success', 'Pregnancy Note has been added')->with('activity', $activity);
     }
 
     /**

@@ -13,8 +13,19 @@
                         <h3 class="mb-0" style="text-align: center">Create a Doctor Account</h3>
                     </div>
 
-                    {!! Form::open(['action' => 'CrudDoctorController@store', 'method' => 'POST']) !!}
+                    {!! Form::open(['action' => 'CrudDoctorController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                     @csrf
+
+                    {{--@if($errors->any())--}}
+                        {{--<div class="alert alert-warning">--}}
+                            {{--@foreach($errors->all() as $error)--}}
+
+                                {{--{{$error}}--}}
+
+                            {{--@endforeach--}}
+
+                        {{--</div>--}}
+                    {{--@endif--}}
 
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
@@ -83,6 +94,12 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                             @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2 offset-4">
+                            {{Form::file('image')}}
                         </div>
                     </div>
 

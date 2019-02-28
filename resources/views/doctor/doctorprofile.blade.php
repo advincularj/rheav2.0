@@ -16,7 +16,7 @@
                 <span></span>
             </div>
 
-            @include('doctor.inc.messages')
+            {{--@include('doctor.inc.messages')--}}
             <div class="container-fluid mt--8">
                 <div class="col-lg-10 center">
 

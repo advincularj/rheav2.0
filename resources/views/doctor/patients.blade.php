@@ -13,13 +13,16 @@
                     <div class="card shadow">
                         <div class="card-header border-0">
                             <div class="row mb-0">
-                                <div class="element1 col-md-4">
+                                <div class="element1 col-md-3">
                                     <h3>My Patients</h3>
                                 </div>
 
+                                {{--<div class="element2 col-md-4">--}}
+                                    {{--<input style="width: 425px;" type="text" name="search" id="search" class="form-control" placeholder="Search Patient" />--}}
+                                {{--</div>--}}
 
-                                    <div class="w3-show-inline-block offset-8">
-                                        <input type="text" name="search" id="search" class="form-control" placeholder="Search Patient" />
+
+                                    <div class="w3-show-inline-block offset-5       ">
                                         <input type="submit" class="btn btn-danger pull-right" value="Remove Patient" onclick="removePatient()"/>
                                         <a href="/addpatient" class="btn btn-primary">Find Patients</a>
                                     </div>
@@ -27,7 +30,7 @@
                             </div>
                         </div>
 
-                        {{--@if(count($users) > 0)--}}
+                        @if(count($users) > 0)
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
@@ -43,37 +46,37 @@
                                     </thead>
                                     <tbody>
 
-                                    {{--@foreach($users as $user)--}}
-                                        {{--@if($user->patient)--}}
-                                        {{--<tr>--}}
+                                    @foreach($users as $user)
+                                        @if($user->patient)
+                                        <tr>
 
-                                            {{--<td>--}}
-                                                {{--<input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>--}}
-                                            {{--</td>--}}
-                                            {{--<td>--}}
-                                                {{--{{ $user->patient->first_name ?? ""}} {{ $user->patient->last_name ?? ""}}--}}
-                                            {{--</td>--}}
-                                            {{--<td>--}}
-                                                {{--{{ $user->patient->email ?? ""}}--}}
-                                            {{--</td>--}}
-                                            {{--<td>--}}
-                                                {{--{{ $user->patient->created_at ?? ""}}--}}
-                                            {{--</td>--}}
-                                            {{--<td>--}}
-                                                {{--<div class="w3-show-inline-block offset-1">--}}
-                                                    {{--<a href="/patientprofile/{{$user->patient_id}}" class="btn btn-primary btn-sm">View Profile</a>--}}
-                                                    {{--<a href="/indexrecord" class="btn btn-default btn-sm">View Check-up Records</a>--}}
-                                                {{--</div>--}}
-                                            {{--</td>--}}
-                                        {{--</tr>--}}
-                                        {{--@endif--}}
+                                            <td>
+                                                <input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>
+                                            </td>
+                                            <td>
+                                                {{ $user->patient->first_name ?? ""}} {{ $user->patient->last_name ?? ""}}
+                                            </td>
+                                            <td>
+                                                {{ $user->patient->email ?? ""}}
+                                            </td>
+                                            <td>
+                                                {{ $user->patient->created_at ?? ""}}
+                                            </td>
+                                            <td>
+                                                <div class="w3-show-inline-block offset-1">
+                                                    <a href="/patientprofile/{{$user->patient_id}}" class="btn btn-primary btn-sm">View Profile</a>
+                                                    <a href="/indexrecord" class="btn btn-default btn-sm">View Check-up Records</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endif
                                     </tbody>
-                                    {{--@endforeach--}}
+                                    @endforeach
 
                                 </table>
-                                {{--@else--}}
-                                    {{--<p>There are no users</p>--}}
-                                {{--@endif--}}
+                                @else
+                                    <p>There are no users</p>
+                                @endif
                             </div>
                             <div class="card-footer py-4">
                                 <nav aria-label="...">

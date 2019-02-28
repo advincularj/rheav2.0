@@ -25,7 +25,6 @@
                                 <div class="card-header">My Profile </div>
 
                                 <div class="card-body">
-                                    @include('doctor.inc.messages')
                                     <img src="/uploads/image/{{Auth::user()->image }}" style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                     <form enctype="multipart/form-data" action="/uploadPic" method="POST">
                                         <label>Update Profile Picture</label><br>

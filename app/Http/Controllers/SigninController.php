@@ -41,6 +41,8 @@ class SigninController extends Controller
             'password' => 'required|max:64',
             'g-recaptcha-response' => 'required'
         ], [
+//            'email' => 'blah',
+//            'password' => 'blah',
             'g-recaptcha-response.required' => 'Please check the recaptcha box before logging in.'
         ]);
         if ($helper->reCaptchaVerify($request['g-recaptcha-response'])->success &&

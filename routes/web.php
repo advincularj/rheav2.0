@@ -43,14 +43,19 @@ Route::group(['middleware' => ['web']], function () {
 
         //Admin-CRUD DOCTORS
         Route::resource('users', 'CrudDoctorController');
+        Route::get('users.fetch_data', 'CrudDoctorController@fetch_data');
+
         Route::get('/doctorprofile/{id}', 'CrudDoctorController@showprofile');
         Route::post('doctor', 'CrudDoctorController@doctor');
-
+        Route::get('users.action', 'CrudDoctorController@action')->name('doctors_action');
+//        Route::post('doctor.fetch_data', 'CrudDoctorController@fetch_data');
 
         //Admin - CRUD Maternal Guide
-        Route::resource('/guides', 'MaternalGuideController');
+        Route::resource('guides', 'MaternalGuideController', ['except' => ['show']]);
         Route::get('/archived', 'MaternalGuideController@indexArchived');
         Route::get('/restore/{id}', 'MaternalGuideController@restore')->name('guide.restore');
+        Route::get('guides.action', 'MaternalGuideController@action')->name('guides_action');
+
 
 
         // Admin - Maternal Guide Categories
@@ -109,6 +114,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('indexrecord', function () {
             return view('doctor.indexcheckup');
         });
+        Route::resource('/checkuppatient', 'CheckupRecordsController');
+
+
         Route::resource('indexrecord', 'CheckupRecordsController');
         Route::get('checkup', function () {
             return view('doctor.createcheckup');
@@ -123,9 +131,8 @@ Route::group(['middleware' => ['web']], function () {
         //---------------------------------------------------------------------
 //        Route::group(['middleware' => 'patient'], function () {
 
-            //Check-up
-            Route::resource('checkup', 'CheckupRecordsController')->only(['show']);
-
+        //Check-up
+        Route::resource('checkup', 'CheckupRecordsController')->only(['show']);
          //---------------------------------------------------------------------
 //         Route::group(['middleware' => 'guest'], function () {
 
@@ -147,15 +154,23 @@ Route::group(['middleware' => ['web']], function () {
             Route::resource('guides', 'MaternalGuideController')->only(['show']);
 
             //Pregnancy Diary
-            Route::get('indexnote', function () {
-                return view('patient.viewpregnancydiary');
-            });
-            Route::resource('indexnote', 'PregnancyDiariesController');
-            Route::get('diary', function () {
-                return view('patient.createpregnancydiary');
-            });
-            Route::resource('pregnancydiaries', 'PregnancyDiariesController');
+        //Pregnancy Diary
+        Route::resource('diary', 'PregnancyDiariesController');
+        Route::resource('pregnancydiaries', 'PregnancyDiariesController');
+
+//        Route::get('indexnote', function () {
+//                return view('patient.viewpregnancydiary');
+//            });
+//            Route::resource('indexnote', 'PregnancyDiariesController');
+//            Route::get('diary', function () {
+//                return view('patient.createpregnancydiary');
+//            });
+//            Route::resource('pregnancydiaries', 'PregnancyDiariesController');
             Route::get('/notification', 'PusherNotificationController@sendNotification');
+
+        Route::resource('checkups', 'CheckupRecordsController')->only(['check','show']);
+            Route::get('/checkups', 'CheckupRecordsController@check');
+
 
 
 //        });

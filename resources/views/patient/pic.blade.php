@@ -1,11 +1,5 @@
 @extends('patient.layouts.app')
 
-@if (Auth::user()->role_id == 3)
-    @include ('patient.inc.navbar')
-@else
-    @include ('guest.navbar')
-@endif
-
 @section('content')
     <div class="position-relative">
         <!-- shape Hero -->
