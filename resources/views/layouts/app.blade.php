@@ -31,6 +31,11 @@
 <body>
 <div id="app">
     @include('inc.navbar')
+    {{--@if (Auth::user()->role_id == 3)--}}
+        {{--@include ('patient.inc.navbar')--}}
+    {{--@else--}}
+        {{--@include ('guest.navbar')--}}
+    {{--@endif--}}
     {{--<main class="container">--}}
         {{--@include('inc.messages')--}}
     {{--</main>--}}

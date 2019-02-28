@@ -19,7 +19,7 @@ class Patient
 
         if (!Auth::user()) {
             // user value cannot be found in session
-            return redirect('/index');
+            return redirect('/signin');
 
         }elseif((session('role')) && session('role') != 3){
             return redirect('/index');

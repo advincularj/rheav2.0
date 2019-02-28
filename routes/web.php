@@ -132,12 +132,16 @@ Route::group(['middleware' => ['web']], function () {
     //---------------------------------------------------------------------
     Route::group(['middleware' => 'verified'], function () {
         //---------------------------------------------------------------------
-//        Route::group(['middleware' => 'patient'], function () {
+//      Route::group(['middleware' => 'patient'], function () {
 
         //Check-up
         Route::resource('checkup', 'CheckupRecordsController')->only(['show']);
+        Route::get('/notification', 'PusherNotificationController@sendNotification');
+        Route::resource('checkups', 'CheckupRecordsController')->only(['check','show']);
+        Route::get('/checkups', 'CheckupRecordsController@check');
+
          //---------------------------------------------------------------------
-//         Route::group(['middleware' => 'guest'], function () {
+//         Route::group(['middleware' => 'new'], function () {
 
             //Patient
 
@@ -156,10 +160,10 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/maternalguide', 'MaternalGuideDashboardController@index');
             Route::resource('guides', 'MaternalGuideController')->only(['show']);
 
+
             //Pregnancy Diary
-        //Pregnancy Diary
-        Route::resource('diary', 'PregnancyDiariesController');
-        Route::resource('pregnancydiaries', 'PregnancyDiariesController');
+            Route::resource('diary', 'PregnancyDiariesController');
+            Route::resource('pregnancydiaries', 'PregnancyDiariesController');
 
 //        Route::get('indexnote', function () {
 //                return view('patient.viewpregnancydiary');
@@ -169,10 +173,7 @@ Route::group(['middleware' => ['web']], function () {
 //                return view('patient.createpregnancydiary');
 //            });
 //            Route::resource('pregnancydiaries', 'PregnancyDiariesController');
-            Route::get('/notification', 'PusherNotificationController@sendNotification');
 
-        Route::resource('checkups', 'CheckupRecordsController')->only(['check','show']);
-            Route::get('/checkups', 'CheckupRecordsController@check');
 
 
 
@@ -181,8 +182,8 @@ Route::group(['middleware' => ['web']], function () {
     });
 
 
-    //---------------------------------------------------------------------
-//    Route::group(['middleware' => 'guest'], function () {
+//    ---------------------------------------------------------------------
+//    Route::group(['middleware' => 'new'], function () {
 //        //Guest
 //
 //        //Patient Profile
@@ -201,14 +202,9 @@ Route::group(['middleware' => ['web']], function () {
 //        Route::resource('guides', 'MaternalGuideController')->only(['show']);
 //
 //        //Pregnancy Diary
-//        Route::get('indexnote', function () {
-//            return view('patient.viewpregnancydiary');
-//        });
-//        Route::resource('indexnote', 'PregnancyDiariesController');
-//        Route::get('diary', function () {
-//            return view('patient.createpregnancydiary');
-//        });
+//        Route::resource('diary', 'PregnancyDiariesController');
 //        Route::resource('pregnancydiaries', 'PregnancyDiariesController');
+//
 //
 //
 //    });
