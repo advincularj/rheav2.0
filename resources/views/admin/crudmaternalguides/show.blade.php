@@ -28,14 +28,16 @@
                         <div class="card">
                             <div class="card-body py--5">
                                 {!!$guide->body!!}
-                            </div>
-                        </div>
+
                         <hr>
                         <small>Written on {{$guide->created_at}}</small>
                         {{--<small>Written on {{$guide->created_at}} by {{$guide->user->first_name }} {{$guide->user->last_name }}</small>--}}
 
                         {{--<hr>--}}
                         <p>Category: {{ $guide->category->name ?? ''}}</p>
+                            </div>
+                        </div>
+
 
                         @if(!Auth::guest())
                             @if(Auth::user()-> id == $guide->user_id)

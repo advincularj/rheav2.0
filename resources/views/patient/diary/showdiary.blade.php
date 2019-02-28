@@ -28,12 +28,14 @@
                         <div class="card">
                             <div class="card-body py--5">
                                 {!!$pregnancydiary->body!!}
+
+                                <hr>
+                                <small>Written on {{$pregnancydiary->created_at}}</small>
+
                             </div>
                         </div>
-                        <hr>
-                        <small>Written on {{$pregnancydiary->created_at}}</small>
-
-                        <hr>
+                        <br>
+                        {{--<hr>--}}
                         @if(!Auth::guest())
                             @if(Auth::user()->id == $pregnancydiary->userid)
 

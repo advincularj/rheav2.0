@@ -1,8 +1,5 @@
 @extends('patient.layouts.app')
 
-@extends('patient.layouts.app')
-
-
 @section('content')
     <!-- shape Hero -->
     <section class="section section-lg section-shaped pb-250">
@@ -52,7 +49,7 @@
                                 <hr>
                                 <small>Written on: {{$checkuprecords->created_at}}</small>
 
-                                <hr>
+                                {{--<hr>--}}
                                 @if(!Auth::guest())
                                     @if(Auth::user()->id == $checkuprecords->userid)
 
