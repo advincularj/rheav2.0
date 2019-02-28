@@ -16,7 +16,9 @@
                 <span></span>
             </div>
 
-            @include('patient.inc.messages')
+            <div class="container">
+                @include('patient.inc.messages')
+            </div>
             <div class="container py-lg-md d-flex">
                 <div class="col px-0">
                     <div class="row justify-content-center">
@@ -42,7 +44,7 @@
                                                         <small>Written on {{$checkuprecord->created_at}} </small>
                                                     </div>
                                                     {{--<div>--}}
-                                                    {{--<small>by {{$guide->user->first_name }} {{$guide->user->last_name }}</small>--}}
+                                                    {{--<small>by {{$checkuprecord->user->first_name }} {{$checkuprecord->user->last_name }}</small>--}}
                                                     {{--</div>--}}
                                                     <a href="/checkups/{{$checkuprecord->id}}" class="btn btn-primary mt-4">View Details</a>
                                                 </div>

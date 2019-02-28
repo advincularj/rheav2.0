@@ -33,7 +33,7 @@
                     @if(count($users) > 0)
                         {{--dd($users);--}}
                         <div class="table-responsive">
-                            <h3 align="center">Total Data : <span id="total_records"></span></h3>
+                            {{--<h3 align="center">Total Data : <span id="total_records"></span></h3>--}}
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                 <tr>

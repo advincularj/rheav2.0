@@ -15,7 +15,9 @@
                 <span></span>
                 <span></span>
             </div>
-            @include('patient.inc.messages')
+            <div class="container">
+                @include('patient.inc.messages')
+            </div>
             <div class="container py-lg-md d-flex">
                 <div class="col px-0">
                     <div class="row justify-content-center">

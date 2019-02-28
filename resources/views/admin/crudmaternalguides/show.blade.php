@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('patient.layouts.app')
 
 @section('content')
     <!-- shape Hero -->
@@ -62,6 +62,4 @@
             </svg>
         </div>
     </section>
-    <!-- 1st Hero Variation -->
-    </div>
 @endsection

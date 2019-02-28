@@ -35,7 +35,7 @@
                     {{--Eto yung Maternal Guide--}}
                     <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="maternalguide">RHEA Maternal Guide</a>
+                            <a class="nav-link" href="/maternalguide">RHEA Maternal Guide</a>
                             </a>
                         </li>
                     </ul>

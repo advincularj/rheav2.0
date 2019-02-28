@@ -17,7 +17,7 @@
                 <span></span>
             </div>
 
-            <div class="col-md-6">
+            <div class="container">
                 @include('patient.inc.messages')
             </div>
 
@@ -47,7 +47,7 @@
                                                         <small>Written on {{$pregnancydiarie->created_at}} </small>
                                                     </div>
                                                     {{--<div>--}}
-                                                    {{--<small>by {{$guide->user->first_name }} {{$guide->user->last_name }}</small>--}}
+                                                    {{--<small>by {{$pregnancydiarie->user->first_name }} {{$pregnancydiarie->user->last_name }}</small>--}}
                                                     {{--</div>--}}
                                                     <a href="/diary/{{$pregnancydiarie->id}}" class="btn btn-primary mt-4">Learn
                                                         more</a>
