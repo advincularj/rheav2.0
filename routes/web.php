@@ -114,17 +114,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/changePassword', 'DoctorSettingsController@changePassword')->name('changePassword');
 
         //Check-up
-        Route::get('indexrecord', function () {
-            return view('doctor.indexcheckup');
-        });
-        Route::resource('/checkuppatient', 'CheckupRecordsController');
-
-
+//        Route::get('indexrecord/{id}', 'CheckupRecordsController@index');
         Route::resource('indexrecord', 'CheckupRecordsController');
-        Route::get('checkup', function () {
-            return view('doctor.createcheckup');
-        });
-        Route::resource('checkuprecords', 'CheckupRecordsController');
+        Route::get('checkup/{id}', 'CheckupRecordsController@create');
+        Route::resource('checkuprecords', 'CheckupRecordsController')->except('create');
 
 
     });

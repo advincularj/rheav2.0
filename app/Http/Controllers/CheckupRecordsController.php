@@ -6,6 +6,7 @@ use App\CheckupRecords;
 use foo\bar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
 use Pusher\Pusher;
@@ -17,26 +18,27 @@ class CheckupRecordsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
-        $checkuprecords = CheckupRecords::where("doctorid", Auth::user()->id)->get();
+
+        $checkuprecords = CheckupRecords::where("userid", $id)->get();
 
         //Viewed Checkup Record
         $activity = ActivityLogger::activity("Viewed Checkup Record");
 
-        return view('doctor.viewcheckup', compact('checkuprecords'))->with('activity', $activity);
-    }
+//        return view('doctor.viewcheckup', compact(['checkuprecords', 'id']))->with('activity', $activity);
+        return view('doctor.viewcheckup', compact(['checkuprecords', 'id']))->with('activity', $activity);
+   }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
-        return view('doctor.createcheckup');
+        return view('doctor.createcheckup', compact('id'));
     }
 
     /**
@@ -47,6 +49,7 @@ class CheckupRecordsController extends Controller
      */
     public function store(Request $request)
     {
+
         //
         $request->validate([
             'ieFindings'=>'required',
@@ -69,14 +72,15 @@ class CheckupRecordsController extends Controller
             'heartTones' => $request->get('heartTones'),
             'AOG' => $request->get('AOG'),
             'weightGain' => $request->get('weightGain'),
-            'doctorid' => auth::user()->id
+            'doctorid' => auth::user()->id,
+            'userid' => $request->get('patient_id')
         ]);
 
         //Created Checkup Record
         $activity = ActivityLogger::activity("Created Checkup Record");
         $this->sendNotification();
         $checkuprecords->save();
-        return redirect('checkup')->with('success', 'checkup record has been added')->with('activity', $activity);
+        return redirect('checkup/'.$request->patient_id.'')->with('success', 'checkup record has been added')->with('activity', $activity);
     }
 
     /**

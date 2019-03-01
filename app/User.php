@@ -111,8 +111,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\userprofile','user_id');
     }
 
+
     public function doctorprofile() {
         return $this->hasOne('App\doctor_info', 'user_id');
+    }
+
+    public function checkuprecords(){
+        return $this->hasMany('App\CheckupRecords');
     }
 
 }

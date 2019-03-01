@@ -21,6 +21,12 @@ class CheckupRecords extends Model
         'heartTones',
         'AOG',
         'weightGain',
-        'doctorid'
+        'doctorid',
+        'userid'
     ];
+
+    public function users()
+    {
+        return $this->belongsTo('App\User', 'userid');
+    }
 }

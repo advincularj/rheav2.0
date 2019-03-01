@@ -7,11 +7,11 @@
             <div class="card-header">
                 Check up Records
                 <div class="w3-show-inline-block offset-8">
-                    <a href="/checkup" class="btn btn-default">Add Check-up Record</a>
+                    <a href="/checkup/{{$id}}" class="btn btn-default">Add Check-up Record</a>
                     <a href="/patients" class="btn btn-default">Go Back</a>
+                </div>
             </div>
-            </div>
-            <table class="table table-striped">
+            <table class="table table-striped table-responsive">
                 <thead>
                 <tr>
                     <td>ID</td>
@@ -49,3 +49,4 @@
         </div>
     </div>
 @endsection
+

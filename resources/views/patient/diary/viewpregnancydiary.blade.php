@@ -38,9 +38,9 @@
                                                 <div class="card-body py-5">
                                                     <div>
 
-                                                        <img style="width:100%;"
-                                                             src="/storage/cover_images/{{$pregnancydiarie->cover_image}}"/>
-                                                        {{--                                                        <img style="width:100%; height: 140px !important; margin: 0 auto 1em auto;" src="/storage/cover_images/{{$guide->cover_image}}"/>--}}
+                                                        {{--<img style="width:100%;"--}}
+                                                             {{--src="/storage/cover_images/{{$pregnancydiarie->cover_image}}"/>--}}
+                                                                                                                <img style="width:100%; height: 140px !important; margin: 0 auto 1em auto;" src="/storage/cover_images/{{$pregnancydiarie->cover_image}}"/>
                                                     </div>
                                                     <h3><a href="/diary/{{$pregnancydiarie->id}}">{{$pregnancydiarie->title}}</a></h3>
                                                     <div>
