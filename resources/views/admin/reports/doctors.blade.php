@@ -24,6 +24,7 @@
 
 
     <!-- Page content -->
+    <div class="container-fluid mt--5">
     <div class="col">
         <div class="card shadow">
             <div class="card-header border-0">

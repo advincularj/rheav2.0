@@ -17,11 +17,11 @@ class AjaxdataController extends Controller
         //http://127.0.0:8000/ajaxdata
     }
 
-    function doctor()
-    {
-        return view('admin.reports.doctors');
-        //http://127.0.0:8000/ajaxdata
-    }
+//    function doctor()
+//    {
+//        return view('admin.reports.doctors');
+//        //http://127.0.0:8000/ajaxdata
+//    }
 
     function article()
     {

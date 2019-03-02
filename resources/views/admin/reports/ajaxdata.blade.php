@@ -23,7 +23,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
 
     <!-- Page content -->
-    {{--<div class="container-fluid mt--8">--}}
+    <div class="container-fluid mt--5">
         <!-- Maternal Guide Table -->
         {{--<div class="col-md-14">--}}
         {{--<div class="row mt-6">--}}

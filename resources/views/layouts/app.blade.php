@@ -30,16 +30,18 @@
 
 <body>
 <div id="app">
-    @include('inc.navbar')
-    {{--@if (Auth::user()->role_id == 3)--}}
-        {{--@include ('patient.inc.navbar')--}}
-    {{--@else--}}
-        {{--@include ('guest.navbar')--}}
-    {{--@endif--}}
-    {{--<main class="container">--}}
+    {{--@include('inc.navbar')--}}
+    @if (Auth::guest())
+        @include ('inc.navbar')
+    @elseif (Auth::user()->role_id == 3)
+        @include ('patient.inc.navbar')
+        @else (Auth::user()->role_id == 4)
+            @include ('guest.navbar')
+        @endif
+        {{--<main class="container">--}}
         {{--@include('inc.messages')--}}
-    {{--</main>--}}
-    @yield('content')
+        {{--</main>--}}
+        @yield('content')
 </div>
 <footer class="footer has-cards">
         <div class="row align-items-center justify-content-md-between">

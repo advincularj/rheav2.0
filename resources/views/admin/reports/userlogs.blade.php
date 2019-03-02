@@ -24,9 +24,12 @@
 
 
     <!-- Page content -->
-    <div class="col">
+
+    <div class="container-fluid mt--5">
+            <div class="col">
         <div class="card shadow">
             <div class="card-header border-0">
+
                 <div class="row mb-0">
                     <div class="element1 col-md-4">
                         <h2>User Logs Report</h2>
@@ -42,9 +45,7 @@
                     <th>User Type</th>
                     <th>User ID</th>
                     <th>Route</th>
-                    <th>IP Address</th>
                     <th>Created At</th>
-                    <th>Updated At</th>
                 </tr>
                 </thead>
                 <tfoot>
@@ -54,15 +55,14 @@
                     <th>User Type</th>
                     <th>User ID</th>
                     <th>Route</th>
-                    <th>IP Address</th>
                     <th>Created At</th>
-                    <th>Updated At</th>
                 </tr>
                 </tfoot>
             </table>
         </div>
     </div>
     </div>
+
 
     <!-- Footer -->
     <!-- Footer -->
@@ -115,9 +115,7 @@
                 {"data":"userType"},
                 {"data":"userId"},
                 {"data":"route"},
-                {"data":"ipAddress"},
                 {"data":"created_at"},
-                {"data":"updated_at"},
             ],
         } );
     </script>

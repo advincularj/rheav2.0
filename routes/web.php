@@ -72,12 +72,12 @@ Route::group(['middleware' => ['web']], function () {
 
         //Reports
         Route::get('ajaxdata', 'AjaxdataController@index');
-        Route::get('doctors', 'AjaxdataController@doctor');
+//        Route::get('doctors', 'AjaxdataController@doctor');
         Route::get('articles', 'AjaxdataController@article');
         Route::get('logs', 'AjaxdataController@logs');
         Route::post('/data/users', 'DatatableController@getUsers')->name('dataProcessing');
         Route::post('/data/articles', 'DatatableController@getArticles')->name('articleProcessing');
-        Route::post('/data/doctors', 'DatatableController@getDoctors')->name('doctorProcessing');
+//        Route::post('/data/doctors', 'DatatableController@getDoctors')->name('doctorProcessing');
         Route::post('/data/logs', 'DatatableController@getLogs')->name('logsProcessing');
 
 
