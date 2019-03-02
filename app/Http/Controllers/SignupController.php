@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notifications\UserRegisteredNotification;
 use App\userprofile;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -15,12 +16,14 @@ use Illuminate\Support\Facades\Hash;
 use Validator;
 use Redirect;
 use Illuminate\Validation\Rule;
+use App\verifyUser;
 
 
 class SignupController extends Controller
 {
     use SendsPasswordResetEmails;
     use Notifiable;
+//    use RegistersUsers;
 
     public function index()
     {
@@ -83,6 +86,14 @@ class SignupController extends Controller
                 $id = User::create($data)->id;
                 userprofile::create(['user_id' => $id]);
 
+//                $verifyUser = verifyUser::create([
+//                    'user_id' => $data->id,
+//                    'token' => str_random(40)
+//                ]);
+//
+//                Mail::to($data->email)->send(new VerifyMail($data));
+
+
                 return redirect()->back()->with("success", "Account created successfully!");
             } else {
                 return redirect()->back()->with("error", "Something went wrong. ");
@@ -94,5 +105,24 @@ class SignupController extends Controller
     protected function registered(Request $request, $data) {
         $data->notify(new UserRegisteredNotification($data));
     }
+
+//    public function verifyUser($token)
+//    {
+//        $verifyUser = VerifyUser::where('token', $token)->first();
+//        if(isset($verifyUser) ){
+//            $user = $verifyUser->user;
+//            if(!$user->verified) {
+//                $verifyUser->user->verified = 1;
+//                $verifyUser->user->save();
+//                $status = "Your e-mail is verified. You can now login.";
+//            }else{
+//                $status = "Your e-mail is already verified. You can now login.";
+//            }
+//        }else{
+//            return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
+//        }
+//
+//        return redirect('/login')->with('status', $status);
+//    }
 
 }

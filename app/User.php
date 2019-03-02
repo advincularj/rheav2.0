@@ -4,14 +4,14 @@ namespace App;
 //use Mail;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Notifications\Messages\MailMessage;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmailContract
 {
     use Notifiable;
 
@@ -39,6 +39,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+//    public function verifyUser()
+//    {
+//        return $this->hasOne('App\verifyUser');
+//    }
 
     public function posts(){
         return $this->hasMany('App\Post');

@@ -129,6 +129,16 @@
                             </div>
                             <form method="POST" action="{{ url('signin') }}">
                                 @csrf
+                                {{--@if (session('status'))--}}
+                                    {{--<div class="alert alert-success">--}}
+                                        {{--{{ session('status') }}--}}
+                                    {{--</div>--}}
+                                {{--@endif--}}
+                                {{--@if (session('warning'))--}}
+                                    {{--<div class="alert alert-warning">--}}
+                                        {{--{{ session('warning') }}--}}
+                                    {{--</div>--}}
+                                {{--@endif--}}
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-alternative">
                                         <div class="input-group-prepend">

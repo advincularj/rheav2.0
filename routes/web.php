@@ -208,7 +208,8 @@ Route::group(['middleware' => ['web']], function () {
 
 //register
 //Route::resource('/register', 'RegisterController')->only(['create', 'index']);
-    Route::resource('signup', 'SignupController')->only(['store', 'index']);;
+    Route::resource('signup', 'SignupController')->only(['store', 'index']);
+//    Route::get('/user/verify/{token}', 'SignupController@verifyUser');
 
     //Forgot Password
     Route::get('forgotpassword', 'ForgotPasswordController@getKeys');
@@ -221,6 +222,7 @@ Route::get('signin', 'SigninController@index');
 Route::post('signin', 'SigninController@store');
 //logout
 Route::get('logout', 'LoginController@logout');
+
 
 });
 
