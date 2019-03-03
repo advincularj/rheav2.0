@@ -73,22 +73,22 @@
                     </a>
                 </li>
                 <!-- Divider -->
-                <hr class="my-1">
+                <hr class="my-2">
                 <!-- Heading -->
-                <h6 class="navbar-heading text-muted">Reports</h6>
+                <h6 class="navbar-heading text-muted" style="padding-left: 15px">Reports</h6>
                 <!-- Navigation -->
                 <ul class="navbar-nav mb-md-3">
-                    <li class="nav-item">
+                    <li class="nav-item" style="padding-left: 20px">
                         <a class="nav-link" href="/ajaxdata">
                             <i class="ni ni-bullet-list-67 text-red"></i> Users
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="padding-left: 20px">
                         <a class="nav-link" href="/articles">
                             <i class="ni ni-bullet-list-67 text-red"></i> Maternal Articles
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" style="padding-left: 20px">
                         <a class="nav-link" href="/logs">
                             <i class="ni ni-bullet-list-67 text-red"></i> User Logs
                         </a>

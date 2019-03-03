@@ -125,4 +125,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->hasMany('App\CheckupRecords');
     }
 
+    public function duedate(){
+        return $this->hasMany('App\DueDate', 'due_date_id');
+    }
+
 }

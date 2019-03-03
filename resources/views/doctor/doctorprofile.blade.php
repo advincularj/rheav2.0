@@ -29,8 +29,8 @@
                                     <div class="col-md-6 required">
                                         <div class="form-group">
                                             <div class="thumbnail">
-                                                <h3>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
-                                                <img src="/uploads/image/{{Auth::user()->image }}"
+                                                <h3>{{ $data->doctor->first_name }} {{ $data->doctor->last_name }}</h3>
+                                                <img src="/uploads/image/{{$data->doctor->image }}"
                                                      style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                             </div>
                                         </div>

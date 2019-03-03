@@ -27,12 +27,14 @@
                         <br>
                         <div class="card">
                             <div class="card-body py--5">
-                                {!!$pregnancydiary->body!!}
-
-                                <hr>
+                                <textarea onkeyup="textAreaAdjust(this)" style="overflow:hidden">
+                                    {!!$pregnancydiary->body!!}
+                                </textarea>
+                                {{--<hr>--}}
+                        </br>
                                 <small>Written on {{$pregnancydiary->created_at}}</small>
 
-                            </div>
+                            {{--</div>--}}
                         </div>
                         <br>
                         {{--<hr>--}}

@@ -23,9 +23,13 @@ Route::group(['middleware' => ['web']], function () {
 
     //PagesController
     Route::get('/', 'PagesController@index');
+//    Route::get('/indexLoggedIn', 'PagesController@indexLoggedIn');
+
+
     Route::get('/about', 'PagesController@about');
     Route::get('/services', 'PagesController@services');
     Route::get('index', 'IndexController@index');
+    Route::get('/userIndex', 'IndexController@indexLoggedIn');
 
 
     //PostsController
@@ -153,10 +157,13 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/maternalguide', 'MaternalGuideDashboardController@index');
             Route::resource('guides', 'MaternalGuideController')->only(['show']);
 
-
             //Pregnancy Diary
             Route::resource('diary', 'PregnancyDiariesController');
             Route::resource('pregnancydiaries', 'PregnancyDiariesController');
+
+        //Due Date Calculator
+        Route::resource('duedate', 'DueDateController');
+//        Route::resource('pregnancydiaries', 'PregnancyDiariesController');
 
 //        Route::get('indexnote', function () {
 //                return view('patient.viewpregnancydiary');

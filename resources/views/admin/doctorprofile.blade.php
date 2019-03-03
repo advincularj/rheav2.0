@@ -21,23 +21,24 @@
 
                     {{--HERE IS THE START--}}
                     <form class="card">
-                        <div class="card">
-                            <div class="row card-header col-lg-10 center">
-                                <div class="col-sm-6 fa-pull-left">
-                                    Doctor Profile
+                        <div class="card-header">
+                            <div class="row mb-0">
+                                <div class="element1 col-md-4">
+                                    <h2>Doctor Profile</h2>
                                 </div>
-                                <div class="col-sm-6">
-                                    <a href="/users" class="btn btn-default pull-right">Go Back</a>
+                                <div class="w3-show-inline-block offset-6">
+                                    <a href="/users" class="btn btn-default">Go Back</a>
                                 </div>
                             </div>
-                            <div class="card-body">
+                        </div>
+                        <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6 required">
+                                    <div class="col-md-5  offset-1 required">
 
                                         <div class="form-group">
                                             <div class="thumbnail">
-                                                <h3>{{ $user->doctor->doctorprofile->first_name ?? "Blank" }} {{ $user->doctor->doctorprofile->last_name ?? "Blank"}}</h3>
-                                                <img src="/uploads/image/{{ $user->doctor->doctorprofile->image ?? ""}}"
+                                                <h3>{{ $user->doctor->first_name ?? "Blank" }} {{ $user->doctor->last_name ?? "Blank"}}</h3>
+                                                <img src="/uploads/image/{{ $user->doctor->image ?? ""}}"
                                                      style="width:120px; height:120px; float:left; border-radius:50%; margin-right:25px; ">
                                             </div>
                                         </div>
@@ -85,7 +86,7 @@
                                     <br>
                                 </div>
                             </div>
-                        </div>
+                        {{--</div>--}}
                     </form>
                 </div>
             </div>

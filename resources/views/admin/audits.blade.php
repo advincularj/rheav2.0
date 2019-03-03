@@ -23,13 +23,14 @@
                             {{--{!! Form::close() !!}--}}
                             {{--</div>--}}
 
-                            <div class="w3-show-inline-block offset-5">
+                            <div class="w3-show-inline-block offset-6">
                                 <div class="w3-bar">
 
                                     <form action="{{ route('clear-activity')}}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button class="btn btn-danger" name="archive" type="submit" onclick="archiveFunction()">
+                                        <button class="btn btn-danger" name="archive" type="submit"
+                                                onclick="archiveFunction()">
                                             Archive All
                                         </button>
                                         <a href="/archived-audits" class="btn btn-primary">Archived Logs</a>
@@ -51,15 +52,13 @@
                                                     closeOnConfirm: false,
                                                     closeOnCancel: false
                                                 },
-                                                function(isConfirm){
+                                                function (isConfirm) {
                                                     if (isConfirm) {
                                                         form.submit();          // submitting the form when user press yes
                                                         // swal("Archived!", "Your file has been archived.", "success");
 
 
-                                                    }
-
-                                                    else {
+                                                    } else {
                                                         swal("Cancelled", "Your files are safe :)", "error");
                                                     }
                                                 });
@@ -89,12 +88,8 @@
                                     {{--<th scope="col">User Type</th>--}}
                                     <th scope="col">Name</th>
                                     <th scope="col">Route</th>
-                                    <th scope="col">IP Address</th>
-                                    <th scope="col">User Agent</th>
                                     <th scope="col">Method</th>
                                     <th scope="col">Created At</th>
-                                    <th scope="col">Updated At</th>
-                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -115,22 +110,10 @@
                                             {{$audit->route }}
                                         </td>
                                         <td>
-                                            {{ $audit->ipAddress }}
-                                        </td>
-                                        <td>
-                                            {{ $audit->userAgent }}
-                                        </td>
-                                        <td>
                                             {{ $audit->methodType }}
                                         </td>
                                         <td>
                                             {{ $audit->created_at }}
-                                        </td>
-                                        <td>
-                                            {{ $audit->updated_at }}
-                                        </td>
-                                        <td>
-
                                         </td>
                                     </tr>
                                 </tbody>
@@ -157,7 +140,8 @@
             <div class="row align-items-center justify-content-xl-between">
                 <div class="col-xl-6">
                     <div class="copyright text-center text-xl-left text-muted">
-                        &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+                        &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
+                                       target="_blank">Creative Tim</a>
                     </div>
                 </div>
                 <div class="col-xl-6">
@@ -166,13 +150,15 @@
                             <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+                            <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About
+                                Us</a>
                         </li>
                         <li class="nav-item">
                             <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
+                            <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md"
+                               class="nav-link" target="_blank">MIT License</a>
                         </li>
                     </ul>
                 </div>

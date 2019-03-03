@@ -53,7 +53,7 @@ class SigninController extends Controller
                 session(['user' => $user]);
                 session(['role' => $user->role_id]);
                 if (Auth::user()->role_id == 3) {
-                    return redirect('/index')->with("success", "Login Success!");;
+                    return redirect('/userIndex')->with("success", "Login Success!");;
                 } elseif (Auth::user()->role_id == 1) {
                     return redirect('/admin/charts')->with("success", "Login Success!");;
                 }elseif(Auth::user()->role_id == 2)
@@ -61,7 +61,7 @@ class SigninController extends Controller
                     return redirect('/doctorprofile')->with("success", "Login Success!");;
                 } elseif(Auth::user()->role_id == 4)
                 {
-                    return redirect('/index')->with("success", "Login Success!");;
+                    return redirect('/userIndex')->with("success", "Login Success!");;
                 }
             } else {
                 return redirect()->back()->with("error", "Please try again.");

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\doctor_info;
 use App\Http\Middleware\Patient;
 use ConsoleTVs\Charts\Builder\Database;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Support\Facades\Storage;
@@ -108,7 +109,7 @@ class CrudDoctorController extends Controller
             // Upload Image
             $path = $request->file('image')->storeAs('uploads/image', $fileNametoStore);
         } else {
-            $fileNametoStore = 'noimage.jpg';
+            $fileNametoStore = 'default.jpg';
         }
 
         //Generate a password for the new users
@@ -128,13 +129,68 @@ class CrudDoctorController extends Controller
         $user->save();
         doctor_info::create(['user_id' => $user->id]);
 
+        $emailAddress = $request['email'];
+        $salt = 'salted';
+        $check = User::all()->where('email', '=', $emailAddress)->first();
+        if ($check != null) {
+            $password = $check->password;
+            $emailcode = bcrypt($check->password . $salt);
+            $check->emailcode = $emailcode;
+            $check->save();
+            $link = url('forgotpassword') . "?key=" . $emailcode . "&time=" . Carbon::now() . "";
+            $body = '<html>
+        <body>
+        <h1>Set Password</h1>
+        <hr />
+        <h3>Hello!</h3>
+        <p>You are receiving this email because Rhea Team has created an account for you. </p>
+        <p>&nbsp;</p>
+        <a href="' . $link . '">Set Password Link</a>
+        <p>Regards,&nbsp;<br />RHEA Team</p>
+        <p>&nbsp;</p>
+        <hr />
+        </body>
+        </html>';
+            $helper = new helper();
+            $result = $helper->emailSend($request['email'], $body, 'Set password');
+            if ($result == false) {
+                \alert()->success('Email Sent!', 'You have successfully sent an Email to created account!');
+                return redirect()->back()->withErrors($result->ErrorInfo);
+            } else {
+                return back()->with('success', 'You have successfully sent an Email to created account!');
+            }
+        } else {
+            //Created Doctor Account
+            $activity = ActivityLogger::activity("Created Doctor Account");
 
-        //Created Doctor Account
-        $activity = ActivityLogger::activity("Created Doctor Account");
+            return redirect('/users')->with('success', 'Doctor Added')->with('activity', $activity);
+        }
+//        User::sendWelcomeEmail($user);
 
+    }
 
-        User::sendWelcomeEmail($user);
-        return redirect('/users')->with('success', 'Doctor Added')->with('activity', $activity);
+    public function saveNewPassword(Request $request)
+    {
+        $valid = Validator::make($request->all(), [
+            'password' => 'required|confirmed|min:6|max:64|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
+            'password_confirmation' => 'required'
+        ]); [
+        'password.regex' => 'The password must be more than 6 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 Special Character.',
+        'password_confirmation.same' => 'Password must match',
+    ];
+
+        if ($valid->passes()) {
+            $query = DB::table('users')
+                ->where('email', '=', $request['emailAddress'])
+                ->update(['password' => bcrypt($request['password']), 'status' => '1', 'emailcode' => '']);
+            if ($query == 1) {
+                return back()->with('success', 'Your password has been saved!');
+            } else {
+                return back()->with('error!!', 'Something went wrong');
+            }
+        } else {
+            return back()->withErrors($valid);
+        }
     }
 
     public function show($id)
@@ -215,7 +271,7 @@ class CrudDoctorController extends Controller
         $user->password = $request->input('password');
 //        $user->user_id = auth()->user()->id;
         if ($request->hasFile('image')) {
-            $user->cover_image = $fileNametoStore;
+            $user->image = $fileNametoStore;
         }
         $user->save();
 
@@ -231,9 +287,9 @@ class CrudDoctorController extends Controller
 
         $user->delete();
 
-        if ($user->cover_image != 'noimage.jpg') {
+        if ($user->image != 'default.jpg') {
             // Delete Image
-            Storage::delete('uploads/image/' . $user->cover_image);
+            Storage::delete('uploads/image/' . $user->image);
         }
 
         //Removed Doctor Account

@@ -18,6 +18,16 @@ class IndexController extends Controller
         return view('doctor.index')->with('title',$title)->with('activity', $activity);
     }
 
+    public function indexLoggedIn(){
+        $title = 'Welcome to Rhea!';
+
+        //Viewed Doctor's Index
+        $activity = ActivityLogger::activity("Viewed patient's Index");
+
+        //return view('pages.index', compact('title'));
+        return view('pages.index_logged_in')->with('title',$title)->with('activity', $activity);
+    }
+
     public function about(){
         $title = 'About Us';
 

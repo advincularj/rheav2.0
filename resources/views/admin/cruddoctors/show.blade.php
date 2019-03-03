@@ -7,7 +7,9 @@
     <br>
     <br>
     <div class="card-body">
-        {!!$guide->body!!}
+        <textarea readonly>
+            {!!$guide->body!!}
+        </textarea>
     </div>
     <hr>
     <small>Written on {{$guide->created_at}} by {{$guide->user->first_name}} {{$guide->user->last_name}}</small>

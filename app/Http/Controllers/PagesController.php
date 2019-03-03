@@ -18,6 +18,16 @@ class PagesController extends Controller
         return view('pages.index')->with('title',$title)->with('activity', $activity);
     }
 
+    public function indexLoggedIn(){
+        $title = 'Welcome to Rhea!';
+        //return view('pages.index', compact('title'));
+
+        //Viewed index
+        $activity = ActivityLogger::activity("Viewed Index");
+
+        return view('pages.index_logged_in')->with('title',$title)->with('activity', $activity);
+    }
+
     public function about(){
         $title = 'About Us';
 
