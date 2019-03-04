@@ -25,7 +25,9 @@ class DueDateController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
 
-        return view('patient.due_date')->with('due',$user);
+        $due = DueDate::all();
+
+        return view('patient.due_date')->with('due',$user->due)->with('due', $due);
     }
 
     /**
@@ -75,7 +77,7 @@ class DueDateController extends Controller
         // Calculated Due Date
         $activity = ActivityLogger::activity("Calculated Due Date");
 
-        return redirect('/duedate')->with('success', 'Calculated Due Date')->with('activity', $activity);
+        return view('pages.due_date.show')->with('due', $due)->with('success', 'Calculated Due Date')->with('activity', $activity);
 
     }
 
@@ -87,7 +89,8 @@ class DueDateController extends Controller
      */
     public function show($id)
     {
-        //
+        $due = DueDate::find($id);
+        return view('pages.due_date.show')->with('due', $due);
     }
 
     /**
@@ -121,6 +124,9 @@ class DueDateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $due = DueDate::find($id);
+        $due ->delete();
+
+        return view('patient.due_date');
     }
 }

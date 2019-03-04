@@ -28,67 +28,47 @@
 
 
                             {{--HERE IS THE START--}}
-                            <a href="/userIndex" class="btn btn-default offset-1">Go Back</a>
-                            <br>
-                            <br>
-                            <h1 class="offset-1">Due Date Calculator</h1>
-                            <div class="row">
-                            <div class="col-md-4 offset-1">
-                                <div class="card shadow">
-                                    <div class="card-header border-0">
-                                        <div class="row mb-0">
-                                            <div class="element1 col-md-4">
+                            {{--<a href="/userIndex" class="btn btn-default offset-1">Go Back</a>--}}
+                            {{--<br>--}}
+                            {{--<br>--}}
+                            <div class="col-md-12" style="align-content: center">
+                                <div class="row">
+                                    <div class="col-md-7 offset-3">
+                                        <div class="card shadow">
+                                            <div class="card-header border-0">
+                                                <div class="row mb-0">
+                                                    <div class="element1 col-md-12" style="text-align: center">
+                                                        <h1>Congratulations!</h1>
+                                                        <h3>Your baby's estimated due date is </h3>
+                                                        <h1>{{ date('F d, Y', strtotime($due->due_date)) }}</h1>
+                                                        <br>
+                                                        {{--<h3><a href="/userIndex"><h6>><u>Recalculate your due date</u></h6></a></h3>--}}
+
+                                                        {{--Delete Button--}}
+                                                        {!!Form::open(['action' => ['DueDateController@destroy', $due->id], 'method' => 'POST'])!!}
+                                                        {{Form::hidden('_method', 'DELETE')}}
+                                                        {{Form::submit('Recalculate', ['class' => 'btn btn-default btn-sm'])}}
+                                                        {!! Form::close() !!}
+                                                        {{--<a href="{{ action('DueDateController@destroy', $due->id) }}" data-method="delete" class="jquery-postback"><h6>><u>Recalculate your due date</u></h6></a>--}}
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                            {!! Form::open(['action' => 'DueDateController@store', 'method' => 'POST']) !!}
-                                            @csrf
-                                            <label for="name" class="col-md col-form-label">{{ __('First day of my last period:') }}</label>
-
-                                            <div class="col-md-12">
-                                                <input id="name" type="date"
-                                                       class="form-control{{ $errors->has('last_period') ? ' is-invalid' : '' }}"
-                                                       name="last_period" value="{{ old('last_period') }}" required autofocus>
-
-                                                @if ($errors->has('last_period'))
-                                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('last_period') }}</strong>
-                                    </span>
-                                                @endif
-                                            </div>
-
-                                            <br>
-                                            <div class="col-md">
-                                                <button type="submit" class="btn btn-primary">
-                                                    {{ __('Submit') }}
-                                                </button>
-                                                <a href="/userIndex" class="btn btn-default">Cancel</a>
-                                            </div>
-                                            {!! Form::close() !!}
-
-                                            {{--@if(!Auth::guest())--}}
-                                                {{--@if(Auth::user()->id == $due->user_id)--}}
-                                                    {{--<h3>Tae mo</h3>--}}
-                                                {{--@endif--}}
-                                            {{--@endif--}}
                                         </div>
                                     </div>
+
+
+                                    {{--<div class="col-md-4 offset-3">--}}
+                                    {{--<img src="{{asset('uploads/index/calendar.png')}}"--}}
+                                    {{--alt="features" style="height: 200px; width: 200px">--}}
+                                    {{--</div> <!-- end of .col-md-8 -->--}}
                                 </div>
                             </div>
-
-                            <div class="col-md-4 offset-3">
-                                <img src="{{asset('uploads/index/calendar.png')}}"
-                                     alt="features" style="height: 200px; width: 200px">
-                            </div> <!-- end of .col-md-8 -->
-                            </div>
-                        </div>
-
-
-
                         </div>
                     </div>
-                    <br>
                 </div>
-
-
+                <br>
+            </div>
 
 
             <!-- SVG separator -->

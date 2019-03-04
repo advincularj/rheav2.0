@@ -38,7 +38,7 @@
                                                     <div>
                                                         {{--<img style="width:100%;"--}}
                                                              {{--src="/storage/cover_images/{{$guide->cover_image}}"/>--}}
-                                                                                                                <img style="width:100%; height: 140px !important; margin: 0 auto 1em auto;" src="/storage/cover_images/{{$guide->cover_image}}"/>
+                                                        <img style="width:100%; height: 140px !important; margin: 0 auto 1em auto;" src="/storage/cover_images/{{$guide->cover_image}}"/>
                                                     </div>
                                                     <h3><a href="/guides/{{$guide->id}}">{{$guide->title}}</a></h3>
                                                     <div>

@@ -3,16 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class DueDate extends Model
 {
-    use SoftDeletes;
+//    use SoftDeletes;
     public $table = 'pregnancy_due_dates';
     public $timestamps = true;
     protected $dates = [
         'last_period',
+        'due_date',
         'created_at',
         'deleted_at',
     ];
