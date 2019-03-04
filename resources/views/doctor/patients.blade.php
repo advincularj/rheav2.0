@@ -18,14 +18,14 @@
                                 </div>
 
                                 {{--<div class="element2 col-md-4">--}}
-                                    {{--<input style="width: 425px;" type="text" name="search" id="search" class="form-control" placeholder="Search Patient" />--}}
+                                {{--<input style="width: 425px;" type="text" name="search" id="search" class="form-control" placeholder="Search Patient" />--}}
                                 {{--</div>--}}
 
 
-                                    <div class="w3-show-inline-block offset-5       ">
-                                        <input type="submit" class="btn btn-danger pull-right" value="Remove Patient" onclick="removePatient()"/>
-                                        <a href="/addpatient" class="btn btn-primary">Find Patients</a>
-                                    </div>
+                                <div class="w3-show-inline-block offset-5       ">
+                                    <input type="submit" class="btn btn-danger pull-right" value="Remove Patient" onclick="removePatient()"/>
+                                    <a href="/addpatient" class="btn btn-primary">Find Patients</a>
+                                </div>
 
                             </div>
                         </div>
@@ -48,27 +48,27 @@
 
                                     @foreach($users as $user)
                                         @if($user->patient)
-                                        <tr>
+                                            <tr>
 
-                                            <td>
-                                                <input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>
-                                            </td>
-                                            <td>
-                                                {{ $user->patient->first_name ?? ""}} {{ $user->patient->last_name ?? ""}}
-                                            </td>
-                                            <td>
-                                                {{ $user->patient->email ?? ""}}
-                                            </td>
-                                            <td>
-                                                {{ $user->patient->created_at ?? ""}}
-                                            </td>
-                                            <td>
-                                                <div class="w3-show-inline-block offset-1">
-                                                    <a href="/patientprofile/{{$user->patient_id}}" class="btn btn-primary btn-sm">View Profile</a>
-                                                    <a href="/indexrecord" class="btn btn-default btn-sm">View Check-up Records</a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                <td>
+                                                    <input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"/>
+                                                </td>
+                                                <td>
+                                                    {{ $user->patient->first_name ?? ""}} {{ $user->patient->last_name ?? ""}}
+                                                </td>
+                                                <td>
+                                                    {{ $user->patient->email ?? ""}}
+                                                </td>
+                                                <td>
+                                                    {{ $user->patient->created_at ?? ""}}
+                                                </td>
+                                                <td>
+                                                    <div class="w3-show-inline-block offset-1">
+                                                        <a href="/patientprofile/{{$user->patient_id}}" class="btn btn-primary btn-sm">View Profile</a>
+                                                        <a href="/indexrecord/{{$user->patient_id}}" class="btn btn-default btn-sm">View Check-up Records</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         @endif
                                     </tbody>
                                     @endforeach
@@ -162,29 +162,29 @@
         });
     </script>
     {{--<script>--}}
-        {{--$(document).ready(function(){--}}
+    {{--$(document).ready(function(){--}}
 
-            {{--fetch_customer_data();--}}
+    {{--fetch_customer_data();--}}
 
-            {{--function fetch_customer_data(query = '')--}}
-            {{--{--}}
-                {{--$.ajax({--}}
-                    {{--url:"{{ route('action') }}",--}}
-                    {{--method:'GET',--}}
-                    {{--data:{query:query},--}}
-                    {{--dataType:'json',--}}
-                    {{--success:function(data)--}}
-                    {{--{--}}
-                        {{--$('tbody').html(data.table_data);--}}
-                        {{--$('#total_records').text(data.total_data);--}}
-                    {{--}--}}
-                {{--})--}}
-            {{--}--}}
+    {{--function fetch_customer_data(query = '')--}}
+    {{--{--}}
+    {{--$.ajax({--}}
+    {{--url:"{{ route('action') }}",--}}
+    {{--method:'GET',--}}
+    {{--data:{query:query},--}}
+    {{--dataType:'json',--}}
+    {{--success:function(data)--}}
+    {{--{--}}
+    {{--$('tbody').html(data.table_data);--}}
+    {{--$('#total_records').text(data.total_data);--}}
+    {{--}--}}
+    {{--})--}}
+    {{--}--}}
 
-            {{--$(document).on('keyup', '#search', function(){--}}
-                {{--var query = $(this).val();--}}
-                {{--fetch_customer_data(query);--}}
-            {{--});--}}
-        {{--});--}}
+    {{--$(document).on('keyup', '#search', function(){--}}
+    {{--var query = $(this).val();--}}
+    {{--fetch_customer_data(query);--}}
+    {{--});--}}
+    {{--});--}}
     {{--</script>--}}
 @endsection

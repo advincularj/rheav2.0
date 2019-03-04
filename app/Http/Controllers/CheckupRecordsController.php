@@ -21,14 +21,15 @@ class CheckupRecordsController extends Controller
     public function index($id)
     {
 
+
+        //$checkuprecords = CheckupRecords::where("doctorid", Auth::user()->id)->get();
         $checkuprecords = CheckupRecords::where("userid", $id)->get();
 
         //Viewed Checkup Record
         $activity = ActivityLogger::activity("Viewed Checkup Record");
 
-//        return view('doctor.viewcheckup', compact(['checkuprecords', 'id']))->with('activity', $activity);
         return view('doctor.viewcheckup', compact(['checkuprecords', 'id']))->with('activity', $activity);
-   }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -41,6 +42,13 @@ class CheckupRecordsController extends Controller
         return view('doctor.createcheckup', compact('id'));
     }
 
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     /**
      * Store a newly created resource in storage.
      *

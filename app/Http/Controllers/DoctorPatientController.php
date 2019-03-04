@@ -260,7 +260,7 @@ class DoctorPatientController extends Controller
 //    }
 
 
-}
+
 
 
 //    public function indexArchived()
@@ -289,5 +289,62 @@ class DoctorPatientController extends Controller
 ////        $guides = MaternalGuide::onlyTrashed()->where('id', $id)->restore();
 //        return redirect('/archivedpatients');
 //    }
+
+public function action(Request $request)
+{
+    if ($request->ajax()) {
+        $output = '';
+        $query = $request->get('query');
+        if ($query != '') {
+            $user = DB::table('users')
+                ->where('role_id', 3)
+                ->where(function ($search) use ($query) {
+                    $search->orWhere('first_name', 'like', '%' . $query . '%');
+                    $search->orWhere('last_name', 'like', '%' . $query . '%');
+                    $search->orWhere('email', 'like', '%' . $query . '%');
+                }
+                )
+                ->orderBy('created_at', 'desc')
+                ->get();
+        } else {
+            $user = DB::table('users')
+                ->where('role_id', 3)
+                ->orderBy('created_at', 'dsc')
+                ->get();
+        }
+
+        $total_row = $user->count();
+        if ($total_row > 0) {
+            foreach ($user as $row) {
+                $output .= '
+        <tr>
+        <td><input type="checkbox" name="id[]" class="checkthis" value="{{ $user->id }}"></td>
+         <td>' . $row->first_name . ' ' . $row->last_name . ' </td>
+         <td>' . $row->email . '</td>
+         <td>' . $row->created_at . '</td>
+         <td><div class="w3-show-inline-block offset-1">
+             <a href="/patientprofile/{{$user->patient_id}}" class="btn btn-primary btn-sm">View Profile</a>
+             <a href="/indexrecord/'. $row->id .'" class="btn btn-default btn-sm">View Check-up Records</a>
+             </div></td>
+        </tr>
+  ';
+            }
+        } else {
+            $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+        }
+        $user = array(
+            'table_data' => $output,
+            'total_data' => $total_row
+        );
+
+        echo json_encode($user);
+    }
+}
+}
+
 
 

@@ -119,7 +119,8 @@ Route::group(['middleware' => ['web']], function () {
 
         //Check-up
 //        Route::get('indexrecord/{id}', 'CheckupRecordsController@index');
-        Route::resource('indexrecord', 'CheckupRecordsController');
+        Route::get('indexrecord/{id}', 'CheckupRecordsController@index');
+        Route::resource('indexrecord', 'CheckupRecordsController')->except('index');
         Route::get('checkup/{id}', 'CheckupRecordsController@create');
         Route::resource('checkuprecords', 'CheckupRecordsController')->except('create');
 
@@ -230,6 +231,11 @@ Route::get('signin', 'SigninController@index');
 Route::post('signin', 'SigninController@store');
 //logout
 Route::get('logout', 'LoginController@logout');
+
+Route::get('/hi', 'HomeController2@getIndex');
+    Route::post('/hi', 'HomeController2@postIndex');
+
+
 
 
 });

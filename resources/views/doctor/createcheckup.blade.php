@@ -1,4 +1,4 @@
-extends('doctor.layouts.app')
+@extends('doctor.layouts.app')
 
 @section('content')
 
@@ -49,4 +49,3 @@ extends('doctor.layouts.app')
         </div>
     </div>
 @endsection
-
