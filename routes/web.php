@@ -163,7 +163,6 @@ Route::group(['middleware' => ['web']], function () {
 
         //Due Date Calculator
         Route::resource('duedate', 'DueDateController');
-        Route::get('/duedate/{id}', 'DueDateController@show');
 
 //        Route::resource('pregnancydiaries', 'PregnancyDiariesController');
 

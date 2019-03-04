@@ -55,7 +55,7 @@ class DueDateController extends Controller
             'last_period' => ['required', 'date', 'before:tomorrow'],
         ], [
             'last_period.required' => 'The last period field is required.',
-            'last_period.date' => 'The first name format is invalid',
+            'last_period.date' => 'The date format is invalid',
             'last_period.before:tomorrow' => 'Date entered must be before tomorrow.',
         ]);
 
