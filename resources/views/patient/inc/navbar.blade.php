@@ -2,7 +2,7 @@
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
         <div class="container">
             <a class="navbar-brand mr-lg-5" href="/userIndex">
-                <img src="{{asset('aaa/doctor/img/brand/white.png')}}">
+                <img src="{{asset('aaa/doctor/img/brand/whitekasaju.png')}}">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-6 collapse-brand">
                             <a href="{{asset('/userIndex')}}">
-                                <img src="{{asset('aaa/doctor/img/brand/blue.png')}}">
+                                <img src="{{asset('aaa/doctor/img/brand/pinkkasaju.png')}}">
                             </a>
                         </div>
                         <div class="col-6 collapse-close">

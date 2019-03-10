@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Rhea') }}</title>
     <!-- Favicon -->
-    <link href="{{ asset('aaa/doctor/img/brand/pink.png') }}" rel="icon" type="image/png">
+    <link href="{{ asset('aaa/doctor/img/brand/pinkkasaju.png') }}" rel="icon" type="image/png">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Icons -->
@@ -37,6 +37,8 @@
         @include ('patient.inc.navbar')
     @elseif(Auth::user()->role_id == 4)
         @include ('guest.navbar')
+    @elseif(Auth::user()->role_id == 2)
+        @include ('inc.navbar')
     @endif
     {{--<main class="container">--}}
         {{--@include('inc.messages')--}}

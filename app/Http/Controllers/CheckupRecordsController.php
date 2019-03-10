@@ -61,7 +61,7 @@ class CheckupRecordsController extends Controller
         //
         $request->validate([
             'ieFindings'=>'required',
-            'bloodPressure'=>'required|regex:/\d{1,3}\/\d{1,3}/',
+            'bloodPressure'=>'required|regex:/\d{1,3}\/\d{1,3}/'    ,
             'height'=>  'required|numeric|min:4',
             'weight'=>'required|numeric|min:6',
             'heartTones'=>'required|max:2',
@@ -172,7 +172,7 @@ class CheckupRecordsController extends Controller
         //Updated Checkup Record
         $activity = ActivityLogger::activity("Deleted Checkup Record");
 
-        return redirect('/checkup')->with('success', 'Checkup record has been deleted Successfully')->with('activity', $activity);
+        return redirect('/patients')->with('success', 'Checkup record has been deleted Successfully')->with('activity', $activity);
     }
 
     public function sendNotification(){

@@ -12,7 +12,7 @@
         {{--</a>--}}
 
         <a class="navbar-brand pt-0" href="/doctor/dashboard">
-            <img src="{{asset('aaa/doctor/img/brand/pink.png')}}" class="navbar-brand-img" alt="{{ config('app.name', 'Rhea') }}">
+            <img src="{{asset('aaa/doctor/img/brand/pinkkasaju.png')}}" class="navbar-brand-img" alt="{{ config('app.name', 'Rhea') }}">
         </a>
 
         <!-- Collapse -->

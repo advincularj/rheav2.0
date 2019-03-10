@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Rhea') }}</title>
 
     <!-- Favicon -->
-    <link href="{{ asset('aaa/doctor/img/brand/pink.png') }}" rel="icon" type="image/png">
+    <link href="{{ asset('aaa/doctor/img/brand/pinkkasaju.png') }}" rel="icon" type="image/png">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
