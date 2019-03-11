@@ -23,7 +23,7 @@
                             <div class="w3-show-inline-block offset-5">
                                 <div class="w3-bar">
                                     <a href="/checkup/{{$id}}" class="btn btn-default">Add Check-up Record</a>
-                                    <a href="/patients" class="btn btn-default">Go Back</a>
+                                    <a href="{{ url('/patients') }}" class="btn btn-default">Go Back</a>
                                 </div>
                             </div>
                         </div>
@@ -71,6 +71,8 @@
                     @endif
                 </div>
             </div>
+        </div>
+    </div>
 @endsection
 
 

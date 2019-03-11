@@ -17,7 +17,7 @@
 
                             <div class="w3-show-inline-block offset-3">
                             <div class="w3-bar">
-                            <a href="/guides" class="btn btn-default">Go Back to Maternal Guide</a>
+                            <a href="{{ url('/guides') }}" class="btn btn-default">Go Back to Maternal Guide</a>
                             </div>
                             </div>
                         </div>

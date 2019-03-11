@@ -24,7 +24,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <a href="/checkups" class="btn btn-default">Go Back</a>
+                                <a href="{{ url('/checkups') }}" class="btn btn-default">Go Back</a>
                                 {{--<img style="width:100%" src="/storage/cover_images/{{$checkuprecords->cover_image}}" class="image-responsive"/>--}}
                                 <br>
                                 <br>

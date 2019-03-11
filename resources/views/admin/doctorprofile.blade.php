@@ -27,7 +27,7 @@
                                     <h2>Doctor Profile</h2>
                                 </div>
                                 <div class="w3-show-inline-block offset-6">
-                                    <a href="/users" class="btn btn-default">Go Back</a>
+                                    <a href="{{ url('/users') }}" class="btn btn-default">Go Back</a>
                                 </div>
                             </div>
                         </div>

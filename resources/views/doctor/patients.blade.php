@@ -24,7 +24,7 @@
 
                                 <div class="w3-show-inline-block offset-5       ">
                                     <input type="submit" class="btn btn-danger pull-right" value="Remove Patient" onclick="removePatient()"/>
-                                    <a href="/addpatient" class="btn btn-primary">Find Patients</a>
+                                    <a href="{{ url('/addpatient') }}" class="btn btn-primary">Find Patients</a>
                                 </div>
 
                             </div>

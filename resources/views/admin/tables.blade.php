@@ -25,7 +25,7 @@
                                 {{--</span>--}}
                             {{--</div>--}}
                             <div class="element2 col-md-2 offset-md-7">
-                                <a href="/users/create" class="btn btn-primary">Add Doctor</a>
+                                <a href="{{ url('/users/create') }}" class="btn btn-primary">Add Doctor</a>
                             </div>
                         </div>
                     </div>

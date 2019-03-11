@@ -259,7 +259,7 @@
                                                         {{Form::hidden('_method', 'DELETE')}}
                                                         {{Form::submit('Recalculate', ['class' => 'btn btn-default btn-sm'])}}
 
-                                                        <a href="/userIndex" class="btn btn-default btn-sm">Home</a>
+                                                        <a href="{{ url('/userIndex') }}" class="btn btn-default btn-sm">Home</a>
 
                                                         {!! Form::close() !!}
                                                         {{--<a href="{{ action('DueDateController@destroy', $due->id) }}" data-method="delete" class="jquery-postback"><h6>><u>Recalculate your due date</u></h6></a>--}}

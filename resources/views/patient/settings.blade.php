@@ -37,7 +37,7 @@
                                                 <br>
                                                 <br>
 
-                                                <p align="right"><a href="/changePhoto" class=" btn btn-sm btn-primary"
+                                                <p align="right"><a href="{{ url('/changePhoto') }}" class=" btn btn-sm btn-primary"
                                                                     role="button">Change Image</a></p>
                                             </div>
                                         </div>
@@ -151,8 +151,8 @@
 
                                             <div class="form-group">
                                                 <input type="submit" class="btn btn-success pull-left">
-                                                <a href="/userprofile" class="btn btn-default pull-left">Cancel</a>
-                                                <p align="right"><a href="/changePass" class=" btn btn-sm btn-primary"
+                                                <a href="{{ url('/userprofile') }}" class="btn btn-default pull-left">Cancel</a>
+                                                <p align="right"><a href="{{ url('/changePass') }}" class=" btn btn-sm btn-primary"
                                                                     role="button">Change Password</a></p>
                                             </div>
                                         </div>

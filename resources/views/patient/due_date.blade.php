@@ -28,7 +28,7 @@
 
 
                             {{--HERE IS THE START--}}
-                            <a href="/userIndex" class="btn btn-default offset-1">Go Back</a>
+                            <a href="{{ url('/userIndex') }}" class="btn btn-default offset-1">Go Back</a>
                             <br>
                             <br>
                             <h1 class="offset-1">Due Date Calculator</h1>
@@ -60,7 +60,7 @@
                                                 <button type="submit" class="btn btn-primary">
                                                     {{ __('Submit') }}
                                                 </button>
-                                                <a href="/userIndex" class="btn btn-default">Cancel</a>
+                                                <a href="{{ url('/userIndex') }}" class="btn btn-default">Cancel</a>
                                             </div>
                                             {!! Form::close() !!}
 

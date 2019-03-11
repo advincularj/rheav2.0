@@ -43,7 +43,7 @@
                         <input type="text" class="form-control" name="weightGain"/>
                     </div>
                     <button type="submit" class="btn btn-primary">Add Checkup record</button>
-                    <a href="/patients" class="btn btn-default">Cancel</a>
+                    <a href="{{ url('/patients') }}" class="btn btn-default">Cancel</a>
                 </form>
             </div>
         </div>

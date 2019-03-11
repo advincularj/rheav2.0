@@ -11,7 +11,7 @@
         {{--{{ config('app.name', 'Rhea') }}--}}
         {{--</a>--}}
 
-        <a class="navbar-brand pt-0" href="/doctor/dashboard">
+        <a class="navbar-brand pt-0" href="{{ url('/doctor/dashboard') }}">
             <img src="{{asset('aaa/doctor/img/brand/pinkkasaju.png')}}" class="navbar-brand-img" alt="{{ config('app.name', 'Rhea') }}">
         </a>
 
@@ -52,18 +52,18 @@
                     {{--</a>--}}
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/doctorprofile">
+                    <a class="nav-link" href="{{ url('/doctorprofile') }}">
                         <i class="ni ni-single-02 text-yellow"></i> Doctor Profile
                     </a>
                 </li>
                 <li class="nav-item">
                     {{--<a class="nav-link active" href="/users">--}}
-                    <a class="nav-link" href="/doctorsettings">
+                    <a class="nav-link" href="{{ url('/doctorsettings') }}">
                         <i class="ni ni-bullet-list-67 text-red"></i> Settings
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/patients">
+                    <a class="nav-link" href="{{ url('/patients') }}">
                         <i class="ni ni-bullet-list-67 text-red"></i> Patients
                     </a>
                 </li>
