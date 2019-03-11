@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9640eefee73e6c8ac49fa3e606d4a9b3",
+    "content-hash": "6d29659ac0af99f7c5a1deeddb659e74",
     "packages": [
         {
             "name": "consoletvs/charts",
@@ -4412,26 +4412,26 @@
         },
         {
             "name": "uxweb/sweet-alert",
-            "version": "1.4.3",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/uxweb/sweet-alert.git",
-                "reference": "b812f3a30b96e6a5e5597ab0fe2f29e8743c00d2"
+                "reference": "5b74ad1e51b913ede67c17c667dad6c162766fdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uxweb/sweet-alert/zipball/b812f3a30b96e6a5e5597ab0fe2f29e8743c00d2",
-                "reference": "b812f3a30b96e6a5e5597ab0fe2f29e8743c00d2",
+                "url": "https://api.github.com/repos/uxweb/sweet-alert/zipball/5b74ad1e51b913ede67c17c667dad6c162766fdc",
+                "reference": "5b74ad1e51b913ede67c17c667dad6c162766fdc",
                 "shasum": ""
             },
             "require": {
                 "illuminate/session": "~5.0",
                 "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
+                "php": ">=7.0"
             },
             "require-dev": {
                 "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "^6.0"
+                "phpunit/phpunit": "^7.0"
             },
             "type": "library",
             "extra": {
@@ -4469,7 +4469,7 @@
                 "notifier",
                 "sweet"
             ],
-            "time": "2018-07-23T20:28:35+00:00"
+            "time": "2018-11-20T19:21:08+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

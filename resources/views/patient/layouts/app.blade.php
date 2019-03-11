@@ -39,7 +39,10 @@
     {{--<main class="container">--}}
         {{--@include('inc.messages')--}}
     {{--</main>--}}
-    @yield('content')
+        <main class="main-content">
+            @yield('content')
+        </main>
+        @include ('sweet::alert');
 </div>
 <footer class="footer has-cards">
         <div class="row align-items-center justify-content-md-between">

@@ -70,6 +70,17 @@
                                                     @endif
                                                 </div>
                                                 <div class="form-group">
+                                                    <span id="basic-addon1">Birth Date</span>
+                                                    <input type="date" class="form-control{{ $errors->has('birthdate') ? ' is-invalid' : '' }}"
+                                                           placeholder="Birth date" name="birthdate"
+                                                           value="{{ old('birthdate') }}{{($data == null) ? '' : $data->birthdate}}">
+                                                    @if ($errors->has('birthdate'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('birthdate') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                                <div class="form-group">
                                                     <span id="basic-addon1">Address</span>
                                                     <textarea type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
                                                               name="address">{{ old('address') }}{{($data == null) ? '' : $data->address}}</textarea>

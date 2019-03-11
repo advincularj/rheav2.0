@@ -42,6 +42,10 @@
                                     <br>
                                     <br>
                                             <div class="form-group">
+                                                <span  id="basic-addon1">Birth Date</span>
+                                                <h2>{{ old('birthdate') }}{{($data == null) ? '' : $data->birthdate}}</h2>
+                                            </div>
+                                            <div class="form-group">
                                                 <span  id="basic-addon1">Address</span>
                                                 <h2>{{ old('address') }}{{($data == null) ? '' : $data->address}}</h2>
                                             </div>
