@@ -33,26 +33,28 @@
                     <table class="table align-items-center table-striped">
                         <thead class="thead-light">
                         <tr>
-                            <td>ID</td>
+                            <td>Month</td>
                             <td>IE Findings</td>
-                            <td>Blood Pressure</td>
+                            <td>BP</td>
                             <td>Height</td>
                             <td>Weight</td>
                             <td>AOG</td>
-                            <td>Weight Gain</td>
+                            <td>Gain</td>
+                            <td>Checklist</td>
                             <td colspan="2">Action</td>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($checkuprecords as $checkuprecord)
                             <tr>
-                                <td>{{$checkuprecord->id}}</td>
-                                <td>{{$checkuprecord->ieFindings}}</td>
+                                <td>{{$checkuprecord->dropdown}}</td>
+                                <td>{{ str_limit($checkuprecord->ieFindings, 15)}}</td>
                                 <td>{{$checkuprecord->bloodPressure}}</td>
                                 <td>{{$checkuprecord->height}}</td>
                                 <td>{{$checkuprecord->weight}}</td>
                                 <td>{{$checkuprecord->AOG}}</td>
                                 <td>{{$checkuprecord->weightGain}}</td>
+                                <td>{{ str_limit($checkuprecord->checkbox, 15) }}</td>
                                 {{--<td><a href="{{ route('checkuprecords.edit',$checkuprecord->id)}}" class="btn btn-primary">Edit</a></td>--}}
                                 <td>
                                     <form action="{{ route('checkuprecords.destroy', $checkuprecord->id)}}"

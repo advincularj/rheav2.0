@@ -34,18 +34,20 @@
                                             <div class="card card-lift--hover shadow border-0">
                                                 <div class="card-body py-5">
                                                     <div>
-
+                                                        <h1>{{$checkuprecord->dropdown}}</h1>
                                                         {{--<img style="width:100%;"--}}
                                                              {{--src="/storage/cover_images/{{$checkuprecord->cover_image}}"/>--}}
                                                         {{--                                                        <img style="width:100%; height: 140px !important; margin: 0 auto 1em auto;" src="/storage/cover_images/{{$guide->cover_image}}"/>--}}
                                                     </div>
                                                     <h3><a href="/diary/{{$checkuprecord->id}}">{{$checkuprecord->title}}</a></h3>
                                                     <div>
+                                                        <small>By Doctor <a href="/doctorprof/{{$checkuprecord->doctors->id}}"> {{$checkuprecord->doctors->first_name }} {{$checkuprecord->doctors->last_name }}</a></small>
+
+                                                        {{--<small>By Doctor {{$checkuprecord->doctors->first_name }} {{$checkuprecord->doctors->last_name }}</small>--}}
+                                                    </div>
+                                                    <div>
                                                         <small>Written on {{$checkuprecord->created_at}} </small>
                                                     </div>
-                                                    {{--<div>--}}
-                                                    {{--<small>by {{$checkuprecord->user->first_name }} {{$checkuprecord->user->last_name }}</small>--}}
-                                                    {{--</div>--}}
                                                     <a href="/checkups/{{$checkuprecord->id}}" class="btn btn-primary mt-4">View Details</a>
                                                 </div>
                                             </div>

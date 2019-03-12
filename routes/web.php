@@ -61,7 +61,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('guides.action', 'MaternalGuideController@action')->name('guides_action');
 
 
-
         // Admin - Maternal Guide Categories
         Route::resource('categories', 'MaternalGuideCategoryController', ['except' => ['create']]);
         Route::get('/admin/charts', 'ChartsController@index')->name('charts.index');
@@ -162,8 +161,12 @@ Route::group(['middleware' => ['web']], function () {
             Route::resource('diary', 'PregnancyDiariesController');
             Route::resource('pregnancydiaries', 'PregnancyDiariesController');
 
-        //Due Date Calculator
-        Route::resource('duedate', 'DueDateController');
+            //Due Date Calculator
+            Route::resource('duedate', 'DueDateController');
+
+            //Show Doctor's Profile
+            Route::get('/doctorprof/{id}', 'CrudDoctorController@showdocprofile');
+
 
 //        Route::resource('pregnancydiaries', 'PregnancyDiariesController');
 

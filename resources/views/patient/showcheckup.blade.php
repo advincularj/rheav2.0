@@ -29,6 +29,9 @@
                                 <br>
                                 <br>
                                 <div>
+                                    <h2>{!!$checkuprecords->dropdown!!}</h2>
+                                </div>
+                                <div>
                                     IE Findings: <strong>{!!$checkuprecords->ieFindings!!}</strong>
                                 </div>
                                 <div>
@@ -46,9 +49,16 @@
                                 <div>
                                     Weight Gain: <strong>{!!$checkuprecords->weightGain!!}</strong>
                                 </div>
+                                <div>
+                                    Doctor's Checklist: <strong>{!!$checkuprecords->checkbox!!}</strong>
+                                </div>
                                 <hr>
-                                <small>Written on: {{$checkuprecords->created_at}}</small>
-
+                                <div>
+                                    <small>By Doctor <a href="/doctorprof/{{$checkuprecords->doctors->id}}"> {{$checkuprecords->doctors->first_name }} {{$checkuprecords->doctors->last_name }}</a></small>
+                                </div>
+                                <div>
+                                    <small>Written on: {{$checkuprecords->created_at}}</small>
+                                </div>
                                 {{--<hr>--}}
                                 @if(!Auth::guest())
                                     @if(Auth::user()->id == $checkuprecords->userid)

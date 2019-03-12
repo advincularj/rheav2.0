@@ -110,10 +110,11 @@
                     </h3>
                     <div>
                         <h5>
-                            Your due date is calculated by adding 280 days (40 weeks) to the first day of your last
-                            menstrual period (assuming a 28 day cycle).
-                            Note that your menstrual period and ovulation are counted as the first two weeks of
-                            pregnancy. If you deliver on your due date, your baby is actually only 38 weeks old, not 40.
+                            By adding 280 days (40 weeks) to the first day of your last menstrual period (assuming a 28 day cycle)
+                            is how your due date is calculated.
+
+                            Note that as the first two weeks of pregnancy, your menstrual period and ovulation are counted.
+                            Your baby is actually only 38 weeks old, not 40, if you deliver on your due date.
                         </h5>
                         <br>
                         <br>

@@ -29,4 +29,8 @@ class CheckupRecords extends Model
     {
         return $this->belongsTo('App\User', 'userid');
     }
+    public function doctors()
+    {
+        return $this->belongsTo('App\User', 'doctorid');
+    }
 }

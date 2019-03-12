@@ -317,6 +317,14 @@ class CrudDoctorController extends Controller
         return view('admin.doctorprofile', compact(['user']));
     }
 
+    public function showdocprofile($id)
+    {
+
+        $user = doctor_info::where('user_id', $id)->first();
+
+        return view('patient.doctorprofie', compact(['user']));
+    }
+
 //    public function action(Request $request){
 //        if($request->ajax())
 //        {

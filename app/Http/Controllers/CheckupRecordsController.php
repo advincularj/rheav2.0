@@ -66,23 +66,30 @@ class CheckupRecordsController extends Controller
             'weight'=>'required|numeric|min:6',
             'heartTones'=>'required|max:2',
             'AOG'=>'required|max:8',
-            'weightGain'=>'required|numeric'
-
+            'weightGain'=>'required|numeric',
+            'dropdown'=>'required',
         ],[
             'bloodPressure.regex' => 'Must follow format ##/##'
 
         ]);
-        $checkuprecords = new CheckupRecords([
-            'ieFindings' => $request->get('ieFindings'),
-            'bloodPressure' => $request->get('bloodPressure'),
-            'height' => $request->get('height'),
-            'weight' => $request->get('weight'),
-            'heartTones' => $request->get('heartTones'),
-            'AOG' => $request->get('AOG'),
-            'weightGain' => $request->get('weightGain'),
-            'doctorid' => auth::user()->id,
-            'userid' => $request->get('patient_id')
-        ]);
+
+        $checkuprecords = new CheckupRecords();
+            $checkuprecords->ieFindings = $request->get('ieFindings');
+            $checkuprecords->bloodPressure = $request->get('bloodPressure');
+            $checkuprecords->height = $request->get('height');
+            $checkuprecords->weight = $request->get('weight');
+            $checkuprecords->heartTones = $request->get('heartTones');
+            $checkuprecords->AOG = $request->get('AOG');
+            $checkuprecords->weightGain = $request->get('weightGain');
+            $checkuprecords->doctorid = auth::user()->id;
+            $checkuprecords->userid = $request->get('patient_id');
+            $checkuprecords->dropdown=$request->get('dropdown');
+            if ($checkbox = $request->get('option') != null){
+                $checkbox = implode(", ", $request->get('option'));
+            };
+            $checkuprecords->checkbox = $checkbox;
+            $checkuprecords->save();
+
 
         //Created Checkup Record
         $activity = ActivityLogger::activity("Created Checkup Record");
