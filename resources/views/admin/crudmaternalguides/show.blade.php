@@ -20,7 +20,7 @@
                     <div class="col-md-8">
 
                         {{--HERE IS THE START--}}
-                        <a href="/maternalguide" class="btn btn-default">Go Back</a>
+                        <a href="{{ url('/maternalguide') }}" class="btn btn-default">Go Back</a>
                         <h1>{{$guide->title}}</h1>
                         <img style="width:100%" src="/storage/cover_images/{{$guide->cover_image}}" class="image-responsive"/>
                         <br>

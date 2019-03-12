@@ -19,9 +19,9 @@
                             {{--</div>--}}
                             <div class="w3-show-inline-block offset-5">
                                 <div class="w3-bar">
-                                    <a href="/guides/create" class="btn btn-primary">Create Guide</a>
-                                    <a href="/categories" class="btn btn-primary">Categories</a>
-                                    <a href="/archived" class="btn btn-primary">Archived</a>
+                                    <a href="{{ url('/guides/create') }}" class="btn btn-primary">Create Guide</a>
+                                    <a href="{{ url('/categories') }}" class="btn btn-primary">Categories</a>
+                                    <a href="{{ url('/archived') }}" class="btn btn-primary">Archived</a>
                                 </div>
                             </div>
                         </div>

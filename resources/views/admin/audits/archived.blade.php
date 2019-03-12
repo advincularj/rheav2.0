@@ -22,7 +22,7 @@
                                 <form action="{{ route('destroy-activity')}}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <a href="/audits" class="btn btn-default">Go Back</a>
+                                    <a href="{{ url('/audits') }}" class="btn btn-default">Go Back</a>
                                     <button class="btn btn-danger" name="delete" type="submit" onclick="archiveFunction()">
                                         Delete All
                                     </button>

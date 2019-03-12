@@ -82,7 +82,7 @@
                                                             <button type="submit" class="btn  btn-sm btn-primary">
                                                                 Change Password
                                                             </button>
-                                                            <a href="/doctorsettings" class="btn  btn-sm btn-primary">Cancel</a>
+                                                            <a href="{{ url('/doctorsettings') }}" class="btn  btn-sm btn-primary">Cancel</a>
                                                         </p>
                                                     </div>
                                                 </form>

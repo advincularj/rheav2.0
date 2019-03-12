@@ -36,7 +36,7 @@
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Submit') }}
                             </button>
-                            <a href="/indexnote" class="btn btn-default">Cancel</a>
+                            <a href="{{ url('/indexnote') }}" class="btn btn-default">Cancel</a>
                         </div>
                         {!! Form::close() !!}
                         {{--END--}}

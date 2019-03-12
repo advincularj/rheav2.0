@@ -21,7 +21,7 @@ class Guest
         } else {
             if (Auth::user()->role_id != 4) {
                 // user value cannot be found in session
-
+                alert()->warning('Oops!', 'You need to be a Guest to access this page.');
                 return redirect('/index');
 
             }

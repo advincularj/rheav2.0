@@ -22,6 +22,7 @@ class Patient
             return redirect('/signin');
 
         }elseif((session('role')) && session('role') != 3){
+            alert()->warning('Oops!', 'You need to be a Patient to access this page.');
             return redirect('/index');
         }
 

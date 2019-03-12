@@ -90,6 +90,7 @@ class UserSettingsController extends Controller
         $validator = Validator::make($request->all(), [
             'first_name' => ['string', 'regex:/^[a-z ,.\' -] + $/i', 'max:50'],
             'last_name' => ['string', 'regex:/^[a-z ,.\' -] + $/i', 'max:50'],
+            'birthdate' => ['required', 'date'],
             'address' => ['regex:/(^[-0-9A-Za-z.,#\/ ]+$)/', 'nullable', 'max:200'],
             'phone' => ['regex:/(09)[0-9]{9}/', 'nullable', 'max:11', 'min:11'],
             'edod' => ['date', 'nullable'],

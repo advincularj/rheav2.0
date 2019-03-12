@@ -10,6 +10,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Alert;
 
 
 class Admin
@@ -21,7 +22,7 @@ class Admin
         } else {
             if (Auth::user()->role_id != 1) {
                 // user value cannot be found in session
-
+                Alert::warning('Oops!', 'You need to be an Admin to access this page.');
                 return redirect('/index');
 
             }

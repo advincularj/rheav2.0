@@ -33,7 +33,7 @@
                                                 onclick="archiveFunction()">
                                             Archive All
                                         </button>
-                                        <a href="/archived-audits" class="btn btn-primary">Archived Logs</a>
+                                        <a href="{{ url('/archived-audits') }}" class="btn btn-primary">Archived Logs</a>
 
                                     </form>
 

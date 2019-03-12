@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-header">Edit Profile</div>
                         <div class="card-body">
-                            <form action="{{url('/doctorsettings')}}" method="post">
+                            <form action="/doctorsettings" method="post">
                                 @csrf
                             {{--@if(session('success'))--}}
                             {{--<div class="alert alert-success">--}}
@@ -41,7 +41,7 @@
                                                 <br>
                                                 <br>
                                                 <br>
-                                                <p align="right">  <a href="/changePic"  class=" btn btn-sm btn-primary" role="button">Change Image</a></p>
+                                                <p align="right">  <a href="{{ url('/changePic') }}"  class=" btn btn-sm btn-primary" role="button">Change Image</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -140,8 +140,8 @@
 
                                     <div class="form-group">
                                         <input type="submit" class="btn btn-success pull-right" >
-                                        <a href="/doctorprofile" class="btn btn-default">Cancel</a>
-                                        <p align="right">  <a href="/changePassword"  class=" btn btn-sm btn-primary" role="button">Change Password</a></p>
+                                        <a href="{{ url('/doctorprofile') }}" class="btn btn-default">Cancel</a>
+                                        <p align="right">  <a href="{{ url('/changePassword') }}"  class=" btn btn-sm btn-primary" role="button">Change Password</a></p>
 
 
                                     </div>

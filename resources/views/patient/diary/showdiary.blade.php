@@ -19,7 +19,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
 
-                        <a href="/diary" class="btn btn-default">Go Back</a>
+                        <a href="{{ url('/diary') }}" class="btn btn-default">Go Back</a>
                         <h1>{{$pregnancydiary->title}}</h1>
                         <img style="width:100%" src="/storage/cover_images/{{$pregnancydiary->cover_image}}"
                              class="image-responsive"/>

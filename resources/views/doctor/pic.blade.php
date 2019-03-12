@@ -32,7 +32,7 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <p align="right">
                                             <input type="submit" class="pull-right btn btn-sm btn-primary">
-                                            <a href="/doctorsettings" class="btn  btn-sm btn-primary">Cancel</a>
+                                            <a href="{{ url('/doctorsettings') }}" class="btn  btn-sm btn-primary">Cancel</a>
                                         </p>
                                     </form>
                                 </div>

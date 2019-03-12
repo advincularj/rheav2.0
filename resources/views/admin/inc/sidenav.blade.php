@@ -47,28 +47,28 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/charts">
+                    <a class="nav-link" href={{ url('/admin/charts') }}>
                         <i class="ni ni-tv-2 text-primary"></i> Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile">
+                    <a class="nav-link" href="{{ url('/profile') }}">
                         <i class="ni ni-single-02 text-yellow"></i> User profile
                     </a>
                 </li>
                 <li class="nav-item">
                     {{--<a class="nav-link active" href="/users">--}}
-                    <a class="nav-link" href="/users">
+                    <a class="nav-link" href="{{ url('/users') }}">
                         <i class="ni ni-bullet-list-67 text-red"></i> Doctors
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/guides">
+                    <a class="nav-link" href="{{ url('/guides') }}">
                         <i class="ni ni-bullet-list-67 text-red"></i> Maternal Guide
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/audits">
+                    <a class="nav-link" href="{{ url('/audits') }}">
                         <i class="ni ni-bullet-list-67 text-red"></i> Audit Logs
                     </a>
                 </li>
@@ -79,17 +79,17 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav mb-md-3">
                     <li class="nav-item" style="padding-left: 20px">
-                        <a class="nav-link" href="/ajaxdata">
+                        <a class="nav-link" href="{{ url('/ajaxdata') }}">
                             <i class="ni ni-bullet-list-67 text-red"></i> Users
                         </a>
                     </li>
                     <li class="nav-item" style="padding-left: 20px">
-                        <a class="nav-link" href="/articles">
+                        <a class="nav-link" href="{{ url('/articles') }}">
                             <i class="ni ni-bullet-list-67 text-red"></i> Maternal Articles
                         </a>
                     </li>
                     <li class="nav-item" style="padding-left: 20px">
-                        <a class="nav-link" href="/logs">
+                        <a class="nav-link" href="{{ url('/logs') }}">
                             <i class="ni ni-bullet-list-67 text-red"></i> User Logs
                         </a>
                     </li>
@@ -105,6 +105,7 @@
                         {{--<i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}--}}
                     {{--</a>--}}
                 {{--</li>--}}
+            </ul>
             </ul>
             <!-- Divider -->
             {{--<hr class="my-3">--}}

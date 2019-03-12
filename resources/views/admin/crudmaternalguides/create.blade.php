@@ -39,7 +39,7 @@
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Submit') }}
                             </button>
-                            <a href="/guides" class="btn btn-default">Cancel</a>
+                            <a href="{{ url('/guides') }}" class="btn btn-default">Cancel</a>
                         </div>
                         {!! Form::close() !!}
                     {{--END--}}

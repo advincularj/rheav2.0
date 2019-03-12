@@ -26,7 +26,7 @@
 
                             <div class="form-group col-md-9">
                                 {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
-                                <a href="/categories" class="btn btn-default">Cancel</a>
+                                <a href="{{ url('/categories') }}" class="btn btn-default">Cancel</a>
                             </div>
                             {{--END--}}
                         </div>

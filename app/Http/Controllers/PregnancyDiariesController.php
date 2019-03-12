@@ -55,7 +55,8 @@ class PregnancyDiariesController extends Controller
         $request->validate([
             'body'=>'required',
             'title'=>'required',
-            'cover_images' => 'image|nullable|max:1999'
+            'cover_images' => 'image|nullable|max:1999',
+//            'image' => ['image'],
 
         ]);
         if($request->hasFile('cover_image')){
@@ -130,7 +131,8 @@ class PregnancyDiariesController extends Controller
         $request->validate([
             'body'=>'required',
             'title'=>'required',
-            'cover_images' => 'image|nullable|max:1999'
+            'cover_images' => 'image|nullable|max:1999',
+//            'image' => ['image'],
         ]);
 
         if($request->hasFile('cover_image')){

@@ -21,6 +21,7 @@ class Doctor
         } else {
             if (Auth::user()->role_id != 2) {
                 // user value cannot be found in session
+                alert()->warning('Oops!', 'You need to be a Doctor to access this page.');
                 return redirect('/index');
 
             }

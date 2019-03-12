@@ -28,8 +28,8 @@
                                 My Profile
                                 </div>
                                 <div class="col-sm-6">
-                                <a href="/checkup" class="btn btn-default pull-right">Add Check-up Record</a>
-                                <a href="/patients" class="btn btn-default pull-right">Go Back</a>
+                                <a href="{{ url('/checkup') }}" class="btn btn-default pull-right">Add Check-up Record</a>
+                                <a href="{{ url('/patients') }}" class="btn btn-default pull-right">Go Back</a>
                                 </div>
                             </div>
                             <div class="card-body">

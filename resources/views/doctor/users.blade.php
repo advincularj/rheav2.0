@@ -27,7 +27,7 @@
                                     <div class="w3-show-inline-block offset-6">
                                         <input type="submit" class="btn btn-primary pull-right" value="Add Patient" onclick="addPatient()">
 
-                                        <a href="/patients" class="btn btn-default">Go Back</a>
+                                        <a href="{{ url('/patients') }}" class="btn btn-default">Go Back</a>
                                     </div>
                                 </form>
                             </div>

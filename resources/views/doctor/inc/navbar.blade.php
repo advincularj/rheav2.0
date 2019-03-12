@@ -25,17 +25,17 @@
                 </div>
                 <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="/diary">Pregnancy Diary</a>
+                        <a class="nav-link" href="{{ url('/diary') }}">Pregnancy Diary</a>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="checkup">Check-up Records</a>
+                        <a class="nav-link" href="{{ url('checkup') }}">Check-up Records</a>
                         </a>
                     </li>
                     {{--Eto yung Maternal Guide--}}
                     <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="maternalguide">RHEA Maternal Guide</a>
+                            <a class="nav-link" href="{{ url('maternalguide') }}">RHEA Maternal Guide</a>
                             </a>
                         </li>
                     </ul>
@@ -68,7 +68,7 @@
 
                     @guest
                         <li class="nav-item d-none d-lg-block ml-lg-4">
-                            <a href="/login" class="btn btn-neutral btn-icon">
+                            <a href="{{ url('/signin') }}" class="btn btn-neutral btn-icon">
                                 </span>
                                 <span class="nav-link-inner--text">Login</span>
                             </a>
@@ -78,8 +78,8 @@
                             {{--<span class="nav-link-inner--text">{{ __('Register') }}</span>--}}
                             {{--</a>--}}
                             {{--@endif--}}
-                            @if (Route::has('/register'))
-                                <a href="/register" class="btn btn-neutral btn-icon">
+                            @if (Route::has('/signup'))
+                                <a href="{{ url('/signup') }}" class="btn btn-neutral btn-icon">
                                     </span>
                                     <span class="nav-link-inner--text">{{ __('Register') }}</span>
                                 </a>
@@ -113,10 +113,10 @@
 
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="/userprofile">My Profile</a>
+                                    <a class="dropdown-item" href="{{ url('/userprofile') }}">My Profile</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/settings">Settings</a>
+                                    <a class="dropdown-item" href="{{ url('/settings') }}">Settings</a>
                                 </li>
 
 

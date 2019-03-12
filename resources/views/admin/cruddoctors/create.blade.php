@@ -109,7 +109,7 @@
                                 {{ __('Register') }}
                             </button>
 
-                            <a href="/users" class="btn btn-default">Cancel</a>
+                            <a href="{{ url('/users') }}" class="btn btn-default">Cancel</a>
                         </div>
 
                         {{--<div class="col-md-2 offset-4">--}}

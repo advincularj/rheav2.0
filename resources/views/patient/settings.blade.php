@@ -37,7 +37,7 @@
                                                 <br>
                                                 <br>
 
-                                                <p align="right"><a href="/changePhoto" class=" btn btn-sm btn-primary"
+                                                <p align="right"><a href="{{ url('/changePhoto') }}" class=" btn btn-sm btn-primary"
                                                                     role="button">Change Image</a></p>
                                             </div>
                                         </div>
@@ -67,6 +67,17 @@
                                                         <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('last_name') }}</strong>
                                                 </span>
+                                                    @endif
+                                                </div>
+                                                <div class="form-group">
+                                                    <span id="basic-addon1">Birth Date</span>
+                                                    <input type="date" class="form-control{{ $errors->has('birthdate') ? ' is-invalid' : '' }}"
+                                                           placeholder="Birth date" name="birthdate"
+                                                           value="{{ old('birthdate') }}{{($data == null) ? '' : $data->birthdate}}">
+                                                    @if ($errors->has('birthdate'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('birthdate') }}</strong>
+                                                        </span>
                                                     @endif
                                                 </div>
                                                 <div class="form-group">
@@ -151,8 +162,8 @@
 
                                             <div class="form-group">
                                                 <input type="submit" class="btn btn-success pull-left">
-                                                <a href="/userprofile" class="btn btn-default pull-left">Cancel</a>
-                                                <p align="right"><a href="/changePass" class=" btn btn-sm btn-primary"
+                                                <a href="{{ url('/userprofile') }}" class="btn btn-default pull-left">Cancel</a>
+                                                <p align="right"><a href="{{ url('/changePass') }}" class=" btn btn-sm btn-primary"
                                                                     role="button">Change Password</a></p>
                                             </div>
                                         </div>
