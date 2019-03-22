@@ -32,7 +32,7 @@
                                         <div class="col-lg-4">
                                             <br>
                                             <div class="card card-lift--hover shadow border-0">
-                                                <div class="card-body py-5">
+                                                <div class="card-body py-4">
                                                     <div>
                                                         <h1>{{$checkuprecord->dropdown}}</h1>
                                                         {{--<img style="width:100%;"--}}

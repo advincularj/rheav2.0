@@ -26,44 +26,44 @@
                             <div class="w3-show-inline-block offset-6">
                                 <div class="w3-bar">
 
-                                    <form action="{{ route('clear-activity')}}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button class="btn btn-danger" name="archive" type="submit"
-                                                onclick="archiveFunction()">
-                                            Archive All
-                                        </button>
-                                        <a href="{{ url('/archived-audits') }}" class="btn btn-primary">Archived Logs</a>
+                                    {{--<form action="{{ route('clear-activity')}}" method="POST">--}}
+                                        {{--{{ csrf_field() }}--}}
+                                        {{--{{ method_field('DELETE') }}--}}
+                                        {{--<button class="btn btn-danger" name="archive" type="submit"--}}
+                                                {{--onclick="archiveFunction()">--}}
+                                            {{--Archive All--}}
+                                        {{--</button>--}}
+                                        {{--<a href="{{ url('/archived-audits') }}" class="btn btn-primary">Archived Logs</a>--}}
 
-                                    </form>
+                                    {{--</form>--}}
 
-                                    <script>
-                                        function archiveFunction() {
-                                            event.preventDefault(); // prevent form submit
-                                            var form = event.target.form; // storing the form
-                                            swal({
-                                                    title: "Are you sure?",
-                                                    text: "But you will still be able to retrieve these files.",
-                                                    type: "warning",
-                                                    showCancelButton: true,
-                                                    confirmButtonColor: "#DD6B55",
-                                                    confirmButtonText: "Yes, archive it!",
-                                                    cancelButtonText: "No, cancel please!",
-                                                    closeOnConfirm: false,
-                                                    closeOnCancel: false
-                                                },
-                                                function (isConfirm) {
-                                                    if (isConfirm) {
-                                                        form.submit();          // submitting the form when user press yes
-                                                        // swal("Archived!", "Your file has been archived.", "success");
+                                    {{--<script>--}}
+                                        {{--function archiveFunction() {--}}
+                                            {{--event.preventDefault(); // prevent form submit--}}
+                                            {{--var form = event.target.form; // storing the form--}}
+                                            {{--swal({--}}
+                                                    {{--title: "Are you sure?",--}}
+                                                    {{--text: "But you will still be able to retrieve these files.",--}}
+                                                    {{--type: "warning",--}}
+                                                    {{--showCancelButton: true,--}}
+                                                    {{--confirmButtonColor: "#DD6B55",--}}
+                                                    {{--confirmButtonText: "Yes, archive it!",--}}
+                                                    {{--cancelButtonText: "No, cancel please!",--}}
+                                                    {{--closeOnConfirm: false,--}}
+                                                    {{--closeOnCancel: false--}}
+                                                {{--},--}}
+                                                {{--function (isConfirm) {--}}
+                                                    {{--if (isConfirm) {--}}
+                                                        {{--form.submit();          // submitting the form when user press yes--}}
+                                                        {{--// swal("Archived!", "Your file has been archived.", "success");--}}
 
 
-                                                    } else {
-                                                        swal("Cancelled", "Your files are safe :)", "error");
-                                                    }
-                                                });
-                                        }
-                                    </script>
+                                                    {{--} else {--}}
+                                                        {{--swal("Cancelled", "Your files are safe :)", "error");--}}
+                                                    {{--}--}}
+                                                {{--});--}}
+                                        {{--}--}}
+                                    {{--</script>--}}
 
                                     {{--<a href="/destroy-activity" class="btn btn-danger">Delete All</a>--}}
 

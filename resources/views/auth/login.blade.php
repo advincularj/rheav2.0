@@ -127,7 +127,7 @@
                             <div class="text-center text-muted mb-4">
                                 <small>Login</small>
                             </div>
-                            <form method="POST" action="{{ url('log-in') }}">
+                            <form method="POST" action="{{ url('log-in') }}" autocomplete="off">
                                     @csrf
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-alternative">
@@ -135,7 +135,7 @@
                                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                         </div>
                                         {{--<input class="form-control" placeholder="Email" type="email">--}}
-                                        <input id="email" type="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                        <input id="email" type="email" autocomplete="off" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback" role="alert">

@@ -24,11 +24,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public $table = 'users';
     public $primaryKey ='id';
     protected $fillable = [
-    'role_id','first_name', 'last_name', 'phone', 'email', 'password',
+    'role_id','first_name', 'middle_name', 'last_name', 'phone', 'email', 'password',
 
 
 ];
-    protected static $logAttributes = ['first_name', 'last_name', 'phone', 'email', 'password'];
+    protected static $logAttributes = ['first_name', 'middle_name', 'last_name', 'phone', 'email', 'password'];
     protected static $logName = 'User';
 
     /**

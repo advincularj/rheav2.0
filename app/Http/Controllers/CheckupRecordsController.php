@@ -7,17 +7,14 @@ use foo\bar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
-
+use Validator;
+use Redirect;
+use Illuminate\Validation\Rule;
 use jeremykenedy\LaravelLogger\App\Http\Traits\ActivityLogger;
 use Pusher\Pusher;
 
-class CheckupRecordsController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class CheckupRecordsController extends Controller{
+
     public function index($id)
     {
 
@@ -29,6 +26,23 @@ class CheckupRecordsController extends Controller
         $activity = ActivityLogger::activity("Viewed Checkup Record");
 
         return view('doctor.viewcheckup', compact(['checkuprecords', 'id']))->with('activity', $activity);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+
+    public function index($id)
+    {
+
+
+    //$checkuprecords = CheckupRecords::where("doctorid", Auth::user()->id)->get();
+    $checkuprecords = CheckupRecords::where("userid", $id)->get();
+
+    //Viewed Checkup Record
+    $activity = ActivityLogger::activity("Viewed Checkup Record");
+
+    return view('doctor.viewcheckup', compact(['checkuprecords', 'id']))->with('activity', $activity);
     }
 
     /**
@@ -42,13 +56,6 @@ class CheckupRecordsController extends Controller
         return view('doctor.createcheckup', compact('id'));
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     /**
      * Store a newly created resource in storage.
      *
@@ -60,36 +67,43 @@ class CheckupRecordsController extends Controller
 
         //
         $request->validate([
-            'ieFindings'=>'required',
-            'bloodPressure'=>'required|regex:/\d{1,3}\/\d{1,3}/'    ,
-            'height'=>  'required|numeric|min:4',
-            'weight'=>'required|numeric|min:6',
-            'heartTones'=>'required|max:2',
-            'AOG'=>'required|max:8',
-            'weightGain'=>'required|numeric',
-            'dropdown'=>'required',
+            'ieFindings'=>'required | max:200| min:1',
+            'bloodPressure'=>'required|min:1|max:200|regex:/\d{1,3}\/\d{1,3}/',
+            'height'=>['required', 'min:4', 'max:9', 'regex:/\[0-9]+\'([]?[0-9]{1,2}[\"]?|)|(\d{1,3}cm)$/'],
+            'weight'=>['required','regex:/\d{1,3}(kg|lb)/'],
+            'heartTones'=>'required|min:1|max:3',
+            'AOG'=>'required|min:1|max:8',
+            'weightGain'=>'required|numeric'
+
         ],[
-            'bloodPressure.regex' => 'Must follow format ##/##'
+            'ieFindings.required' => 'Findings is required',
+            'ieFindings.min' => 'The Findings must be more than 1 character.',
+            'ieFindings.max' => 'The Findings may not be greater than 200 characters.',
+            'bloodPressure.regex' => 'Must follow format --/--',
+            'height.regex' => 'Must follow format --- cm',
+            'weight.regex' => 'Must follow format --- kgs',
+            'bloodPressure.required' => 'Blood Pressure is required',
+            'height.required' => 'Height is required',
+            'weight.required' => 'Weight is required',
+            'weight.min' => 'The Weight must be more than 1 characters.',
+            'heartTones.required' => 'Heart Tones is required',
+            'HeartTones.max' => 'The Heart Tones may not be greater than 3 characters.',
+            'AOG.required' => 'AOG is required',
+            'AOG.max' => 'AOG may not be greater than 8 characters.',
+            'weightGain.required' => 'Weight Gain is required',
 
         ]);
-
-        $checkuprecords = new CheckupRecords();
-            $checkuprecords->ieFindings = $request->get('ieFindings');
-            $checkuprecords->bloodPressure = $request->get('bloodPressure');
-            $checkuprecords->height = $request->get('height');
-            $checkuprecords->weight = $request->get('weight');
-            $checkuprecords->heartTones = $request->get('heartTones');
-            $checkuprecords->AOG = $request->get('AOG');
-            $checkuprecords->weightGain = $request->get('weightGain');
-            $checkuprecords->doctorid = auth::user()->id;
-            $checkuprecords->userid = $request->get('patient_id');
-            $checkuprecords->dropdown=$request->get('dropdown');
-            if ($checkbox = $request->get('option') != null){
-                $checkbox = implode(", ", $request->get('option'));
-            };
-            $checkuprecords->checkbox = $checkbox;
-            $checkuprecords->save();
-
+        $checkuprecords = new CheckupRecords([
+            'ieFindings' => $request->get('ieFindings'),
+            'bloodPressure' => $request->get('bloodPressure'),
+            'height' => $request->get('height'),
+            'weight' => $request->get('weight'),
+            'heartTones' => $request->get('heartTones'),
+            'AOG' => $request->get('AOG'),
+            'weightGain' => $request->get('weightGain'),
+            'doctorid' => auth::user()->id,
+            'userid' => $request->get('patient_id')
+        ]);
 
         //Created Checkup Record
         $activity = ActivityLogger::activity("Created Checkup Record");
@@ -97,6 +111,8 @@ class CheckupRecordsController extends Controller
         $checkuprecords->save();
         return redirect('checkup/'.$request->patient_id.'')->with('success', 'checkup record has been added')->with('activity', $activity);
     }
+
+
 
     /**
      * Display the specified resource.
@@ -139,13 +155,31 @@ class CheckupRecordsController extends Controller
     {
         //
         $request->validate([
-            'ieFindings'=>'required',
-            'bloodPressure'=>'required',
-            'height'=>'required',
-            'weight'=>'required',
-            'heartTones'=>'required',
-            'AOG'=>'required',
-            'weightGain'=>'required'
+            'ieFindings'=>'required | max:200| min:1',
+            'bloodPressure'=>'required|regex:/\d{1,3}\/\d{1,3}/',
+            'height'=>'required|numeric|min:1|regex:/\[0-9]+\'([]?[0-9]{1,2}[\"]?|)|(\d{1,3}cm)$/',
+            'weight'=>'required|numeric|min:1|regex:/\d{1,3}(kg|lb)/',
+            'heartTones'=>'required|min:1|max:3',
+            'AOG'=>'required|min:1|max:8',
+            'weightGain'=>'required|numeric'
+
+        ],[
+            'ieFindings.required' => 'Findings is required',
+            'ieFindings.min' => 'The Findings must be more than 1 character.',
+            'ieFindings.max' => 'The Findings may not be greater than 200 characters.',
+            'bloodPressure.regex' => 'Must follow format --/--',
+            'height.regex' => 'Must follow format --- cm',
+            'weight.regex' => 'Must follow format --- kgs',
+            'bloodPressure.required' => 'Blood Pressure is required',
+            'height.required' => 'Height is required',
+            'height.min' => 'The Height must be more than than 1 character.',
+            'weight.required' => 'Weight is required',
+            'weight.min' => 'The Weight must be more than 1 characters.',
+            'heartTones.required' => 'Heart Tones is required',
+            'HeartTones.max' => 'The Heart Tones may not be greater than 3 characters.',
+            'AOG.required' => 'AOG is required',
+            'AOG.max' => 'AOG may not be greater than 8 characters.',
+            'weightGain.required' => 'Weight Gain is required',
         ]);
 
         $checkuprecord = CheckupRecords::find($id);
@@ -179,7 +213,7 @@ class CheckupRecordsController extends Controller
         //Updated Checkup Record
         $activity = ActivityLogger::activity("Deleted Checkup Record");
 
-        return redirect('/patients')->with('success', 'Checkup record has been deleted Successfully')->with('activity', $activity);
+        return redirect('/checkup')->with('success', 'Checkup record has been deleted Successfully')->with('activity', $activity);
     }
 
     public function sendNotification(){

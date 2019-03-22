@@ -84,7 +84,7 @@
                         <div class="row mb-0">
                             <div class="element1 col-md-4">
                             </div>
-                            {!! Form::open(['action' => 'MaternalGuideCategoryController@store', 'method' => 'post']) !!}
+                            {!! Form::open(['action' => 'MaternalGuideCategoryController@store', 'method' => 'post', 'autocomplete' => 'off']) !!}
                             <h2 class="form-group col-md-9">New Category</h2>
                             <div class="form-group col-md-9">
                                 {{ Form::label('name', 'Name:') }}

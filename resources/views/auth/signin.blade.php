@@ -1,3 +1,167 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with a Design System for Bootstrap 4.">
+    <meta name="author" content="Creative Tim">
+    <title>{{ config('app.name', 'Rhea') }}</title>
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Favicon -->
+    <link href="{{ asset('aaa/doctor/img/brand/pink.png') }}" rel="icon" type="image/png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Icons -->
+    <link href="{{ asset('aaa/doctor/vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
+    <link href="{{ asset('aaa/doctor/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <!-- Argon CSS -->
+    <link href="{{ asset('/aaa/doctor/css/argon.css') }}" rel="stylesheet">
+    <!-- Docs CSS -->
+    <link href="{{ asset('aaa/doctor/css/docs.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body>
+@include('inc.navbar')
+<main>
+    <section class="section section-shaped section-lg">
+        <div class="shape shape-style-1 bg-gradient-default">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="container pt-lg-md">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card bg-secondary shadow border-0">
+                        <div class="card-body px-lg-5 py-lg-5">
+                            <div class="text-center text-muted mb-4">
+                                <small>Login</small>
+                            </div>
+                            <form method="POST" action="{{ url('signin') }}" autocomplete="off">
+                                @csrf
+                                {{--@if (session('status'))--}}
+                                    {{--<div class="alert alert-success">--}}
+                                        {{--{{ session('status') }}--}}
+                                    {{--</div>--}}
+                                {{--@endif--}}
+                                {{--@if (session('warning'))--}}
+                                    {{--<div class="alert alert-warning">--}}
+                                        {{--{{ session('warning') }}--}}
+                                    {{--</div>--}}
+                                {{--@endif--}}
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                        </div>
+                                        {{--<input class="form-control" placeholder="Email" type="email">--}}
+                                        <input id="email" type="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                                        @if ($errors->has('email'))
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                        </div>
+                                        {{--<input class="form-control" placeholder="Password" type="password">--}}
+                                        <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="g-recaptcha"
+                                         data-sitekey="6LfvxYoUAAAAALVH5SOoHXmqsETpH4DGXhKc7gyz"
+                                         data-callback="onSubmit"
+                                         data-size="invisible">
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary my-4">Sign In</button>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}" class="text-white">
+                                    <small>{{ __('Forgot password?') }}</small>
+                                </a>
+                            @endif
+                            {{--<a href="password.request" class="text-light">--}}
+                            {{--<small></small>--}}
+                            {{--</a>--}}
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="{{ url('/signup') }}" class="text-white">
+                                <small>Create new account</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Footer -->
+<footer class="footer">
+    <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+            <div class="copyright text-center text-xl-left text-muted">
+                &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+                <li class="nav-item">
+                    <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<!-- ReCaptcha -->
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<!-- Core -->
+<script src="{{asset('aaa/doctor/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('aaa/doctor/vendor/popper/popper.min.js')}}"></script>
+<script src="{{asset('aaa/doctor/vendor/bootstrap/bootstrap.min.js')}}"></script>
+<script src="{{asset('aaa/doctor/vendor/headroom/headroom.min.js')}}"></script>
+<!-- Argon JS -->
+<script src="{{asset('aaa/doctor/js/argon.js?v=1.0.1')}}../assets/"></script>
+</body>
+
+</html>
+
+{{--@endsection--}}
+
 {{--@extends('layouts.app')--}}
 
 {{--@section('content')--}}
@@ -76,168 +240,4 @@
 {{--</div>--}}
 {{--</div>--}}
 {{--</div>--}}
-{{--@endsection--}}
-
-<! DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with a Design System for Bootstrap 4.">
-    <meta name="author" content="Creative Tim">
-    <title>{{ config('app.name', 'Rhea') }}</title>
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- Favicon -->
-    <link href="{{ asset('aaa/doctor/img/brand/pink.png') }}" rel="icon" type="image/png">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <!-- Icons -->
-    <link href="{{ asset('aaa/doctor/vendor/nucleo/css/nucleo.css') }}" rel="stylesheet">
-    <link href="{{ asset('aaa/doctor/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-    <!-- Argon CSS -->
-    <link href="{{ asset('/aaa/doctor/css/argon.css') }}" rel="stylesheet">
-    <!-- Docs CSS -->
-    <link href="{{ asset('aaa/doctor/css/docs.min.css') }}" rel="stylesheet">
-
-</head>
-
-<body>
-@include('inc.navbar')
-<main>
-    <section class="section section-shaped section-lg">
-        <div class="shape shape-style-1 bg-gradient-default">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="container pt-lg-md">
-            <div class="row justify-content-center">
-                <div class="col-lg-5">
-                    <div class="card bg-secondary shadow border-0">
-                        <div class="card-body px-lg-5 py-lg-5">
-                            <div class="text-center text-muted mb-4">
-                                <small>Login</small>
-                            </div>
-                            <form method="POST" action="{{ url('signin') }}">
-                                @csrf
-                                {{--@if (session('status'))--}}
-                                    {{--<div class="alert alert-success">--}}
-                                        {{--{{ session('status') }}--}}
-                                    {{--</div>--}}
-                                {{--@endif--}}
-                                {{--@if (session('warning'))--}}
-                                    {{--<div class="alert alert-warning">--}}
-                                        {{--{{ session('warning') }}--}}
-                                    {{--</div>--}}
-                                {{--@endif--}}
-                                <div class="form-group mb-3">
-                                    <div class="input-group input-group-alternative">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                                        </div>
-                                        {{--<input class="form-control" placeholder="Email" type="email">--}}
-                                        <input id="email" type="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                        @if ($errors->has('email'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                        </div>
-                                        {{--<input class="form-control" placeholder="Password" type="password">--}}
-                                        <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="g-recaptcha" align="center"
-                                         data-sitekey="6Lfj6XAUAAAAAP9Mkg2ajxaSAZy0LaV-TS_BcnlK" style="display: block">
-
-                                    </div>
-                                    <br>
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-primary my-4">Sign In</button>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col-6">
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" class="text-white">
-                                    <small>{{ __('Forgot password?') }}</small>
-                                </a>
-                            @endif
-                            {{--<a href="password.request" class="text-light">--}}
-                            {{--<small></small>--}}
-                            {{--</a>--}}
-                        </div>
-                        <div class="col-6 text-right">
-                            <a href="{{ url('/signup') }}" class="text-white">
-                                <small>Create new account</small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-<!-- Footer -->
-<footer class="footer">
-    <div class="row align-items-center justify-content-xl-between">
-        <div class="col-xl-6">
-            <div class="copyright text-center text-xl-left text-muted">
-                &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
-            </div>
-        </div>
-        <div class="col-xl-6">
-            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-                <li class="nav-item">
-                    <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</footer>
-<!-- ReCaptcha -->
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<!-- Core -->
-<script src="{{asset('aaa/doctor/vendor/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('aaa/doctor/vendor/popper/popper.min.js')}}"></script>
-<script src="{{asset('aaa/doctor/vendor/bootstrap/bootstrap.min.js')}}"></script>
-<script src="{{asset('aaa/doctor/vendor/headroom/headroom.min.js')}}"></script>
-<!-- Argon JS -->
-<script src="{{asset('aaa/doctor/js/argon.js?v=1.0.1')}}../assets/"></script>
-</body>
-
-</html>
-
 {{--@endsection--}}

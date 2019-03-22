@@ -1,3 +1,4 @@
+
 @extends('admin.layouts.app')
 
 @section('content')
@@ -13,7 +14,7 @@
                         <h3 class="mb-0" style="text-align: center">Create a Doctor Account</h3>
                     </div>
 
-                    {!! Form::open(['action' => 'CrudDoctorController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['action' => 'CrudDoctorController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'autocomplete' => 'off']) !!}
                     @csrf
 
                     {{--@if($errors->any())--}}
@@ -55,19 +56,19 @@
                         </div>
                     </div>
 
-                    <div class="form-group row required">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Birth Date') }}</label>
+                    {{--<div class="form-group row required">--}}
+                        {{--<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Birth Date') }}</label>--}}
 
-                        <div class="col-md-6">
-                            <input id="name" type="date" class="form-control{{ $errors->has('birth_date') ? ' is-invalid' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required autofocus>
+                        {{--<div class="col-md-6">--}}
+                            {{--<input id="name" type="date" class="form-control{{ $errors->has('birth_date') ? ' is-invalid' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required autofocus>--}}
 
-                            @if ($errors->has('birth_date'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('birth_date') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-                    </div>
+                            {{--@if ($errors->has('birth_date'))--}}
+                                {{--<span class="invalid-feedback" role="alert">--}}
+                                        {{--<strong>{{ $errors->first('birth_date') }}</strong>--}}
+                                    {{--</span>--}}
+                            {{--@endif--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>

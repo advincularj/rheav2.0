@@ -51,6 +51,7 @@ class SignupController extends Controller
 //            ->where('first_name', $this->request->get('first_name'));
         $validator = Validator::make($request->all(), [
             'first_name' => ['string', 'required','max:50','regex:/^[a-z ,.\'-]+$/i'],
+            'middle_name' => ['string', 'max:50','regex:/^[a-z ,.\'-]+$/i'],
             'last_name' => ['string', 'required','max:50','regex:/^[a-z ,.\'-]+$/i'],
 //            'birth_date' => ['required', 'date'],
             'phone' => ['required','numeric', 'digits_between:10,11','regex:/^[09]{2}[0-9]{9}$/',],
@@ -62,6 +63,9 @@ class SignupController extends Controller
             'first_name.required' => 'The first name field is required.',
             'first_name.max' => 'The first name may not be greater than 50 characters.',
             'first_name.regex' => 'The first name format is invalid',
+
+            'middle_name.max' => 'The first name may not be greater than 50 characters.',
+            'middle_name.regex' => 'The first name format is invalid',
 
             'last_name.required' => 'The last name field is required',
             'last_name.max' => 'The last name may not be greater than 50 characters.',

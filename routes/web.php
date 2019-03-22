@@ -21,6 +21,13 @@
 
 Route::group(['middleware' => ['web']], function () {
 
+
+    Route::resource('template', 'ProductsController');
+    Route::get('/add', 'ProductsController@indexMoto');
+    Route::get('/remove', 'ProductsController@index');
+
+    Route::resource('auth', 'AuthorshipController');
+
     //PagesController
     Route::get('/', 'PagesController@index');
 //    Route::get('/indexLoggedIn', 'PagesController@indexLoggedIn');

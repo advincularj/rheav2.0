@@ -23,6 +23,21 @@
     <!-- Docs CSS -->
     <link href="{{ asset('aaa/doctor/css/docs.min.css') }}" rel="stylesheet">
 
+    <!-- ReCaptcha-->
+    <script type="text/javascript">
+
+        var onSubmit = function(token) {
+            console.log('success!');
+        };
+
+        var onloadCallback = function() {
+            grecaptcha.render('submit', {
+                'sitekey' : 'your_site_key',
+                'callback' : onSubmit
+            });
+        };
+    </script>
+
 </head>
 
 <body>
@@ -53,159 +68,205 @@
                                 <small>Register</small>
                             </div>
 
-                            <form method="POST" action="{{ url('signup') }}">
+                            <form method="POST" action="{{ url('signup') }}" autocomplete="off">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4 required">
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
-                                        </div>
-                                        <input id="name" placeholder="First Name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
-                                        @if ($errors->has('first_name'))
-                                            <span class="invalid-feedback" role="alert">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i
+                                                                class="ni ni-circle-08"></i></span>
+                                                </div>
+                                                <input id="name" placeholder="First Name" type="text"
+                                                       class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
+                                                       name="first_name" value="{{ old('first_name') }}" required
+                                                       autofocus>
+                                                @if ($errors->has('first_name'))
+                                                    <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('first_name') }}</strong>
                                                 </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                    </div>
-
-                                        <div class="col-md-4 required">
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
-                                        </div>
-                                        <input id="name" placeholder="Last Name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
-                                        @if ($errors->has('last_name'))
-                                            <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('last_name') }}</strong>
-                                                </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                        </div>
-
-                                    {{--<div class="col-md-4 required">--}}
-                                {{--<div class="form-group">--}}
-                                    {{--<div class="input-group input-group-alternative mb-3">--}}
-                                        {{--<div class="input-group-prepend">--}}
-                                            {{--<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>--}}
-                                        {{--</div>--}}
-                                        {{--<input id="name" type="date" class="form-control{{ $errors->has('birth_date') ? ' is-invalid' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required autofocus>--}}
-
-                                        {{--@if ($errors->has('birth_date'))--}}
-                                            {{--<span class="invalid-feedback" role="alert">--}}
-                                                {{--<strong>{{ $errors->first('birth_date') }}</strong>--}}
-                                            {{--</span>--}}
-                                        {{--@endif--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                    {{--</div>--}}
-
-                                    <div class="col-md-4 required">
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
-                                        </div>
-                                        <input id="name" placeholder="Phone Number" type="number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
-
-                                        @if ($errors->has('phone'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('phone') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                    </div>
-
-                                    <div class="col-md-4 required">
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                                        </div>
-                                        <input id="email" placeholder="E-mail Address" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                        @if ($errors->has('email'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                    </div>
-
-                                    <div class="col-md-4 required">
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                        </div>
-                                        <input id="password" placeholder="Password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                        @if ($errors->has('password'))
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                    </div>
-
-                                    <div class="col-md-4 required">
-                                <div class="form-group">
-                                    <div class="input-group input-group-alternative">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                        </div>
-                                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required>
-                                    </div>
-                                </div>
-                                    </div>
-                                <div class="col-lg-12">
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="g-recaptcha"
-                                                     data-sitekey="6Lfj6XAUAAAAAP9Mkg2ajxaSAZy0LaV-TS_BcnlK"></div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                {{--reCaptcha--}}
-                                {{--<div class="form-group row">--}}
-                                {{--<div class="col-md-6 offset-4">--}}
-                                {{--<div class="g-recaptcha" data-sitekey="6Lfn-4sUAAAAAIRKayYF_bzD3AFAzo5P1kA6sDjP"></div>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
+                                    <div class="col-md-4 required">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i
+                                                                class="ni ni-circle-08"></i></span>
+                                                </div>
+                                                <input id="name" placeholder="Middle Name" type="text"
+                                                       class="form-control{{ $errors->has('middle_name') ? ' is-invalid' : '' }}"
+                                                       name="last_name" value="{{ old('middle_name') }}" required
+                                                       autofocus>
+                                                @if ($errors->has('middle_name'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('middle_name') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                {{--PASSWORD STRENGTH--}}
-                                {{--<div class="text-muted font-italic">--}}
-                                {{--<small>password strength:--}}
-                                {{--<span class="text-success font-weight-700">strong</span>--}}
-                                {{--</small>--}}
-                                {{--</div>--}}
+                                    <div class="col-md-4 required">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i
+                                                                class="ni ni-circle-08"></i></span>
+                                                </div>
+                                                <input id="name" placeholder="Last Name" type="text"
+                                                       class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
+                                                       name="last_name" value="{{ old('last_name') }}" required
+                                                       autofocus>
+                                                @if ($errors->has('last_name'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('last_name') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                {{--Privacy Policy--}}
-                                {{--<div class="row my-4">--}}
-                                {{--<div class="col-12">--}}
-                                {{--<div class="custom-control custom-control-alternative custom-checkbox">--}}
-                                {{--<input class="custom-control-input" id="customCheckRegister" type="checkbox">--}}
-                                {{--<label class="custom-control-label" for="customCheckRegister">--}}
-                                {{--<span>I agree with the--}}
-                                {{--<a href="#">Privacy Policy</a>--}}
-                                {{--</span>--}}
-                                {{--</label>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                <div style="align-content: center">
-                                    <button type="submit" class="btn btn-primary mt-6">Register</button>
+                                    {{--<div class="col-md-4 required">--}}
+                                    {{--<div class="form-group">--}}
+                                    {{--<div class="input-group input-group-alternative mb-3">--}}
+                                    {{--<div class="input-group-prepend">--}}
+                                    {{--<span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>--}}
+                                    {{--</div>--}}
+                                    {{--<input id="name" type="date" class="form-control{{ $errors->has('birth_date') ? ' is-invalid' : '' }}" name="birth_date" value="{{ old('birth_date') }}" required autofocus>--}}
+
+                                    {{--@if ($errors->has('birth_date'))--}}
+                                    {{--<span class="invalid-feedback" role="alert">--}}
+                                    {{--<strong>{{ $errors->first('birth_date') }}</strong>--}}
+                                    {{--</span>--}}
+                                    {{--@endif--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+
+                                    <div class="col-md-4 required">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i
+                                                                class="ni ni-mobile-button"></i></span>
+                                                </div>
+                                                <input id="name" placeholder="Phone Number" type="number"
+                                                       class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                                                       name="phone" value="{{ old('phone') }}" required autofocus>
+
+                                                @if ($errors->has('phone'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('phone') }}</strong>
+                                            </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 required">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                                </div>
+                                                <input id="email" placeholder="E-mail Address" type="email"
+                                                       class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                                       name="email" value="{{ old('email') }}" required>
+
+                                                @if ($errors->has('email'))
+                                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 required">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i
+                                                                class="ni ni-lock-circle-open"></i></span>
+                                                </div>
+                                                <input id="password" placeholder="Password" type="password"
+                                                       class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                       name="password" required>
+
+                                                @if ($errors->has('password'))
+                                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 required">
+                                        <div class="form-group">
+                                            <div class="input-group input-group-alternative">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i
+                                                                class="ni ni-lock-circle-open"></i></span>
+                                                </div>
+                                                <input id="password-confirm" placeholder="Confirm Password"
+                                                       type="password" class="form-control" name="password_confirmation"
+                                                       required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--<div class="col-lg-12">--}}
+                                        {{--<div class="row justify-content-center">--}}
+                                            {{--<div class="col-md-6">--}}
+                                                {{--<div class="form-group">--}}
+                                                    {{--<div class="g-recaptcha"--}}
+                                                         {{--data-sitekey="6Lfj6XAUAAAAAP9Mkg2ajxaSAZy0LaV-TS_BcnlK"></div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+
+                                    {{--reCaptcha--}}
+                                    {{--<div class="form-group row">--}}
+                                    {{--<div class="col-md-6 offset-4">--}}
+                                    {{--<div class="g-recaptcha" data-sitekey="6Lfn-4sUAAAAAIRKayYF_bzD3AFAzo5P1kA6sDjP"></div>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+
+                                    {{--PASSWORD STRENGTH--}}
+                                    {{--<div class="text-muted font-italic">--}}
+                                    {{--<small>password strength:--}}
+                                    {{--<span class="text-success font-weight-700">strong</span>--}}
+                                    {{--</small>--}}
+                                    {{--</div>--}}
+
+                                    {{--Privacy Policy--}}
+                                    {{--<div class="row my-4">--}}
+                                    {{--<div class="col-12">--}}
+                                    {{--<div class="custom-control custom-control-alternative custom-checkbox">--}}
+                                    {{--<input class="custom-control-input" id="customCheckRegister" type="checkbox">--}}
+                                    {{--<label class="custom-control-label" for="customCheckRegister">--}}
+                                    {{--<span>I agree with the--}}
+                                    {{--<a href="#">Privacy Policy</a>--}}
+                                    {{--</span>--}}
+                                    {{--</label>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+                                    <div class="g-recaptcha"
+                                         data-sitekey="6LfvxYoUAAAAALVH5SOoHXmqsETpH4DGXhKc7gyz"
+                                         data-callback="onSubmit"
+                                         data-size="invisible">
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary mt-6">Register</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -232,13 +293,15 @@
                         <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+                        <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About
+                            Us</a>
                     </li>
                     <li class="nav-item">
                         <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
+                        <a href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
+                           class="nav-link" target="_blank">MIT License</a>
                     </li>
                 </ul>
             </div>

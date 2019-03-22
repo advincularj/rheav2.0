@@ -31,7 +31,7 @@
 
                                             {{--HERE IS THE START--}}
                                             <div class="container">
-                                                {!! Form::open(['action' => 'PregnancyDiariesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                                                {!! Form::open(['action' => 'PregnancyDiariesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'autocomplete' => 'off']) !!}
                                                 <div class="form-group">
                                                     {{Form::label('title', 'Title')}}
                                                     {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
